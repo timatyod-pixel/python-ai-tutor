@@ -1,0 +1,1821 @@
+[Музыка] [Музыка] Итак, это курс CS50 «Введение в программирование на Python».
+Меня зовут Дэвид Мен, и на этой неделе мы будем изучать объектно-
+ориентированное программирование. Оказывается , в мире программирования
+существуют разные парадигмы языков программирования, разные способы решения
+задач с помощью кода. Поначалу это немного сложно заметить, если вы изучали
+только один язык, но со временем, если и когда вы изучите другие языки, помимо
+Python, вы начнете замечать определенные закономерности и возможности одних
+языков, но не других. До сих пор в мире Python мы с вами в основном писали код
+процедурного характера, то есть мы писали процедуры, функции и делали все от
+начала до конца, шаг за шагом, как и следовало ожидать от алгоритма. Но попутно мы
+попробовали другую парадигму, известную как функциональное программирование на
+Python, где мы смогли передавать функции. Несколько недель назад у нас даже была
+анонимная функция , и это свидетельствует о возможностях функционального языка
+программирования, хотя мы только что Сегодня мы лишь поверхностно затронули эту
+тему и сосредоточимся на другой парадигме, а именно на объектно-ориентированном
+программировании. Хотя у некоторых из вас, возможно, есть опыт программирования и
+вы изучали такие языки, как Java , которые по своей сути являются
+объектно-ориентированными, Python действительно предоставляет некоторую
+гибкость в решении задач с помощью кода. Но оказывается,
+объектно-ориентированное программирование — это довольно убедительное решение
+проблем, с которыми вы неизбежно сталкиваетесь по мере того, как ваши программы
+становятся длиннее, больше и сложнее. Таким образом , для наших целей ООП станет
+решением проблемы, основанной на многих из ранее изученных уроков. Итак, давайте
+начнем . Давайте начнем с написания программы в процедурном стиле. Открыв VS
+Code, я создам программу под названием student.py. В этой программе я хочу сначала
+сделать что-то относительно простое, как мы, возможно, делали несколько недель
+назад: я просто спрашиваю у пользователя его имя и, возможно, в контексте вселенной
+Гарри Поттера, его факультет, и просто вывожу, откуда этот студент. Давайте
+постепенно усовершенствуем эту программу. adding more and more features to it and
+see if we don't stumble upon problems that up until now we might not have had very elegant
+well-designed solutions to but if we introduce explicitly object-oriented programming as a
+programming technique I bet we can clean up our code and set the stage for writing even
+more sophisticated programs longer programs down the line so in student. piy let me go
+ahead and do a name variable setting it equal to the return value of input and just prompt the
+user for their name like this and then let me go ahead and do the same for a house variable
+and and prompt the user for their house using input like this and let's do something super
+simple now let's just go ahead and print out an F string that says something like name from
+house just so that I can confirm that the contents of these variables are indeed as I expect
+I'm not going to do any error checking or trimming or anything like that for now I'm really just
+going to spit back out whatever the user just typed in all right let me go ahead and run
+python of student doy let's use our go-to like Harry as in Harry Potter from Gryffindor and
+when I hit ENT now let's see if I see that Harry from Gryffindor is indeed the case all right so
+I think we have a working program at this point but let's now introduce some of those
+Lessons Learned way back from week zero where we started writing our own functions not
+necessarily because it solves the problem more correctly I dare say this is correct as is but it
+begins to give us building blocks that we can extend so as to solve more complicated
+programs so let me go back up to student. and let's go ahead now and do this let's put the
+entire log IC I just wrote inside of our typical method called Main and let me indent those
+three lines so that at least they're now combined into one main method but instead of using
+input on line two and input on line three why don't we go ahead and assume for the moment
+that we've got some function called get name in the world and let's go ahead and assume
+we've got another function like get house in the world that don't take parameters but their
+purpose in life is by their named going to be to get the user's name and to get their user's
+house respectively and then I'm going to print out the exact same F string as before I of
+course need to implement these functions now so let me go lower in my file and Define a
+function called getor name nothing in these parentheses because it's not going to take a
+parameter and I'm going to go ahead and do something like name equals input quote
+unquote name just like before and then I'm going to go ahead and return name so it's a
+super simple function but it's a an abstraction I now have a function called get name whose
+implementation details I don't have to care about anymore I just know that the function exists
+and I can tighten this up in in fact I don't really need a name variable on line 8 if I'm
+immediately going to return that same name variable on line 9 so let me just tighten this up a
+little bit even though it doesn't change the functionality and just immediately return the return
+value of the inputs uh function call here let's do something very similar now for get house
+which will similarly take no arguments I'm going to go ahead and return the return value of
+input this time prompting the user for their house and I need one final detail at the very
+bottom let's continue our habit of doing if the name of this file equals equals quote unquote
+main then let's go ahead and actually call Main and recall that we have that in place so that if
+this eventually becomes part of a module a library of sorts I don't accidentally call Main
+blindly I only do it if I mean to run main from the command line on this file all right so if I
+didn't make any mistakes here let me go ahead and in my terminal window again run python
+of student. piy enter let's type in Harry enter let's type in Gryffindor enter and we're set Harry
+from Gryffindor seems to still be working so we haven't really solved the problem any more
+correctly but I've laid the foundation to maybe now do some more interesting things because
+I've have these building blocks in place all right but let me propose that we could be doing
+this a little bit differently get name get house is fine but at the end of the day I'm really trying
+to get a student from the user I want their name and their house not just one or the other so
+maybe it would be a little cleaner still to define a function called get student and let get
+student do all of this work for us now theoretically get student could call get name and could
+call get house but because these functions are so short I think I'm okay with just defining one
+function called get student that similarly won't take any arguments but it's going to do two
+things it's going to get the student's name by prompting them with input as before and it's
+going to get the students house by also prompting them as before and then now hm I want
+to return the student but I think I might have painted myself into a corner here because I now
+have two variables name and house and yet up until now we've pretty much returned one or
+the other we've returned one value so any suggestions for how we can perhaps solve this
+problem that I just created for myself whereby I want to return really a student but I currently
+have a name variable and a house variable I'd minimally like to return both both of those I
+believe that we can return a dictionary includes the name and the house yeah so we
+absolutely could return a dictionary a dict object in Python whereby maybe one key is name
+one key is house and the values thereof are exactly the values of these variables we could
+totally do that uh I worry that that might be getting a little complicated I wonder if there's a
+simpler way instead any other instincts even if you're not sure it would work return both
+name and house return both name and house I I like the sound of that it sounds simple I
+don't have to figure out what a dictionary is going to look like and in fact this too would be a
+valid approach even if you've not seen this before it turns out in Python that you can kind of
+return multiple values but that's a bit of a white lie or we could take Muhammad's approach
+of actually returning a dictionary and putting multiple Keys therein so here again we have yet
+another example of how you can solve the same problem in at least two ways and I dare say
+we're about to see even more so one way you could solve this problem whereby you want to
+return multiple values would be to do something like this I could go ahead and literally return
+not just name but I could put a comma and also return house this is not necessarily
+something you can do in other languages if you have programmed in other languages before
+it depends on the language but it looks like thanks to this comma maybe I can in fact return
+two values as actually proposed well if I'm returning two values in this way on line 10 how do
+I get both values at the same time well there's a couple of ways let me go up to my main
+function I know minimally I'm going to have to change the get name and get house to get
+student but what am I going to store the return value in I think I could actually do this and we
+have seen this technique before where you can unpack so to speak sequences of values
+that are coming back and indeed consider this to be exactly that name comma house is
+some kind of sequence that I'm returning of values name comma house so if I want to
+unpack those and store the return values in two separate variables I can in fact use the
+commas on the left hand side of my assignment operator the equal sign to do just that now
+to be clear I don't need to call these variables name and house here I could simplify this and
+use just n here and H here and then I could return just n and H but I would argue that's not
+very uh clear to the reader as to what's going on so I think in this case even though it's a
+coincidence that I've used the same variable names in get student and get Main and in main
+it's a little more readable to someone like me so I'm going to leave it as is well let's go ahead
+and see now if this works let me clear my screen down here and run python of student. enter
+let's again type in Harry let's again type in Gryffindor enter and voila we still see that Harry is
+from Gryffindor but what are we actually doing here what are we actually doing by returning
+this value well it turns out that what we've just done is used a tupple a tupple is another type
+of data in Python that's a collection of values X comma y or X comma y comma Z it's similar
+in spirit to a list in that sense but it's immutable it's not mutable now what does that mean a
+list as we've seen it before is a data structure in Python that you can change the values of
+you can go into bracket zero for the first location and change the value there you can go to
+bracket one bracket two bracket three and actually change the values in lists but if you have
+no intention of changing the values of variables and you want to return effectively multiple
+values you don't have to even return it as as a list you can return it as a tupple instead just
+by using a comma and it turns out we can make explicit that here's the white lie I'm not
+actually returning two values per se whenever you use a comma in this way on line nine
+you're actually returning one value which is a tupple inside of that tupple now are two values
+so it's similar in spirit to returning one list with two things here I'm returning one Tuple with
+two things and the mere fact that I've used a comma and nothing else tells python that I
+indeed want to return a tuple but there's more explicit syntax that we can use instead I can
+actually more verbosely put explicit parentheses around the values of this tupple just to
+make more clear to me to the reader that this isn't two values per se this is one value with
+two things inside of it and what I can actually do then too is I don't have to unpack this up
+here so to speak I can actually go up here and maybe give a more apt name like student and
+I can name the value or rather name the variable in which I'm storing the return value of get
+student as quote unquote student so maybe this is a little better design now because I'm sort
+of abstracting away what a student is it's implemented at the moment as a tupple with two
+values but at least now I have a variable called what I mean a student but there's going to be
+a catch on line three I still want to print out that Student's name and their house but I don't
+have a name variable anymore and I don't have a house and I also don't have a dictionary
+as was proposed earlier so I can't even go at those keys by name but what a tupple is it's
+very similar in spirit to a list but it is indeed just immutable and what I mean by that is I can
+still index into it numerically by saying student square bracket Z for the item in the first
+location in that tupple and then over here instead of house I can say student bracket one
+student bracket one is going to give me the second location in that tupple let me go ahead
+and clear my terminal window again run python of student. let's type in Harry let's type in
+Gryffindor enter and we still have some working code let me pause here now and see if
+there are any questions on this technique of returning a tupple and indexing into it in this way
+I guess what's a like a actual use case where you would use a tupple versus you know a list
+or something else that's similar it's a really good question when would you use a tuple
+versus a list when you want to program defensively or in general when you know the values
+in this variable shouldn't change so why would you use a data type that allows them to be
+changed it just invites mistakes bugs down the line either by you or colleagues who are
+interacting with your code so tupple is just another way where you can increase the
+probability of correctness by just not letting anyone yourself included change the contents
+therein so it's just another tool in your toolkit but let's make clear then what I mean by
+immutable again I claim that immutable means that you cannot change the value well let's go
+ahead and try to do this let me go ahead and run this program once more as is python of
+student. let me go ahead and type in for instance uh how about uh padma's name and I'm
+going to go ahead and say that padma's in Gryffindor as in the movies and we see Padma
+from Gryffindor but technically I went down this rabbit hole and looking at Harry Potter more
+closely technically in the books Padma I believe was from Ravenclaw so this is actually a
+mistake or an inconsistency between the movies and the books let's see if we can't fix this
+inconsistency in our code so how about we do this if the student's name that's inputed
+equals Padma why don't we override whatever the uh whatever the house is and change it
+to be properly Gryffindor let me go ahead and do if student now if I want to get at padma's
+name I'm going to have to do student bracket zero I have to know what location the name is
+in in this tupple but if that in value equals equals Padma let's go ahead with this if statement
+and make a change let's change the students F uh bracket one value so the second value if
+we're zero indexing let's change it to be another house in the World of Harry Potter called
+Ravenclaw so I'm just fixing maybe the user's input they watch the movie so they type in
+Padma Gryffindor but in the books it was Padma from Ravenclaw all right let me go ahead
+and go down to my terminal window clear my uh terminal and do python of student. enter I'm
+going to do Harry as well as Gryffindor just to demonstrate that that is still working as
+intended Let Me Clear My screen again though and run python of studenty on Padma and I'll
+put her too in Gryffindor as in the movies and hit enter and now I just see a big mess of
+errors on the screen some kind of exception has been thrown and indeed a type error has
+happened I'm using a data type wherein there's an error and what is that error well tupple
+object does not support item assignment it's a little arcany Express that is that's not really
+very user friendly but if you think about what those words mean Tuple object does not
+support item assignment so assignment is copying from right to left so somehow that's
+invalid and here is a manifestation of the immutability of topples you cannot change location
+zero or one or anything inside that is a feature that is the design of a tupple so if I want to
+override that I think I'm going to have to use a different type of data that we've used before
+namely a list and that's fine if you want to enable yourself and colleagues using your code to
+change the contents of that container well we can go ahead and return not a tupple using
+explicit parentheses or no parentheses just the comma but I can use square brackets and if
+I'm using square brackets on the left and the right this is indeed explicitly a list same idea but
+it's mutable that is to say you can change the contents of a list so making no other changes
+just returning a list with square brackets instead of a tuple with parentheses or just the
+comma let me go ahead now and run python of studenty enter let me type in Harry and
+Gryffindor again that's still working good to see let me run this once more and type in Padma
+and Gryffindor as in the movies but no now we've corrected it to be Padma from Ravenclaw
+as in the books instead any questions now on tuples versus lists or this idea of immutability
+versus mutability uh can be used a nest cou in Python like a a nested list absolutely you can
+have not only nested lists in Python where one of the elements in a list could be another list
+so you have some square brackets out here you might have some other square brackets
+inside you can absolutely do the same with a tuple as well there's no constraint on the types
+of values you can put in there we've not had occasion to do that in this case I'm just
+returning a simple uh simple tupple with two elements but yes you could absolutely do that
+too other questions on tupples versus lists okay for example um when I see the square
+bracket um is it mainly used for the list oh a really good question uh sort of so when you
+create a value like a list you use square brackets and that would indeed be a visual indicator
+that this is definitely a list uh if you instead see parentheses that's a visual indicator when
+creating a value that it's definitely a tuple however somewhat confusingly both lists and
+topples use square brackets when you access the contents of them when you index into
+them at location zero or location one you always use square brackets so that's the distinction
+there good question allow me to propose now if I may that we solve this problem yet another
+way and let's see if we're either making things better or for worse than us recall that
+dictionaries or dict objects also exist in python and a dictionary is this collection of keys and
+values and the upside in particular of a dictionary is that they have better semantics right you
+don't just have to assume that that a name is always going to be at location zero house is
+always going to be at location one I mean that's the kind of thing especially if you had three
+four or more values eventually you or someone is going to get confused and forget what the
+order is and you're going to write buggy code so a dictionary is a little more powerful and that
+you can semantically associate Keys like little descriptions with the values those keys and
+those values respectively so let me go ahead and do this and we can do this in a few
+different ways but let me propose that we focus on get student here and let's go ahead and
+do this let me go ahead and uh in delete the implementation of get student Asis let me
+create a student variable and initialize it to an empty dictionary and I can do that with just two
+curly braces here and then let me go ahead and set two keys inside of that dictionary inside
+of the student there will be quote unquote a name key and the value of that is going to be
+whatever the return value of input is when I prompt the user for their name and then the
+house key inside of that that same student dictionary is going to be the return value of
+whatever the user types in for their house and lastly I'm going to go ahead and return
+student so now I am literally returning one thing still but this time it's a dict rather than a
+tupple rather than a list but there's still two things in it technically four things if you count the
+keys and the values but there's two key value pairs now my code up here is going to have to
+change a little bit and let's simplify this and remove for instance now the the pad if statement
+just to focus on what's changing at hand and let me go ahead now and leave line two alone
+I'm still going to have a student variable that gets assigned the return value of get student
+but what I want to do here now is actually access the keys inside of that dictionary not by
+numeric index which was for tuples and lists zero and one but by way of the keys now
+normally I might be in the habit as I personally am of using double quotes quote unquote
+name inside of there and quote unquote house inside of there but before I even run this code
+and show you a mistake see an error on the screen does anyone want to call out what I
+have done wrong here this is just an F string I just want to print out the value of the name
+key the value of the house key in this dictionary but you're your audio was a little garbled for
+us but I think I heard double quotes and single quotes so I'm going to assume that indeed
+you've identif precisely the issue I'm just going to confuse python right now even though this
+is an F string inside of Double quotes prefixed with an F I can't actually use my double
+quotes inside my double quotes because that's going to potentially confuse python indeed if I
+run this program now python of student. py and hit enter I get a syntax error so the program
+didn't even run fully it just couldn't be understood because it got confused by those double
+quotes So the simplest fix here would indeed just be to use not double quotes but single
+quotes around the keys or conversely flip the double quotes on the outside to single quotes
+then use double quotes on the inside you just want to be consistent so a subtle detail but
+again this is now specific to dictionary syntax this isn't fundamental to how we're solving this
+current problem at hand all right well let's go ahead and try this let me go ahead now and run
+python of student. let's go ahead and type in Harry let's type in Gryffindor and hopefully
+Harry is back from Gryffindor no syntax errors no other errors I think I'm back in business
+here and what I do like to be clear about using a dictionary is that it is allowing me just better
+semantics again I don't have to remember memorize document that zero is name one is
+house instead name is name and house is house it's just a little clear a little more expressive
+so that's generally a good thing especially if we stored more data about students than just
+their name in their house if you had three Fields four five 10 different fields no one's going to
+want to remember or be able to remember forever which is zero which is one which is two
+and so forth better to introduce uh names like name and house in this case but let me tighten
+this up further in indeed I'm typically in the habit of not introducing variables unnecessarily
+unless they make the code more readable and an alternative way to format the same code
+would be this strictly speaking I don't need to create an empty dictionary then add one key to
+it then add a second key to it and then return that dictionary I can actually consolidate this all
+into one statement if you will let me go ahead and do this let me go ahead and say name
+equals inputs return value house equals inputs return value and then instead of returning
+any variable name student which I'm going to propose doesn't need to exist anymore let me
+just create and return the dictionary all at once let me do quote unquote name in lowercase
+here and then the variable it's storing the user's name then quote unquote house as my
+second key the value of which is going to be house the variable now is this better maybe
+maybe not maybe the first way was a little more readable and that's totally fine to create
+variables if they improve the readability of your code but just know that you can also create
+and return a dictionary on the fly like this so to speak all in one line and I think it's arguably
+pretty reasonable in this case why it's just pretty short I probably wouldn't do this if it got
+longer and longer and longer I might minimally then start moving my key value pairs to
+separate lines but this would just be a slightly more compact way of doing this as well but let
+me propose we do one more change let's go ahead and introduce that same special casing
+of Padma to fix her house from Gryffindor for instance to Raven claw how do we do this with
+dictionaries well dictionaries like lists are mutable you can change what is in them just like
+you can lists and how do you do that is just a little different syntactically so let's go back into
+Main and do this fix if the student variable has a name key that equals equals Padma then
+indented go ahead and change the value of the house key inside of that student dictionary to
+be quote unquote Ravenclaw instead so very similar in spirit to what we did with a list but
+instead of using location zero and one we're much more clearly explicitly semantically using
+quote unquote name and quote unquote house because you index into lists and topples
+using numbers but you index into dictionaries using strings as I've done here all right let me
+go ahead and run python of studenty we'll again do Harry from Gryffindor and I think all as
+well let me run it one more time this time with Padma who in the movies is from Gryffindor
+but should really be from Ravenclaw are any questions then on this progression from tuples
+to lists to dictionaries we haven't necessarily introduced anything new other than those
+tuples which have been available to us all this time but the goal at the moment is just just to
+demonstrate this distinction among these different data types and how they each work a little
+bit differently what if a a combination of lists is there in a tuple so is the list like we can
+change the list because tupple are immutable but lists are mutable correct you can change
+the contents of lists and you can put most anything you want in them other lists or strings as
+I've done integers or anything else tles you can do the exact same thing but you cannot
+change them once you've created them a dictionary is more like a list in that it is mutable you
+can change it but the way you index into a dictionary is by way of these Keys these strings
+as we keep seeing rather than by numbers those numeric indices all right well let me
+propose that there is yet another way of solving this problem and indeed I would argue that
+there's now an opportunity to hand even though this program isn't particularly complicated all
+I'm doing is collecting a name from the user and a uh house from the user you could imagine
+wanting longer term to collect even more information like the student's Patronis or magical
+spell or a whole bunch of other information that might belong in a student and right now
+we're just kind of using these very general purpose data types in Python a tuple to combine
+some values together a list to do the same but let us change it later a dictionary which is
+more powerful because it's a little more structured it does have keys and it has values not
+just values but you know what this we wouldn't have to be having this conversation if the
+authors of python had just given us a data type called student right wouldn't it have been
+nice if there were just a type of variable I could create in my code called student then we
+wouldn't have to figure out well do we use a tuple or a list or a dictionary but that's pretty
+reasonable right you could imagine just a how slippery of a slope that is so to speak if the
+creators of a language had to anticipate all the possible types of data that Pro programmers
+like you and me want to store in your programs so they just gave us these general purpose
+tools but they gave us another general purpose tool that's going to allow us to create our
+own data types as well and actually give them names and that uh terminology is a class A
+Class is kind of like a blueprint for pieces of data object so to speak a class is kind of like a
+mold that you can define and give a name and when you use that mold or you use that
+blueprint you get types of data that are designed exactly as you want so in short classes
+allow you to invent your own data types in Python and give them a name and this is a
+primary feature uh of object-oriented programming to be able to create your own objects in
+this way and in the case of python and classes even give them some custom names so what
+does this mean in real terms well let me go ahead and come back to VSS code here and let
+me propose that we introduce a little bit of new syntax I'm going to go ahead and clear my
+terminal window first I'm going to go to the top of my file and I'm just going to start a thought
+but not finish it yet I'm going to use this new keyword for classes called literally class so
+indeed the new keyword we're going to have here and if I go back to our slides here this
+would be the official URL where you can read up more on this particular feature of python in
+the official tutorial class is a new keyword we can use now this is coincidentally related to
+students because students take classes but it has nothing to do with the fact that dealing
+with students class is a general purpose term in a lot of languages python among them that
+allow you to Define these custom containers with custom names for pieces of data so let's
+go back to vs code let's use this new keyword and let me propose that we create a class
+called student and by convention I'm going to use a capital S here and I'm going to go ahead
+and with a colon get to later the implementation of this class so I'm just going to use dot dot
+dot which is a valid placeholder for now that just indicates to me that I'm going to come back
+back to implementing this later but as of now it does in fact exist I now have a student uh
+class defined for me that I can now use in my code here how am I going to use it well first of
+all let me go down to get student and let me change this code to no longer use a dictionary
+but to use this class I'm going to do this I'm going to give myself a variable called student as
+I've done before but I'm going to set it equal to Capital student open parenthesis close
+parenthesis so I'm going to do what appears to be calling a function and that function student
+with a capital S notice matches the name that I gave this class at the top of my file all right
+what do I next want to do I'm going to go ahead and give this student a name now if I were
+still using a dictionary I would say student quote unquote name using square brackets but
+this is not a dictionary it turns out classes have what for now we'll call attributes properties of
+sorts that allow you to specify values inside of them and the Syntax for that happens to be a
+DOT we've seen dots before we've used it in the context of modules and libraries more
+generally this is another similar in spirit use of a DOT that allows you to get at something
+inside of something else so student. name is going to be the syntax I use for giving this
+student a name and that name is going to be whatever the return value of name is and then
+I'm going to go ahead and say student.h house to give another attribute called house and
+give that the return value of input here prompting the user for house and then as before I'm
+just going to return student but now what's really powerful about class and object-oriented
+programming more generally is that I've created this custom data type called literally student
+capital S I've stored one such student in a variable like I can always do in a variable called
+student lowercase s but I could call it anything I want I just make sense to call it student as
+well but lowercase for clarity and then I'm returning that variable and because of my syntax
+in lines 14 and 15 that has the result of putting inside of that class a name attribute and a
+house attribute I just need to make one more change up here I'm going to go ahead and
+remove our Padma code just so we can focus only on what's new rather than fixing her
+house and I'm going to go in here and change the syntax that previously was for dictionaries
+again dictionaries use square brackets and then strings in quotes either single quotes or
+double quotes depending on the context here though I'm going to change this to be student.
+name and over here I'm going to change it to be student. housee and that's just going to be
+my new syntax for getting the contents of what appears to be a class called student let me
+go ahead and rerun python of student. by enter let's type in Harry's name as before let's put
+him in Gryffindor crossing our fingers as we often do and Harry is indeed from Gryffindor
+what the though have I done let's introduce one other bit of terminology here it turns out that
+I can create a class using that class keyword but anytime you use a class you're creating
+what are called objects and here is the word objects as an objectoriented programming or
+oop let me go back to my code here and even though I haven't really implemented much of it
+at all I literally just left it with a dot dot dot that's enough code lines one and two to just invent
+a new data type called student capital s that may or may not have some future functionality
+as well that's enough to create a class what though am I doing on line 11 on line 11 what I'm
+technically doing is creating an object of that class so this too is another term of art you
+create objects from classes so if we go back to that metaphor that a class is like a blueprint
+for a house or a class is like a mold an object is when you use that blueprint to build a
+specific house or something that comes out of in plaster the mold when you actually use that
+mold to create such an object so a class is again the definition of a new data type the object
+is the Incarnation of or technically instantiation of and another term for objects would actually
+be an instance you have instances of classes as well so that's a lot of vocabulary but at the
+end of the day it just boils down to this you can Define your own class which is really your
+own data type you can then store attributes inside of it using this dot notation here and and
+then you can access those same attributes using Code like this here and now I have a
+proper student data type and I don't have to kind of hack something together using a tuple or
+a list or even a dictionary I now have a proper data type called student that the authors of
+python didn't give me I gave myself any questions now on classes this new keyword class or
+this idea of these objects or instances thereof is the class object mut or immutable a good
+question and we've clearly laid the stage for having that conversation about every data type
+now we will see that they are mutable but you can make them immutable so you can get the
+best of both worlds Now by writing some actual code and we'll write more code than the dot
+dot dot in just a bit other questions on classes or these objects thereof then what would be
+the properties of those glasses uh so at the moment the properties of or the attributes of as
+I've been calling them thus far would just be name and house it turns out that there may very
+well be other attributes built into classes that we may see before long but for now the only
+two attributes that I care about are the ones that I myself created namely name and house
+are again what I would call attributes and in a little bit we're going to start calling those same
+attributes more technically instance variables name and house as I've presented them here
+in vs code are really just variables called name and called house inside of an object object
+whose type is student all right so what more can we do with these classes well again online
+11 is where we're instantiating an object of the student class and assigning it to a student
+variable we're then adding attributes name and house respectively on lines 12 and 13
+currently both of those have values that are technically strings or stirs because that's what
+the return value of input is but those attributes values could actually be any data type we're
+just keeping things simple and focusing on defining students in terms of two strings name
+and house and then on line 14 we're returning that variable we're returning that object to
+main so that we can actually print out who is from what house well let's go ahead and add a
+bit more functionality here because right now on lines 12 and 13 this is a little manual and it's
+a little reckless of me to just be putting anything I want inside of this student object it turns
+out with classes unlike with dictionaries we can actually standardize all the more what those
+attributes can be and how what kinds of values you can set them to so let me go ahead and
+do this let me propose that it would actually be really nice if instead of doing this here let me
+go ahead and simplify my code as follows let me go ahead and give myself a local variable
+called name and set it equal to the return value of input like we've done many times now
+already let me give myself one other variable for now called house and set it equal to the
+return value of input as well prompting the user for their house and now and instead of
+creating a student object from my student class and then manually putting the name attribute
+inside of it and the house attribute inside of it let me actually do something more powerful let
+me do this let me call that student function which is identical to the class name just by
+defining a class you get a function whose name is identical to the class name with the capital
+letter included but instead of just doing open parenthesis close parenthesis let me pass in
+the name that I want to fill this this object with and the house that I want to put in that object
+as well and now let me set the return value as before to be student equals like this so what
+have I done that's different fundamentally I'm still getting user input in the same way I'm
+using input on line 11 and input on line 12 and I just so happen to be storing those return
+values in local variables but now now we're setting the stage for the more powerful features
+of classes and objectoriented programming more generally notice that I'm deliberately
+passing to this capital S student function name comma house I'm passing in arguments to
+the function now the student class is not going to know what to do with those yet but now I'm
+sort of standardizing how I'm passing data into this student class and ultimately it's going to
+give me an opportunity to error check those inputs to make sure that the name is valid that it
+has a value and it's not just the user hitting enter it's going to allow me to ensure that it's a
+valid house that it's griffindor door or Hufflepuff or Ravenclaw or Slytherin or not just hitting
+enter or some random value that the user types in because I'm passing name and house to
+the student class this particular function I'm going to have more control over the correctness
+of my data so let's now go up to the student class which up until now I left as just dot dot dot
+it turns out that in the context of classes there are a number of not just uh attributes or
+instance variables that you can put inside but also method Me classes come with certain
+methods or functions inside of them that you can Define and they just behave in a special
+way by nature of how python works these functions allow you to determine behavior in a
+standard way they are indeed special methods in that sense now what do I mean by this well
+let me go back to VSS code here and let me propose that I start to define a standard
+function called uh underscore underscore or Dunder as it's abbreviated in it underscore
+underscore and then I'm going to go ahead and do open parenthesis and then I'm going to
+put in here literally the word self more on that in just a moment but now inside of this function
+I'm going to have an opportunity to customize this uh class's objects that is to say this
+underscore underscore init method or Dunder init method is specifically known as an
+instance method and it's called exactly this this is designed by the authors of python and if
+you want to initialize the contents of an object from a class you define this method and we'll
+see what it's about to do here let me go back to vs code and let me do something like this
+self. name equals name and self. house equals house but I don't want to just init this object
+very generically I want this method called in it to take in not just self but name comma house
+as well now what in the world is going on because there's a lot of weird syntax here there's
+this Dunder init method double underscore in it double underscore there's all of a sudden
+this parameter called self and then there's this new syntax self. name and self. house now
+you're seeing really a manifestation of objectoriented programming it's not all that different
+fundamentally from what we've been doing for weeks with dictionaries by adding keys to
+dictionaries but in this case we're adding variables to to objects AKA instance variables to
+objects now what's going on let's do this in Reverse let's go back to the line of code we wrote
+earlier on line 15 I am treating the name of this class student with a capital S as a function
+and I am passing in two values name and house what I've highlighted here on the screen on
+line 15 is generally known as a Constructor call this is a line of code that is going to construct
+a student object form for me using synonyms it is going to instantiate a student object for me
+and again how is it going to create that object it's going to use the student class as a
+template as a mold of sorts so that every student is structured the same every student is
+going to have a name every student's going to have a house but because I can pass in
+arguments to this student function capital S I'm going to be able to customize the contents of
+that object so if you think about the real world if you've ever been on a street or a
+neighborhood where all of the houses kind of look the same but they're might be painted
+differently they might be decorated a little bit differently on the outside all of those houses
+might have been built using the exact same blueprint sort of a mold if you will but then you
+can specialize exactly the finer points of those houses by painting the outside a different
+color or planting different trees you can style them differently similar uh in spirit here we have
+a student blueprint that's always going to have now a name and a house but it's up to you
+and me to pass in any name in any house that we want now where is this function the fact
+that I'm calling student capital S and then a parenthesis and a Clos parenthesis with
+arguments inside suggests that there's a function somewhere in the world that has been
+defined with de that's going to be called well as you might have guessed by now the function
+that will always be called by definition of how python classes work is a fun called double
+underscore in it double underscore why it's a crazy name but it's what the authors of python
+chose to just implement the initialization of an object in Python now the only weird thing
+especially weird thing I will admit is this it would be way clearer to me too if the only two
+parameters for in it were just name comma house right that's how we've defined every
+function thus far in the class you just specify the parameters that you want the function to
+accept and indeed that lines up with what I'm doing on line 15 I am only passing in two
+things to the student function but it turns out that the authors of python need to give us a little
+bit of help here because suppose that you pass in name and house to this init method and a
+method is just a function inside of a class what are you going to do with the name in the
+house like literally where are you going to put them if you want to remember the name in the
+house for this student you've got to be able to store those values somewhere and how do
+you store them in the current object that has just been instantiated well the authors of python
+decided that the convention is going to be that this init method also semi secretly takes a
+third argument that has to come first by convention it's called self but you could call it
+technically anything you want but the convention is to always call it self and self as its name
+implies gives you access to the current object that was just created created what does that
+mean again now on line 14 now that it's moved down a little bit this line here is a Constructor
+it constructs a student object but there's nothing in that object initially there's no name there's
+no house but the object exists in the computer's memory it's up to now you to store the name
+and the house inside of that object how do you do that well python will just automatically call
+this init method for you and it's going to automatically pass in a reference to a an argument
+that represents the current object that it just constructed in memory for you and it's up to you
+to populate it with values and what this means is that inside of your init method you can
+literally do self. name to create a new attribute AKA an instance variable inside of that
+otherwise empty object and put this name inside of it it allows you to do self. house and store
+that value of house now you could call these things anything you want they could be n they
+could be H as before four but that's really not very self uh explanatory much better to do this
+kind of convention self. name equals name self. house equals house and this is like installing
+into the otherwise empty object the value name and house and storing them in really
+identically named instance variables in the object and again an object is just an instance of a
+class now I know that was a lot of vocabulary that's a lot of weird syntax so any questions on
+this init method whose purpose in life again is to initialize an otherwise empty object when
+you first create it so what is the difference between the init method and default Constructor a
+good question so in other languages if you programmed before for instance Java there are
+functions that are explicitly called Constructors that indeed construct an object they initialize
+it with values python technically calls this init method the initialization method it initializes the
+value it's online 14 uh line 15 now of my code if I scroll back down that I'm technically
+constructing the object it turns out there's another special method in Python that we won't
+talk about in detail today called underscore uncore new underscore underscore that actually
+handles the process of creating an empty object in memory for us but generally speaking
+you the programmer don't need to manipulate the new function it just works for you instead
+you define your own init method here an init function inside of your class and that method
+initializes the contents of the object so there's technically a distinction between constructing
+the object with new and initializing it with in it but in the world of python you pretty much only
+worry about the in it method python generally does the other part for you a good question
+others uh what about if you want to store more than one name or more than one house a
+good question if you want to store more than one name or more than one house you can do
+this in different ways you could create other attributes technically called instance variables
+like self. name one self. name two but we've seen in the past that that is not a very good
+design just to have multiple variables to store multiple things maybe instead you have an
+instance variable called self. names plural and you set it equal to a list of names or a list of
+houses now in this case I don't think that really solves a problem because I'm trying to
+implement a student singular so it doesn't really make sense to have multiple first names
+maybe a nickname maybe a last name so we could add those to but I don't think we need
+multiple names per se and in this case multiple houses but absolutely you could do that
+using some of our familiar building blocks like lists other questions how are classes or
+objects represented in memory how are classes and objects represented in memory so the
+class is technically just code it is the code on the top of my file lines one through four that
+defines that blueprints that template if you will um objects are stored in the computer's
+memory by taking up some number of byes so you're probably familiar with bytes or
+kilobytes or megabytes there's some chunk of bytes probably all in the same location in the
+computer's memory or Ram where those V where those objects are stored but that's what
+python the program handles for you python The Interpreter figures out where in the
+computer's memory to put it you and I the programmers get to think and solve problems at
+this level python The Interpreter handles those lower level details for you how about one final
+question on classes and objects no my question is if we can the same do the same thing
+with the dictionary so where to use classes good question if you can do the same things as
+you can with dictionaries why should you use classes because we are just scratching the
+surface now of what you can do with classes allow me to go back now to my keyboard and
+show you more of what you can do with classes but in short you can do much more with
+classes you can ensure the correctness of your data much more with classes you can error
+check things and generally you can design more complicated soft software more effectively
+and we'll continue to see today features of python and objectoriented programming more
+generally that allows us to do just that so let me propose in fact that first let's just tighten up
+this current implementation which again has us with an init method that just declares two
+instance variables self. name and self. house which again just creates those variables inside
+of the otherwise empty object and assigns them values name and house respectively let me
+go ahead and just do one little thing here I don't really need this student variable let me just
+tighten this up so that each time we improve or change the code we're focusing really on just
+the minimal changes alone so I've not fundamentally done anything different I just got rid of
+the variable name and I'm just returning the return value of this student function that's
+constructing my new object for me so I'm just tightening things up as we've done many times
+in the past well what if something goes wrong when in creating this student for instance what
+if the user does not give us a name and they just hit enter when prompted for name like I
+don't want to put in my computer's memory a sort of bogus student object that has no name
+right I'd ideally like to check for errors before I even create it so I don't create a nameless
+student it would just be weird and probably a bug to have an object that has no name
+similarly I don't want the user to be able to type in something random as their house at least
+in the World of Harry Potter there's really only four houses at Hogwarts at least or there's
+again Gryffindor and huffle and Ravenclaw and slitherin a list of four valid houses it would be
+nice if I somehow validated that the user's input is indeed in that list now I could do all of that
+validation in my get student function I could check is the name empty if so don't create the
+student object is the house one of those four houses if not don't create the student object but
+that would be rather decoupled from the student itself right get student currently exists as
+just my own function in my student. piy file but classes and really object-oriented
+programming more generally encourages you to encapsulate inside of a class all
+functionality related to that class so if you want to validate that a name exists if you want to
+validate that a house is correct that belongs just uh fundamentally in the class called student
+itself not in some random function that you wrote elsewhere again this is just methodology
+because again if we think about writing code that gets longer and longer more and more
+complicated it should make just intuitive sense that if you keep all the house uh and all the
+Stu all of the name and all of the house related code in the student it's just better
+organization right keep all of the related code together and that's probably going to set you
+up for more success and indeed that's part of this methodology of objectoriented
+programming let me go ahead now and change my students classes init method to do this if
+the name is blank so if not name and we've seen this kind of syntax before if you say in
+Python pythonic if not name that's like doing something like this if name equals equals quote
+unquote but I can do this a little more elegantly just say if not name would be the more
+pythonic way to do it well I want to return an error like I might want to do something like this
+print missing name but this is not good enough it does not suffice to just print out missing
+name and then let the rest of the code go through all right well what could I do instead in the
+past we've seen another technique I could do cy. exit and I could say something like missing
+name and I could go up here and I could import CIS but this is a really obnoxious solution to
+the problem just because you or maybe a colleague messed up and called a function with an
+invalid name you're going to quit my whole program like that's really really extreme of a
+response and you probably don't want to do that if your program's in the middle of running
+you might want to clean some stuff up you might want to save files you don't want to just exit
+a program sometimes in some arbitrary line just because input was invalid so I don't think we
+want to do that either but we do now have a mechanism for signaling errors unfortunately I
+can't do something like this I could try returning none and say uhuh this student does not
+exist I'm going to hand you back none instead but it's too late if we scroll back down to
+where I'm creating the student it's on line 17 now where I've highlighted this code the student
+has already been created there is an object somewhere in the computer's memory that's
+structured as a student it just doesn't have any values inside of it but it's too late therefore to
+return none that ship has sailed the object exists you can't just suddenly say nope nope
+there is no object there is an object it's up to you to Signal an error and how do you signal an
+error well we've actually seen this before but we haven't had occasion to create our own
+errors it turns out in Python there's another keyword related to exceptions that python itself
+uses to raise all of those exceptions we've talked about in the past when you've caught
+things like value errors or other such exceptions that come with python well it turns out you
+the programmer can raise that is create your own exceptions when something just really
+goes wrong not wrong enough that you want to quit and exit the whole program but enough
+that you need to somehow alert the programmer that there has been an error something
+exceptional in a very bad way something exceptional has happened and let them try to catch
+that exception as needed so let me go back to vs code here and propose that if the user
+passes in an invalid name it's just empty so there's not a name well what I really want to do
+is this I want to raise a value error and we've seen the value errors before we've created
+value errors accidentally before and generally you and I have try to catch them if they
+happen well the flip side of this feature of exceptions in a language like python is that you the
+programmer can also raise exceptions when something exceptional happens and you can
+even be more precise you don't have to raise a generic value error and let the programmer
+figure out what went wrong you can treat value error and all exceptions in Python like
+functions and actually pass to them a an explanatory message like quote unquote missing
+name so that at least the programmer when they encounter this error knows oh I messed up
+I didn't make sure that the user has a name and now what do you want to do instead well
+now if you're the programmer you could do something like this you could try to create a
+student except if there's a value error then you could handle it in some way and I'm going to
+wave my hand with a dot dot dot at how you would handle it but you would handle it using try
+and accept just like we have in the past and that would allow you the programmer to try to
+create the student but if something goes wrong okay okay I'll handle it nonetheless so what's
+new here again is this raise keyword that just lets you and I actually raise our own
+exceptions to Signal these errors well let me go back to my code here and I'm just going to
+go ahead and not bother trying or catching this error for now we'll just focus on raising it and
+assume that from our week on exceptions you could add try and accept as needed in places
+let me go back to the code here and propose that something else could go wrong with house
+right if there is a name we're good but if we're given a house but it's invalid we should
+probably raise an exception for that too so what if we do this if house is not in the list
+containing Gryffindor quote unquote uh Hufflepuff quote unquote uh let's see Ravenclaw
+quote unquote or uh Slytherin quote unquote then with my colon let's raise another type of
+value error but rather than raise a generic value error let's pass in an argument quote
+unquote invalid house and so here we now see a capability that we can do with classes that
+we can't with dictionaries if you add an attribute to a dictionary a key to a dictionary it's going
+in no matter what even if the name is empty even if the house is a completely random string
+of text that's not one of these four houses it's going into that dictionary but with the class and
+by way of this init method you and I can now control exactly what's going to be installed if
+you will inside of this object you have a little more control now over correctness and so now
+let me go ahead and uh scroll back down to my terminal window and clear it let me run
+python of studenty let me type in something like Harry let me type in Gryffindor enter and we
+see that indeed Harry is from Gryffindor what if I made a mistake though what if I ran python
+of student. and typed Harry is the name but I this time typed in number four Private Drive
+which is where he grew up instead of his proper Hogwarts house let me hit enter now and
+now you see a value error but this isn't one that python generated for us per se I rais this
+error and therefore if I went in and wrote more code in my get student function I could also
+catch this error with our usual try except syntax so all we have now is not just classes in our
+toolkit but even more Powers when it comes to exceptions and not just catching them
+ourselves but raising them ourselves too any questions now on this use of classes and in it
+and now this ability to raise exceptions when something goes wrong inside of the
+initialization so what if user has a middle name name middle name and last name how would
+you fix that a good question if you wanted the user to if you wanted the student to have a
+first name middle name and last name we could do this in a bunch of different ways the
+simplest though if Let Me Clear My screen here and let me just temporarily do this let me
+propose that the init method take in a first argument a middle argument and a last argument
+and then what I think I would do down here here is ultimately have first equals first and then I
+would do the same thing for middle and last so middle and middle and then last and last and
+then what I would have to do here is when I actually ask the user for their name I might need
+to really go all out I might need to ask them first for their first name and store that in a
+variable called First and therefore pass in first I might similarly need to ask them for their
+middle name and store that in a variable and then pass in a second argument middle and
+then lastly if you will let me go ahead and create a third variable called last get the input for
+their last name and pass that in as well I could instead just use one input and just ask them
+for their whole name so type in David uh men enter or David J ma all three of them and
+maybe I could use Python split function maybe a regular expression to tease it apart that's
+probably going to be messy because there's going to be people who don't have just two or
+three names they might have four or five so maybe sometimes it's better to have multiple
+prompts but that's not a problem because with a class we have the expressiveness to take in
+more arguments if we want we could even take a list if we wanted but I think we'd probably
+want to have even more error checking then not just for name but for first and then maybe
+for middle and then maybe for last so it just is more and more code though there would be
+ways to perhaps consolidate that too let me undo all of that and see if there are other
+questions now on classes I assume this is classes are something I might at the beginning of
+a project can I just put them in a different file and import them into my project or or or my
+main code as needed absolutely a really good question you could imagine wanting to use
+this student class not just in studenty but in other files or other projects of yours and
+absolutely you can create your own library of classes by putting the student class in your
+own module or package per our discussion in the past about libraries more generally and
+absolutely you can do that and later today will we see that we've actually been using classes
+you and I before in third party librar so you too can absolutely do the same how about one
+more question on classes can you have optional variables in classes and two can you have
+your own error names like let's be ego and say I want to raise Eric error short answer yes so
+you can uh these init functions are just like python functions more generally even though
+they're special and that they're going to get called automatically by python for you but if you
+want to make house optional you could do something like this you could give it a default
+value in the init functions uh signature so to speak in that first line of code on line two and
+that would allow me to not have to pass in house in this case I'm going to continue to always
+pass in name and house but you could make things optional and yes to your second
+question if you wanted to have your own error message like an Eric error you could actually
+create your own Eric error exception and we'll see in a little bit that there's actually a whole
+Suite of exceptions that exist and you too can invent those as well let me propose though
+that we now introduce one other aspect of this whereby we try printing out what a student
+looks like at the moment if I scroll back down to my main function I'm still printing the
+student's name and house very manually I'm going inside of the object doing student. name
+and I'm going inside of the object again and getting student. house just to see where uh the
+student is from but wouldn't it be nice if I could just print the student like I've been PR printing
+for weeks any int or float or stir or any other data type well let's see what happens if I just try
+printing the student instead of manually going inside and trying to create that sentence
+myself well in my terminal window let me go ahead and run python of student. again let me
+type in Harry let me type in Gryffindor and we voila Harry whoa okay main student object at
+o x102 733 e80 well what is going on well if you were to run the same code you might
+actually see something different on your computer in terms of that number but what you're
+really seeing is the underlying representation as a string of this specific object in particular
+you're seeing where in the computer's memory it is this number o x102 733 e80 refers to
+essentially a specific location in the computer's memory or Ram that's not really that
+interesting for me or you or generally speaking programmers but it's just a default way of
+describing via print what this thing uh is but I can override this as well it turns out that there
+are other special methods in Python when it comes to classes not just underscore
+underscore in it underscore underscore But continuing in that same pattern underscore
+underscore stir underscore underscore so this too is a special method that if you define it
+inside of your class python will just automatically call this function for you anytime some
+other function wants to see your object as a string print wants to see your F your object as a
+string but by default if you don't have this method defined in your class it's going to print out
+that very ugly esoteric Incarnation thereof where it says main. student object at Ox dot dot
+dot well how can I then Define my own stir function well here back in VSS code let me
+propose that I go in and Define not just underscore underscore uh in it but let me Define a
+second function in this class here as follows decore uncore stir underscore underscore there
+are indeed two even though the font in VSS code is putting the two underscore so close it
+just looks like a longer underscore there are indeed two there on the left and the right just
+like for in it this one only takes one argument that by convention is always called self so that
+you have access to it and then indented below that after a colon I'm going to go ahead and
+create a format string and return it so let me go ahead and return how about something
+gener generic first like a student so I'm not going to bother even trying to figure out what this
+Student's name or house is I'm just going to always return a student let me go back now to
+my earlier code which has print student on line 16 Let Me Clear My terminal window and
+rerun python of studenty enter type in Harry type in Gryffindor last time I saw that very
+cryptic output this time I see more generically a student you know more readable but not
+very enlightening which student is this well notice that the uh double underscore stir method
+takes in this self argument by default it's just the way the python authors designed this
+method it will always be passed a reference to the current student object what do I mean by
+that when this line of code on line six is called print because it's hoping it's going to get a
+string is going to trigger the underscore uncore stir underscore uncore method to be called
+and python for you automatically is going to pass into that method a reference to the object
+that's trying to be printed so that you the programmer can do something like this here's an F
+string with double quotes as usual I'm going to use some curly braces and say print out self.
+name from self. house so there's nothing new in what I've just done it's just an F string an F
+on the beginning two double quotes a couple of pairs of curly braces but because Auto
+automatically this stir method gets past self so to speak a reference to the current object I
+can go inside of that object and grab the name I can go inside that object again and grab the
+house so now when I go back to my terminal window previously it just printed out a student
+but now if I run python of student. enter type in Harry type in Gryffindor and one more time
+hit enter Harry is again from Gryffindor but if I run this yet again let's for instance do Drake
+Draco is from Slytherin enter Draco is from Slytherin now it's customized to the specific
+object that we're trying to print questions on this function here this thunder stir method is
+there anything else that the uncore uncore stir method can do um the other question is
+what's the difference between stir and repper a good question so there are many other
+methods that come with python classes that start with underscore underscore we're just
+scratching the surface and we'll pretty much Focus primarily on these but yes there are
+many others and we'll see at least one other in just a little bit there is an among the others is
+indeed one called uh repper which is a representation of the Python object generally
+speaking the underscore uncore rcore uncore method is meant for developers eyes it
+typically has more information than Harry from Gryffindor it would also say what type of
+object it is like a student capital S whereas underscore uncore stir underscore uncore is
+generally meant for users uh the users of the program and it's meant to be even more user
+friendly but both of those can be overridden as you see fit well let me propose now that we
+pick up where we've left off on student and just add even more functionality but not just
+these special methods like double underscore init and double underscore stir like let's create
+our own methods because there in lies the real power and flexibility of classes if you and I as
+the programmers can invent new functionality that specific to students for instance uh
+students at Hogwarts over the time in in school learn how to cast a certain type of spell so
+when they say expecto patronum something comes out of their wand that typically
+resembles an animal or something like that it's a special spell that they have to practice and
+practice so let's see if we can't store not just a student's name and their house but also their
+Patronis what actually they conjure when using this spell well let me go ahead and clear my
+terminal window and in the top of my code here in the in it method of student let me go
+ahead and start expecting a third argument in addition to self which automatically gets
+passed in called petronis and I'm not going to worry uh for now on validating the petronis
+from an official list of valid patronises or petroni I'm instead going to go ahead and just
+blindly assign it to self. Patronis equals Patronis and we're going to let the user type
+whatever they want for now but I could certainly add more error checking if I wanted to limit
+the patronises to a specific list of them here let me go ahead now and prompt the user for
+this Patronis as by in my get student method uh get student function defining a variable
+called petronis or anything else prompting the user for input for their petronis and now I'm
+going to go ahead and pass in that third variable here so again similar in spirit to just adding
+more and more attributes to the class I'm going to pass in all three of these values instead of
+just two I'm not going to do anything interesting with that value yet but just to make sure I
+haven't made things worse by breaking my code let me run python of studenty I'll type in
+Harry I'll type in Gryffindor and it turns out his Patronis was a stag and hit enter I haven't
+seen what his Patronis is in my output because I didn't change my stir method yet but at
+least I don't have any syntax error so at least I've not made anything worse but suppose now
+I want to have functionality not just for initializing a student and printing out a student if my
+class is really meant to be a student what I can do is not just remember information about
+data about students what's powerful about classes unlike dictionaries alone is that classes
+can have not just variables or instance variables so to speak those attributes we keep
+creating they can also have functions built in AKA methods when a function is inside of a
+class it's called a method but it's still just a function at this point we've seen two functions
+already two methods called uh double underscore init and double underscore stir but those
+are special methods and that they just work if you define them python calls them
+automatically for you but what if you wanted to create more functionality for a student so that
+your class really represents this real world or maybe fantasy world notion of a student where
+students not only have names and houses and patronises they also have functionality they
+have actions they can perform like casting a charm a spell magically could we implement
+therefore a function called charm that actually uh uses uh their magical knowledge well let's
+go ahead and Define our very own function as follows Let Me Clear My terminal window
+scroll back up to my student class and instead of creating yet another function that's special
+with double underscores I'm going to invent my own function or method inside of this class I
+want to give uh Harry and Hermione and and all of the other students the ability to cast
+charms so I'm going to define a function that I can completely on my own called charm
+though I could call this function anything I want but because it's a method inside of a class
+the convention is that it's always going to take at least one argument called self by
+convention so that you have access to the current object even if you don't plan to use it per
+se all right let me go ahead and propose that we Implement charm in such a way that the
+method returns an emoji that's appropriate for each student's Patronis all right how to
+implement this well inside of the charm method let's go ahead and match on self. Patronis
+which is the instance variable containing a string that represents each student's petronis and
+in the case that it matches a stag for instance for Harry let's go ahead and return maybe the
+closest Emoji this horse here how about in the case of an otter well in that case let's go
+ahead and return oh maybe the closest match to the otter which might be this Emoji here
+and let's see in the case of a for for Ron rather than Hermione a Jack Russell Terrier let's go
+ahead and return how about don't have as many options here why don't we go ahead and
+return the cutest available dog in that case and in the case of no Patronis recognized as
+might cover someone like Draco let's go ahead and use a default case using the underscore
+as in the past and let's go ahead and return for this oh what should happen if someone
+doesn't have a petronis why don't we just see a magical wand that seems to fizzle out as in
+this case all right well now rather than just print the student let's go about printing their actual
+petronis so I'm going to go down to my main function here I'm going to still get a student
+using the get student function but rather than print student let's go ahead and declare
+expecto patronum printing out just that as pure text and now let's go ahead and print out not
+the student but rather the return value of their own charm method Method All right so let me
+go back down to my terminal window and run python of student. and enter name let's start
+with Harry he lives in Gryffindor uh petronis is a stag and let's see expecto patronum and of
+course we see the Stag Emoji what about someone like Draco who at least in the books
+doesn't have a known Patronis well let's go ahead and clear my terminal window rerun
+python of student. py and this time let's type in Draco for name slyther in for house and
+Patronis is unknown so I'm just going to go ahead and hit enter and now expecto patronum
+and just kind of sizzles instead well let me propose now that we remove this petronis code
+just to simplify our world and focus on some of the other core capabilities of classes so at the
+risk of disappointing I'm going to get rid of all of these beautiful emoji and charms and I'm
+going to go ahead and stop asking the user now for their petronis and I'm going to stop
+passing it into in it here and I'm going to stop uh doing this here and I'm going to instead just
+go ahead and restore our use of print student here and I'm going to go ahead and get rid of
+petronis down here so essentially undo all of the fun charms we just created so we're now
+back at the point in the story where we have a student class with only two methods in it and
+stir the first of those takes of course self as the first argument as it always will plus two more
+now name and house no more Patronis we're validating name up here we're validating
+house down here and then we're assigning name and house respectively to two instance
+variables called name and house also but we used self to get access to the current object to
+store those values therein we then still have our stir method here which takes one argument
+by default self and that's it and that function is going to be called automatically anytime you
+want to convert a student object to a string just like print might want to do here so let me go
+ahead and just make sure I haven't broken anything let me run python of studenty I'll type in
+Harry I'll type in Gryffindor enter okay we're back in business gone are the charms and
+patronises but at least I'm back to a situation where I have names and houses but it turns out
+at the moment our use of classes is not very robust even though we have this mechanism
+very cleverly if I may in our init method of making sure that validating name and house
+making sure that name is not blank and making sure that house is a valid house among
+those four Hogwarts houses it turns out that classes will still let me get at those attributes
+those so-called instance variables using dot notation anyway let me scroll down then and try
+to do this a little adversarially suppose that on line 16 I go ahead and call get student which
+exists as before and then I store the return value in a student variable again on line 16 that
+will ensure that get student gets called which calls input and input and then it calls the
+student Constructor which invokes automatically this init method so by way of how we've laid
+out my code we're going to ensure that name is not blank and house is definitely one of
+those four values my error correction or error checking is in place but if I'm a little adversarial
+I can still circumvent it suppose that fine I'm going to you're going to require me to type in
+Harry and Gryffindor I'm going to go ahead and type in student.h housee equals quote
+unquote number four private drive and you're not going to be able to stop me why well it
+turns out with classes and objects thereof you and I can still access those instance variables
+using this familiar dot notation that's how we began the story of classes just setting these
+attributes ourselves but you can also read these attributes themselves and change them
+later if you want and this will effectively circumvent the if condition and the other if condition
+in our init method because that is only called when you first create the student object there's
+nothing stopping me at the moment from just changing the house or the name after so if I
+now clear my terminal window and run python of studenty I'll still type in Harry and Gryffindor
+to meet my requirements that the house be one of those four but when it's printed notice I've
+still overridden it so it seems that while classes do allow us a little more control over the data
+we're storing it doesn't necessarily prevent the user be it or rather the programmer be it
+myself or maybe a colleague from still kind of messing things up so here too in the spirit of
+programming a little more defensively allow me to introduce another feature of python as
+well namely properties so a property is really just an attribute that has even more defense
+mechanisms put into place a little little more functionality implemented by you to prevent
+programmers like me and you from messing things up like these attributes so again a
+property is going to be an attribute that you and I just have more control over how we just
+write a little more code using some python conventions and how we're going to do that is
+going to use in just a moment a feature a keyword known as app property which is
+technically a function property is a function in Python but we're about to see some new at
+syntax that allows you to decorate functions and this too is a term of Art in the world of
+python you can have decorators which are functions that modify the behavior of other
+functions if you will and we'll leave it at that without going too much into the weeds and we'll
+see by example how you can use these decorator specifically to define properties so let me
+go back to vs code here and let me propose that I do this I'm going to go ahead and create
+how about a property called how house as follows inside of my uh student class I'm going to
+go ahead and below my init method and below my stir method I'm going to go ahead and
+Define a function called house that takes as it always must one argument at least called self
+and what I'm going to do now is return uh self. house so I'm just going to define a method
+called House whose sole purpose in life is to return the value of house but I'm going to
+Define one other method curiously also called house but that's going to take into as
+arguments two value self as always and also a value called house and I'm going to now do
+this uh I'm going to say self rather I'm going to do self. house equals house now what have I
+done well let me just temporarily add some comments here in a moment we're going to start
+referring to this generally as a getter and down here I'm going to refer to to this as a Setter
+and this is terminology you frequently see in the world of java if some of you have
+programmed in Java before but as the names imply a getter is a function for a class that gets
+some attribute a Setter is a function in some class that sets some value and now even
+though we're not done and there's a bit of a mistake in the code I've already written intuitively
+what we're going to do is this we're trying to prevent programmers myself included from
+circumventing my error checking that I put into place for name and house how can I do that
+well we don't have that many building blocks in programming we have things like variables
+for data and we have functions for actions well why don't we do this why don't we somehow
+require that in order to access an attribute you go through some function and let's require
+that in order to set some attribute you go through some function and conventionally those
+functions are called a getter function and a Setter function and why are we using functions or
+in this case methods inside of a class well once you have functions those are just actions or
+verbs that you and I can create ourselves we can put any error correction I want in these
+functions because it's code that's going to get executed top to bottom so how can I now
+prevent the user from setting the house to an invalid value let me borrow some logic from
+before rather than blindly do this just set self. housee equal to that house value that's passed
+in let's add our error checking there so if house is not in the following list of Gryffindor or
+Hufflepuff or slyther or Ravenclaw or Slytherin just as before let's go ahead and raise a value
+error just to signify that uhuh something has gone wrong I'll be more explicit I'll include a
+message like invalid house quote unquote otherwise I'm going to proceed on now line 21 to
+set self. house to house so I've just copied if you will or retyped my error checking inside of
+this so-called Setter function now why have I done that well to be clear whenever the user or
+the programmer writes code like this student.h housee equals what's about to happen
+magically is python will not just let the programmer access student.h house directly that
+attribute that instance variable AKA self. housee it's instead going to magically automatically
+call this Setter function for me how does python not to do that well if it sees that on the left
+hand side there is self. house where house is the name of the getter or Setter and then it
+sees an equal sign indicating assignment that's just enough of a visual clue to say wait a
+minute I'm not going to let you access that attribute directly I'm going to use the setter
+instead why because the equal sign means I'm trying to set I'm trying to assign a value from
+right to left into that attribute so what Python's going to do automatically is call this function
+for me and that's amazing because now I can execute code and algorithm to check do I want
+to let the user the programmer set that attribute to that value if not I'm going to raise a value
+error and you're just not going to be able to do it if so fine I'll go ahead and set it for you but
+in order to do this we need a little more syntax and I'm going to get rid of my comment and
+I'm going to use that decorator I need to tell python to treat this method as a getter and then
+the Syntax for the setter is a little different you now say house. Setter I wish one was getter
+and the other was Setter that's not the way they designed it when you want to define a getter
+you just say at property above the function and you name the function exactly like you would
+like the property to be called quote unquote house once you do that you can now use a new
+decorator that's sort of automatically created for you called at house because I called it
+house and then you literally say at house. Setter and this whole line on line 17 is a clue to
+python that here comes a function whose name is identical but notice that it takes two
+arguments both self so you have access to the contents of the object and house which is just
+going to be a stir that comes from the programmer from like the human input return value so
+that you can set that value as well but there's one fix I need to make now here everything
+else I think is still good however watch this I no longer need this error check here why
+because if I scroll back down to my code here I claimed a moment ago that code like this
+with uh student.h house equals is going to automatically get python to call my Setter for me
+guess what even up here in in my init method calling self. housee equals is also going to call
+my Setter method which is amazing because now I can keep all of my error checking in one
+place in the setter and it will now get called either when I create the object for the first time
+because of in it or even if the you the programmer tries to circumvent that init method and
+change the value of this attribute my Setter will also get called my Setter will get called
+anytime I access. house but there's one fix I need to make unfortunately I have collided
+names right now if we go up here on line five this is an instance variable it's a string inside of
+myself inside of the current student object called name and this is another instance variable
+called House unfortunately if I have an instance variable called name and house I cannot
+also have functions called house they're going to collide you got to decide do you want the
+variable to be called house or do you want the function to be called House unfortunately you
+can't have both because now Python's going to confuse one for the other so the
+conventional fix for this is to do this to have the setter not store the value that's passed in in
+self. house but to use an almost identical name but to use a little indicator that you means
+you know you're doing this correctly you typically by invention put an underscore in front of
+the instance variable's name and when you return it up here you similarly put an underscore
+so now technically my instance variable is called underscore house but my property which is
+a fancier attribute if you will is called house alone huge amount of syntax I know but it's a
+very powerful feature and again this is why you can graduate from dictionaries alone and
+have so much more functionality at your disposal let me go ahead and clear my terminal
+window and run python of student. enter name all right let's go ahead and type in Harry let's
+go ahead and type in Gryffindor crossing my fingers as always and now look invalid house
+this is a good thing why because notice in my main function I'm still trying maliciously if you
+will to change Harry's house to not be one of the four valid ones I'm trying to change it to his
+childhood home of number four private drive but because python knows that wait a minute
+you're trying to assign that is set a value and that value AKA house is now defined as a
+property you're going to have to go through the setter function instead to even let you
+change that value and because I have this rais value error if the house is not as intended
+you're not going to be allowed to change it to an invalid value so I'm protecting the data on
+the way in through the init method and I'm even defending the data if you try to override it
+there so I think the only solution for me the programmer is don't try to break my own code let
+me remove that line because it's just not going to work let me run python of studenty and
+again type in Harry type in griffindor enter and Harry is indeed from Gryffindor if I did
+something incorrect like Harry from number four Private Drive enter we're again going to see
+the value error because my code just doesn't let that value in Via manual input now or via
+that adversarial change all right that was a lot but any question on properties uh while we are
+using gets and Setters it's just for the purpose so that we can find that um that function that
+method that function in in our code the reason that I'm going through the trouble of defining
+this getter or Setter is because I want to make sure that programmers can not do things like
+this if I'm going through the trouble of validating the attributes for these student objects I
+don't want you to be able to go in there and just change them at will I want to have some
+control over that object so that you can just trust that it's going to be correct as designed so
+using a getter and Setter really just enables python to automatically detect when you're
+trying to manually set a value the equal sign and the dot as I've highlighted here is enough of
+a clue to python to realize wait a minute you're trying to set a value let me see if this class
+has a Setter defined and if so I'm going to call that and I'm not just going to blindly assign the
+value from right to left so it's just giving me more control other questions on properties when
+we use a gets we use have just one argument and if we use Setters it's always going to be
+two arguments is that normal correct it's always going to be one argument self for the getter
+two arguments for the setter self and something else and the intuition for that is if you're
+getting a value you don't need to pass anything else in because you already know the object
+it's called student in this case so you're just going to get the value of that property but if you
+want to set the property to something else you got to pass in that argument you've got to
+pass in the value to which you want to set it so it's always zero or one however you see it as
+one or two because again any function inside of a class AKA a method is going to be
+automatically passed self so that you have access to that current object in memory how
+about one other question on properties why didn't we use the same underscore house in init
+meod a good question so even though I'm using the underscore house here in my Setter and
+the underscore house here in my getter I deliberately did not use it up here the reason for
+that is that by using self. house and this equal sign that's the same pattern that I want python
+to recognize I want python to automat aut atically call the setter even when I'm passing in the
+house via the init method if I were to change this to do this that would circumvent the setter
+and now there's no error checking in in it whatsoever so it's such a fine line the only thing
+standing between us and error checking or no error checking is the presence or absence of
+this underscore but that's typically the convention by not using the underscore there make
+sure that even that assignment goes through the setter so that honestly I don't have to copy
+paste the same error checking in two places I can put it just in the setter so it's better design
+and that's why I manually retyped it at first but then I deleted it from in it well allow me to
+propose that we make one other change to this file might as well go ahead and Define a
+property for name as well and let me go ahead and do this maybe above the house property
+just to keep things uh in the same order as I defined them earlier let me give myself another
+property this one's going to be called name it's going to take one argument called self as
+always and this one very similarly is just going to return self doore name so I'm going to
+anticipate that I'm going to have to rename name also so that I don't have that same
+Collision as before but now let me go ahead and Define another uh setter this one for name
+so the convention is at name. Setter why name because the property I just created is called
+name so the getter and Setter sort of work in conjunction in that in this way if you will let me
+go down under atame Setter and Define a another function also called name but the key
+thing here is that it's not identical it's not the exact same function name and the exact same
+number of arguments the setter again takes a second argument and I can call it anything I
+want but I'm going to call it name because that's what's being passed in and I'm going to air
+put my error checking here if not name just like we used to do let's go ahead and raise a
+value error and let's put an explanatory message like uh Missing name quote unquote
+otherwise let's go ahead and update self doore name to equal name and I don't have to
+change in it except to get rid of this duplicate error checking now because again if I use self.
+name equals here and self. house equals here with no underscore both of those
+assignments are going to go through my two Setter functions now before we run this let me
+go ahead and remove this adversarial code which we know won't work because we're
+catching it let me go back down to my terminal window and run python of studenty enter let's
+type in Harry let's type in Gryffindor and that seems to work let's try though again to run
+python of studenty with Harry from number four private drive this will not work a value error
+with invalid house because that's not one of the four Hogwarts houses and now for good
+measure let's run it one more time and let's not even give it a name let's just hit enter when
+prompted I can type anything for the house I'll go ahead and still give it Gryffindor enter now
+we get another value error but this one is for missing name so we seem now to have all the
+more of a defense mechanism in place to ensure that name is as we expect it's got to have
+some value that's not blank and houses as we expect it's got to have one of those four
+values but at the risk of bursting everyone's bubble and making you wonder why did we just
+go through all of that unfortunately python really focuses on conventions not hard constraints
+and by that I mean this if I go back into my function after I've gotten a student on line 30 and
+I try to adversarially do something like this student. housee equals quote unquote number
+four Private Drive we know this won't work because my Setter for house is going to catch
+this watch again python of studenty uh let's type in Harry let's type in Gryffindor which will at
+least pass our check that's induced by in it but line 31 is going to trigger the same Setter to
+be be called and we're going to raise a value error saying invalid house unfortunately and if
+some of you are already thinking a little adversarially tragically look what you can do you can
+change house to be uncore house why well the instance variable is now called underscore
+house the property is called house no underscore but the underlying attribute implemented
+as an instance variable is still called underscore house and tragically python of student. py
+let's type in Harry let's type in Gryffindor which is correct but Watch What Happens now oh
+my God we slipped through so what was the point of all of this emphasis from me on doing
+things the right way the pythonic way by having this getter and Setter well unlike languages
+like Java that just prevent you from doing things like this python itself allows you to specify
+that certain instance variables can be public and accessible to anyone's code or protected or
+private which means that no one else should be able to change these values in the world of
+python it's just the honor System it's not baked into the language itself that there's a notion of
+visibility public or private or even somewhere in between protected instead you're on the
+honor System and the convention generally is if a instance variable starts with an
+underscore please don't touch it like just don't like that's on you if you touch that variable and
+break things the underscore is meant to signify a convention that this is meant to be private
+but it really just means please don't touch this sometimes if there's two underscores which
+you can use two that's an even greater effort by programmers to say really don't touch this
+but technically speaking there's nothing stopping you or me from circumventing all of these
+mechanisms these properties these Getters and Setters we're ultimately just on the honor
+System not to do so when we see instance variables prefixed with one or perhaps even two
+underscores all right so this is a lot all at once this introduction to object-oriented
+programming but it might come as quite a surprise that even though we might have identified
+oop by name in weeks past we've all been using classes and objects for weeks now in this
+class in fact if you think back on one of the very first things we did in this class we used
+integers and just got integers from the user but if you haven't already if you go and dig into
+the documentation for integers which again lives at this URL here you would actually find
+that int itself is and has been for weeks a class and in fact this is the signature of the
+Constructor call for an INT whereby you pass in X like a number quote unquote 50 or quote
+unquote something else you pass in optionally the base 10 for decimal two for binary or
+anything else and that int function will actually return to you all this time an object of type int
+that is to say int is a class it is a template a blueprint for creating integers in memory and
+anytime you and I have converted a string for instance to an INT you and I have been
+creating an object of type int that was calling apparently the underscore uncore init
+underscore underscore method that someone else the authors of python wrote to give us
+back that proper integer besides that if you can believe it stirs strings in Python have been
+classes since the first week of this class as well if you look up the documentation for a stir
+which lives at a similar URL there you will find that when you instantiate that is create a stir it
+takes optionally a parameter called object here the default value of which is just quote
+unquote which allows you to create in effect an empty string a blank string if you will but
+anytime you and I have created stirs or even used explicitly this stir function you are getting
+back an object of type stir anytime you and I have forced a string to lowercase per the
+documentation using syntax like this you and I have been taking an object of type stir and
+forcing it all to lowercase by calling a method called Lower a method that the authors of
+python built into the stir class but it's been there from the gecko so this notion of methods is
+not even new today you would have been doing it for this long if you've ever called strip to
+remove the leading and the trailing Whit space from a string in Python you are calling
+another method that came with with python written by the authors of python and even though
+we didn't call it a class at the time a stir all this time has been a class and instances of
+strings are themselves objects and those objects come therefore with these functions built in
+AKA methods that allow us to do things like force to lowercase and strip Whit space from the
+beginning and end let's do another list anytime you've created a list either uh either
+syntactically with square brackets or literally with l l i s open parenthesis close parenthesis
+which is also possible you have been using a class if you go to the documentation for list at
+this similar URL here or more specifically the tutorial on lists here in Python you will see that
+a list is and has been since the early weeks of this class A Class itself and that list class
+takes as part of its uh initialization an optional iterable something that can be iterated over
+like one comma 2 comma 3 or some list of values and you can then get back a list
+containing those same iterable values if you've ever appended something to a list in this
+class as I have myself in the past you've been using a method called aend that comes with
+the list class that per the X here takes an argument that allows you to append something to
+the current list AKA self in the context of that method we can do this all day long if you've
+used a dictionary or a dict in Python I've actually all this time been calling them dict objects
+and that's for a reason dict itself is a class in Python if you pull up its official documentation
+here and you'll see that it is defined indeed as itself a class and that class comes with
+methods as well and so anytime we've manipulated dictionaries we've been in underneath
+the hood using all of those same methods and in fact we can see this if we're really curious
+let me go back over here to VSS code and let me go ahead and create a new file that very
+simply does something like play around with data types and let me go ahead and create a
+new file for instance called say uh type. piy just so that I can poke around inside of some
+values and in type. pi I'm just going to go ahead and do this I'm going to print out whatever
+the type is of say the number 50 and this is a function you've not necessarily seen me use
+already and it's not one you would frequently use in your own code there are other ways to
+te detect if you need to what the type is of a variable but in this case type of 50 is just going
+to tell me and then print out what the data type is of that value now hopefully all of us could
+guess that 50 is indeed going to be an integer that is an INT but we can see it in this way
+and this too is what's powerful about knowing a bit of programming if you want to know the
+answer to a question just try it out like I am here so let me go ahead and run python of type.
+piy enter and there it is when you print out the type of the number 50 you'll see on the screen
+in this cryptic syntax class quotee unquote in this is not something that you probably want to
+show to the user but if you yourself just want to poke around and see what's going on or
+maybe use that information somehow it's certainly at your disposal to use with this type
+function for that let's change it around a little bit instead of passing as the argument to type
+50 as an INT let's type something also familiar like hello comma World in double or single
+quotes let me go back to my terminal window clear the screen and run python of type. again
+and now voila there it is all this time a sure is also a class we can do this a few more times
+for instance let's go ahead and change hello world to just an empty list open square bracket
+close square bracket and this is starting to look a little cryptic but again notice what I'm doing
+in square brackets is an empty list we've done that before that is the sole argument to this
+new type function and that's just being passed to the print function so that the return value of
+type is the argument to print so if I now run this code python of type. there it is a list is a
+class two you might recall that I said that you can also create an empty list by literally doing
+list open parenthesis close parenthesis this is a bit of an inconsistency as we can now
+identify that int and stir and Now list they're technically all lowercase and I went to Great
+Lengths of creating my student class to have that capital S that's a convention because int
+and stir and list and others come with py Pon they decided to make their buil-in data types
+even though their classes all lowercase but the convention the recommendation in the
+python Community when creating your classes is indeed to capitalize the first letter as I did
+in something like student capital S but list open parenthesis closed parenthesis is identical to
+really just two empty square brackets if I clear my screen and run type. again you see the
+exact same thing the class is called list let's do one more let me change list to not square
+brackets but curly braces we've done this before anytime I've done two curly braces with
+nothing in between this of course is an empty dictionary or a dict object in Python well we
+can see that now let me clear my screen run python of type. piy enter and there it is class
+dick it's been there this whole time we just didn't call it a class until today I can similarly do
+this one explicitly instead of two curly braces let's write out dict with two parentheses now we
+have a lot of parentheses again like with list but this is just making even more clear that the
+type of a dict object is indeed the class dict itself so this is to say that as new as a lot of
+today's IDE and syntax might be you've actually been using it perhaps unbeknownst to you
+for weeks now we now just have terminology to describe what it is we've been doing all this
+time and you now have the expressiveness with some practice to create your own classes
+inside of which are your own instance variables perhaps wrapped with those properties and
+your own instance methods but it turns out there's other types of methods in the world thus
+far I've been deliberate in calling all of our variables instance variables and all of our
+methods uh instance methods it turns out there's other types of variables and methods out
+there and one of those is called class methods it turns out that sometimes it's not really
+necessary or sensible to associate a function with objects of a class but rather with the class
+itself an instance or an object of a class is a very specific Incarnation thereof again on that
+neighborhood that has a lot of identical looking buildings but they're all a little bit different
+because of different paint and such sometimes you might have functionality related to each
+of those houses that isn't distinct or unique for any of the houses it's functionality that's going
+to be exactly the same no matter the house in question same in the world of object oriented
+programming sometimes you want some functionality some action to be associated with the
+class itself no matter what the specific objects own values or instance variables are and for
+that we have a keyword called at class method this is another decorator really another
+function that you can use to specify that this method is not by default implicitly an instance
+method that has access to self the object itself this is a class method that's not not going to
+have access to self but it does know what class it's inside so what do I mean by this well let
+me go back to vs code here and let me propose that we create a new file this time
+implementing the notion of a the Sorting Hat from the World of Harry Potter as well to stay
+on theme I'm going to go ahead and run code of hat. py and in hat. py let's implement the
+notion of this Sorting Hat if unfamiliar in the books and in the films there is literally a pointy
+hat that when a student put it on their head that Sorting Hat so to speak decides what house
+the student is in whether it's Gryffindor or something else so let's Implement and code this
+notion of a Sorting Hat such that when we pass to the Sorting Hat the name of a student like
+quote unquote Harry this Sorting Hat implemented in code will tell us what house that
+student should be in all right well let's go ahead and do this in hat. py first let's go ahead and
+define a class called hat and then let's get back to implementing it itself and I find this to be a
+helpful technique not just with teaching but when writing code like I know I want a ha class I
+don't necessarily know what I want it to do yet so I'm going to create this sort of placeholder
+dot dot dot so I'll come back to that let's now try to use this class as though it existed and
+from there I perhaps can realize exactly what functionality that class needs to have to
+support my use case let me go ahead and create a variable called hat in all lower case and
+instantiate a hat object so no matter what the Hat class ends up looking like this is the
+common Syntax for instantiating an object of a certain class in the past we saw student all
+lowercase equals Capital student open parenthesis closed parenthesis and then eventually
+we added in things like name and house for now let's assume that the hat is much simpler
+than a student and it only has sorting capabilities so I'm not going to even pass any
+arguments there too indeed let me assume that the Sorting Hat has one Function One
+method in inside of it called sort and so if I do hat. sort quote unquote Harry let's propose
+that that prints out what house that student should be in so that's it I'm going to encapsulate
+that is tuck away inside of a hat class all of this requisite functionality and I'm going to print
+out onto the screen what hat uh what house Harry belongs in all right now I think I need to
+get into the weeds of actually initializing this class well let me go ahead and do this if I don't
+care to parameterize hat I just want to for instance uh sort values let's go ahead and Define
+this function sort first so let's define sort as taking a first argument self which is always going
+to be the case when defining an instance method as before but the sort method clearly takes
+one argument from the programmer me namely the student's name and again we've seen
+this dichotomy before even though I'm trying to pass in one argument when I Define the
+method it's got to take that many arguments plus one more self which is always going to be
+automatically passed in by python first all right what do I want to do well let's go ahead and
+do something like this uh print quote unquote or rather print this name how about quote
+unquote is in quote unquote some house I'm going to again use some placeholder code for
+myself because I'm not quite sure how to finish implementing this Sorting Hat but I think
+that's enough to just test where my code is at now let me go ahead and run python of hat.
+and hit enter and it looks like indeed Harry is in some house we're not done yet because it's
+clearly not doing anything interesting but it at least is running correctly with no errors well
+let's go ahead now and decide where uh what house Harry should actually be in by
+introducing a bit of Randomness and choosing a house randomly well I can do this in a few
+ways let me go ahead and do this I need to have a list of houses somewhere so where can I
+put that I could solve this problem in different ways let me propose that I do this let me
+Define a method called init as I've done before that takes in self but no other arguments and
+whenever the Sorting Hat is instantiated let's do this let's create a houses instance variable
+plural that equals this list Gryffindor comma Hufflepuff comma uh Ravenclaw comma
+Slytherin so the exact same list that we've used before and I'm storing it in an instance
+variable inside of this class I'm not taking any arguments Beyond self in it but I just need this
+list of values somewhere for instance so what can I do here well let me go ahead and
+replace some house with the actual house well what could I do here well I want to put a
+house there well let's go ahead and create a variable called house and if you think back to
+our discussion of libraries in the random module there is a function called choice that if you
+pass in in a list of choices like self. houses that will pick a random house out of those four
+and then on line seven I can pass it in if I want to tighten this up let me just go ahead and
+highlight that code get rid of the variable it's technically unnecessary and because the line of
+code is still pretty short I'm okay with just putting it all in one line but I could certainly use the
+variable like I did a moment ago so what have I done in my init function I have defined a
+initialization of the object that stores in self do houses the list of four houses and then in sort
+I'm accessing that same list but I'm randomly choosing the set of houses there now why
+have I done it in this way this too is General convention anytime you have a list of things that
+who knows maybe will change over time places like Harvard have constructed new houses
+over the years so you might have to change the list of available houses it didn't happen in
+seven books or eight films of Harry Potter but you could imagine maybe Hogwarts eventually
+has a fifth house so there's generally some value in putting list of constants toward the top of
+your file toward the top of the class so it's just obvious what the list of values is you don't
+want to necessarily tuck it away in some function like sort especially if you might want to use
+that function in sorry especially if you want to use that list in multiple functions not just sort
+but if I kept adding to this class you might want to use that same list of houses in multiple
+functions so let's keep it in the object Itself by storing it in self. house is all right well we're
+about to change the course of history here perhaps let me do python of haty and I think
+we're about to assign Harry to one of those four houses randomly huh name error name
+random is not defined well wait a minute where did I go wrong here thinking back to our
+class on libraries why did my code break and not tell me where Harry is to be you do not
+import the random Library exactly the random library or module was something I want to use
+I need to tell python that at the top of my file so let me go up here and do import uh random
+and then below that let me go ahead and clear my terminal window and try again python of
+hatp crossing my fingers seeing where Harry is going to end up and okay Harry as of now is
+officially in Hufflepuff despite everything you've read or scene well let's run this again let me
+clear my window and run python of haty and now he's in Ravenclaw that's consistent with
+using random let's clear that and run it again he's still in Ravenclaw but that could happen
+even though there's four choices let's do it again Hufflepuff back in Hufflepuff we can't seem
+to get the right answer so to speak now he's in Gryffindor albeit randomly so we seem to
+have a program that based on these limited tests seems to indeed be assigning Harry to a
+house randomly now I'm somewhat lazily just letting sort print out this value I could do
+something else like return a string and then let me online 13 do the printing for me but for
+now I think we have an example of a class called hat that nonetheless applies some of our
+lessons learned thus far today where I've created a class because a Sorting Hat is frankly
+well a I was about to say real world entity but really a fantasy world entity and indeed that's a
+perhaps common heuristic or mental model to have when should you use a class to
+represent something in your code very often when you're trying to represent some real world
+World entity or fantasy world entity like a student which is something in the real world like a
+Sorting Hat which okay doesn't exist but hats certainly do so quite reasonable to have a
+class for hat and that's not always the case that classes represent real world entities but
+indeed we've seen thus far that int and stir and list and dict these are all structures that you
+might have in the real world we have integers and strings of text and other things so it rather
+makes sense to represent even those things more technically using a class as well you
+could use just a dictionary to represent a student or a hat but again with classes come all
+this and even more functionality but I honestly am not using classes in really the the right
+way here why well in the World of Harry Potter there really is only to my knowledge one
+Sorting Hat and yet here I have gone and implemented a class called hat and again a class
+is like a blueprint a template a mold that allows you to create one or more objects thereof
+now most of my programs thus far have been pretty simple and I've just created one student
+but certainly if I spent more time and wrote more code you could imagine writing one
+program that has a list of students many more students than just the one we keep
+demonstrating yet it would be a little weird it's a little inconsistent with the real or the Fantasy
+World of Harry Potter to instantiate one two three or more sorting hats there really is just one
+really one Singleton if you will which is a term of Art in a lot of context of programming so let
+me propose that we actually improve the design of the Sorting Hat so that we don't have to
+instantiate a Sorting Hat because right now this is kind of allowing me to do something like
+hat one equals hat hat two equals hat hat three equals and so forth I don't really need that
+capability I really just need to represent the Sorting Hat with a class but I don't really need to
+instantiate it why because it already exists I need just one so it turns out in Python that up
+until now we've been using as I keep calling them instance methods writing functions inside
+of classes that are automatically past a reference to self the current object but sometimes
+you just don't need that sometimes it suffices to just know what the class is and assume that
+there might not even be any objects of that class so in this sense you can use a class really
+is a container for data Andor functionality that is just somehow conceptually related things
+related to assorting hats and there's this other decorator or function called class method that
+allows us to do just this so let me go back to my code here and let me propose that if I'm not
+going to instantiate multiple houses I don't really need this init method because that's really
+meant to initialize specific objects from that blueprint that template that mold so let me get rid
+of this but if I get rid of this I no longer have access to self but that's okay because it turns
+out in addition to their existing class methods there are also what we might call class
+variables and class variables exist within the class itself and there's just one copy of that
+variable for all of the objects thereof they all share if you will the same variable be it an INT
+or stir or in this case a list so what I've done here is Define inside of my hat class in a class
+variable called houses I don't say self because self is no longer relevant self refers to
+specific objects I want a variable inside of this class AKA a class variable that equals that list
+because it's inside of this hat now class I can use that list in any of my functions I've only got
+one now called sort but if I had more it would be accessible to all of those methods as well
+and with sort it also doesn't really make sense to sort within a specific sorting hack because
+again there only want there to be one so I can actually specify that this is a class method by
+saying at class method and I don't pass in self anymore I actually by convention pass in the
+a reference to the class itself it's typically written as CLS why well if you wrote C ass that
+would actually conflict with the keyword class that we keep using up here so the world
+realized that oops we uh can't reuse that same phrase here so let's just call this class this
+this is useful in some context including this one why well notice what I can now do I can now
+change self to be just class why because house is now not an instance variable accessible
+via self. houses it is now a class variable accessible via class. houses or technically CLS do
+houses in this case but now the final flourish is this now I don't have to instantiate any hat
+objects as I used to on here line 13 I can just use functionality that comes with this class so
+I'm going to delete that line Al together I'm going to capitalize the Hat on this new line 13 and
+just say hat. sort quote unquote Harry so what have I done I've not bothered instantiating an
+object of type hat I am just accessing a class method inside of the Hat class that you know
+what is just G to work this is how class methods work you use the name of the class capital
+letter in all do method name passing in any arguments you want python is going to
+automatically pass in some variable via which you can refer to that class in that function that
+you've implemented inside of that class so that I can do something like this it's not that I want
+a variable called houses locally in this function I want the variable called houses that's
+associated with this current class so I can still access this same list that I defined on line six
+and now if I go back down here to my terminal and run python of hat. enter Harry is still in
+Hufflepuff once more Harry is still in Hufflepuff once more Harry is back in Gryffindor at least
+randomly questions now on these class variables or these class methods which are in
+contrast with instance variables and instance methods and the one thing at least that's a little
+strange here is that even though there's a decorator called at class method there is not one
+called at instance method a method is just automatically a so-called instant method when
+you define it without any decorator can you have a class inside another class you can you
+can Define one class inside of another generally speaking this isn't done but there are cases
+where it can be helpful especially for larger more sophisticated programs so yes it is possible
+good other questions the the question was about the self do houses when you when we
+remove it we uh and we pass data the variable is created itself why we remove the S so in
+the previous examples both of the Hat demonstration and also all of the student
+demonstrations we were uh creating a student object by calling student capital S open
+parenthesis closed parenthesis with eventually name and a house passed in and then we
+were using the d uh the Double underscore init method to initialize the self name and the
+self. housee instance variables therein to those respective values in this latest version of the
+Sorting Hat I haven't bothered with self anywhere only because conceptually I don't need or
+want there to be multiple hats in the world I'm just using the class as kind of a container to
+bundle up this list of houses this sorting functionality maybe eventually I'll add more
+functionality to it but that's it and so sometimes you can use objectoriented programming in
+this somewhat different way when you want there to be functionality but it's not specific to
+any one specific hat it's specific to the Sorting Hat itself how about one other question now
+on these class variables or methods just another way of using objectoriented programming
+but to solve somewhat different problem well what's the difference between the class hat and
+I don't know like a function of hat a good question so why are we using a class at all and not
+just having a file called hat. with a variable called houses and a function called sort like why
+are we adding this complexity in this particular case we don't necessarily need to I could
+absolutely go in here I could get rid of the class I could uh undo this indentation I could get
+rid of this decorator and I could get rid of hat Dot and I could just do this and additionally let's
+see let's get rid of class here let's get rid of class Here and Now run python of hat dopy enter
+and it still works put Harry in the wrong house but that's what we H what happens randomly
+that's fine too what we're introducing today by way of objectoriented programming is just a
+different way of modeling the world it's not really compelling with an example like this frankly
+that's relatively simple it's not very complex there's not much functionality honestly the
+version that we just typed up these 10 lines this is fine this solves this problem but as our
+code gets longer as we start collaborating with other people as the problems we're trying to
+solve with code get more sophisticated you're going to find that your code gets messy
+quickly and you're going to find that you have a huge number of functions for instance in one
+file and some of them are related to each other but some of them are not well at that point
+wouldn't it be nice to just organize them a little differently and in the World of Harry Potter
+let's have a class for student let's have a class for Professor let's have a class for the Sorting
+Hat let's have a class for something else and so once your world gets much more
+complicated than some of the demonstrations we do here in class when we want to focus on
+individual ideas is object-oriented programming is just a way of encapsulating related data
+that is variables related functionality that is methods inside of things that have names these
+things are called classes so it's just another way to solve problems and when we focused on
+libraries a couple of weeks back that too was another solution to the same problem you
+could Define your own modules or packages put some of your data Andor functionality in
+there and that's fine too and sometimes which one you should use overlaps if you're familiar
+with ven diagrams the overlapping region might mean that you could use a class you could
+use a module or a package you could just use a single local file over time you'll develop an
+instinct and maybe even a personal preference for which tool to use all right let me propose
+now that we apply this same idea of a class method to clean up one other thing as well let
+me close haty and reopen student. py as we left it earlier and let me go ahead and simplify it
+just a little bit uh I'm going to go ahead and get rid of the properties not because there's
+anything wrong with them but just because I want us to focus on some of the key ideas when
+we began with this program so I'm going to go ahead and keep Maine as well I'm not going
+to adversar try to change Harry's uh address there I'm going to instead go ahead though and
+just print the student but this is the thing I want to focus on here this in our previous student
+examples was kind of a missed opportunity to clean up my code well what what do I mean
+by that well up here at the top of this file even though I've simplified it by getting rid of the
+properties and all of that error checking because I want to focus on the essence of this class
+now just the students name and the house and the printing thereof this is by nature of
+classes an object-oriented programming theoretically all of my student specific functionality
+that is to say if I have functionality and data related to a student you the programmer my
+colleague would assume that it's all bundled up encapsulated so to speak inside of the
+student class and yet if you scroll down further what is this like there's a function called get
+student that just exists elsewhere in this file that prompts the user for a name prompts the
+user for a house creates the student object and then returns it like that's not wrong like it
+works and we saw many many times it kept working but this is a little weird right because
+what if this is a function that helps you get a student helps you get the name of a student and
+the house of a student why why isn't that functionality in the class itself after all as my code
+gets more and more complicated and does more things I'm going to be looking at the student
+class for all student related functionality I'm not going to be scrolling down expecting that oh
+maybe there's some other student functionality just kind of randomly later in this file so it's
+not wrong but this is again evidence of maybe bad design not so much with this small
+program but this is an example again of code smell like something smells a little off here like
+this is probably going to get us in trouble by separating related functionality so again it's a
+design principle not a correctness concern but class methods allow us to address this too let
+me go ahead and do this I'm going to delete get student alog together leaving only main as
+my other function here and inside of my student class I'm going to do this I'm going to define
+a function even more simply called get and by nature of how class methods work it's going to
+take in the name of the class itself or reference there too as an argument and I'm going to
+move the functionality from get student into the student class and I'm going to do this name
+equals input quote unquote name uh house equals input quote unquote house and then
+what this function is going to do is return a new student object by calling class which again is
+just an automatically passed in reference to the class itself passing in name and house and I
+will admit this syntax seems a little strange that now I'm calling CLS and I'm passing in these
+arguments but let me do one final fix here let me go to the top of this function and more
+explicitly say this is a class method this solves a potential chicken in the egg problem so to
+speak whereby one needs to come before the other potentially so what am I doing here
+inside of my student class I now have a function called get it is I shall claim a class method
+what does that mean it just means I can call this method without instantiating a student
+object first there in lies the potential Chicken and the Egg problem and if unfamiliar that's an
+expression meaning well did the world have chickens first that laid eggs or was there an egg
+that then Bor uh yielded the chickens but how did the egg get there it's this sort of weird
+circular problem and that's what we're facing here it would be weird if you had to create a
+student object in order to call get in order to get another student object like that sounds
+messy let's just get a student via a class method that by definition does not require you to
+create a student object first just like the Hat in its final form we use the Hat class to just say
+hat Capital h.s sort we didn't need to create a hat first we just used the class itself so what
+am I going to do here now let me go down to Main and instead of saying get student notice
+what I can now do student. get and everything else can stay the same all I've done now is
+I've migrated all of my logic from get student which was this own Standalone function but
+clearly related to students by name I've moved the same code really to inside of the student
+class in a more simply named function called get but I could still call it get student if I want it
+just sees a little redundant to call it get student in a student class so I'm simplifying so I have
+a method called get but I'm calling it a class method to avoid that chicken in the egg problem
+I want to be able to call get without having a student object in my universe already and the
+Syntax for that is at class method the convention is to give this method at least one
+argument by convention called CLS for class which is just going to be a reference to the
+class itself lines 11 and 12 are identical to what they've always been and get student the only
+new syntax here is this but this again is one of the features of object-oriented programming
+you can now instantiate a student object by just using CLS that's passed in I technically
+could use student capital S but it turns out I'm doing what's more conventional because this
+will both solve and avoid problems down the line with more complicated code this line here
+on line 13 just means create an object of the current class what class is that well whatever
+CLS is well that by definition of how it all works is going to be student and I want you to
+initialize it as always with name and house so now scrolling down my code is this and this is
+just nice to read you did perhaps have to acquire a taste for this and I sound a little odd
+saying this is nice to read but indeed student doget just tells me what's going on I'm going to
+get a student I don't need a separate function written by me called get student in the file itself
+the get functionality is built into the class all my student related code now is together so let
+me go down to my terminal window and run python of student. enter let's type in Harry let's
+type in Gryffindor and we're back to where we began but but but everything related to
+students now is in this here class the only other thing in the file is Main and this conditional
+that we always use to avoid accidentally executing main when we're making a module or a
+package or the like so again a solution to a problem not a big one in the case of a relatively
+small program but one that you will eventually counters your programs get longer and longer
+with more and more entities to represent questions now on this use of a class method does
+the does the class have to be defined before the main function in terms of the order of the of
+the program a really good question so when in doubt let's try this so let's try to change the
+order let's move main to the top which I've often encouraged so let's go ahead and above
+the class do this and notice now that technically line two is mentioning student which does
+not exist until line six and Below let me go ahead and clear my terminal and run python of
+student. so far so good Harry Gryffindor okay uh and indeed Harry's from Gryffindor the
+reason Michael it does not matter in this case is because we're not actually calling Maine
+until the very end and just as in the past that means that python has a chance to read
+everything top to bottom left to right so everything exists I would say generally classes are
+defined at the top of the file however it would be even maybe cleaner to move the class's
+definition to its own file and then import it so essentially to make reusable code by putting it
+into your own module or package so that not just this program but many others can use that
+definition of student as well other questions now on classes class methods or the like I
+wanted to ask is there a way to um like declare all the all the possible all the possible
+attributes of the class because it looks so inconsistent um well so my takeaway there is this
+is Python's approach to these principles different languages like Java just take a different
+approach but have very similar features the syntax just tends to vary and this is how the
+python Community chose to implement this idea the right mental model ultimately is that
+these instance variables instant methods belong to or operate on specific objects a specific
+student a specific hat class variables and class methods operate on the entire class itself or
+in turn all objects of that class which we've not seen them a demonstration of but it's sort of a
+higher level concept so it turns out besides these class methods which are distinct from
+those instance methods which to be fair do not have their own decorator they just are by
+default instance method there's yet other types of methods you can have in classes in
+Python they tend to be called Static methods and they too come with another decorator
+called at static method which which is a rabbit hole we won't go down but realize that there is
+yet other functionality that you can leverage within object-oriented programming but what we
+thought we do is focus really on some final core features that you see not just in Python but
+other languages as well and perhaps one of the most compelling features of object-oriented
+programming that we haven't yet used explicitly though it turns out we've seen implicitly over
+the past weeks is this notion of inheritance it turns out via object-oriented programming
+there's actually an opportunity to design your classes in a hierarchical fashion whereby you
+can have one class inherit from or borrow attributes that is methods or variables from
+another class if they all have those in common so what do I mean by this here well let me
+propose that we Implement uh over in vs code here a brand new file called wizard. piy let me
+go ahead and run code of wizard. piy and then let's start as before for defining a class called
+student and let's go ahead and first Define the underscore uncore init method which of
+course is minimally going to take an argument traditionally called self and in this case let's
+also have it take as before a name and a house and then in this init method let's go ahead
+and assign the instance variables self. name equals name and self. house equals house let's
+assume that there's some other functionality in this class as well dot dot dot but let's move
+on now to implementing the notion of a a professor in The Wizarding World as well so for
+this class let's call it professor and a professor let's say is also going to have its own
+initialization method so underscore underscore in it it's going to take self as always as the
+first argument uh a professor also has a name so we'll pass that in second to and even
+though some professors are heads of houses let's assume that a professor is really identified
+by their name and their subject area the class that they teach so we'll call this third argument
+subject subject now as before let's go ahead and assign self. name equals name and let's
+assign self. sub equals subject here and as before let's assume that there's some more
+functionality associated with professors as well well what do you notice already here in my
+definitions of students and professors typically we're a bit reluctant to allow for any
+redundancy in our code and here I feel like my init method is taking a name for students my
+init method is also taking name for a professor and I have these identical lines of code like
+self. name equals name and this is only going to get exacerbated if I now go and add some
+error checking so for instance How about if uh if not name we should probably be in the habit
+of raising something like a value error and an explanatory message like missing name and
+you know what if a professor is missing their name I should probably copy paste that code
+down here and that's where Red Flag should be going off whereby as soon as you start copy
+pasting code there's probably a better way so that we can write the code once and perhaps
+reuse it in some way and here too object-oriented programming offers a solution it turns out
+that object-oriented programming in Python also supports inheritance whereby you can
+Define multiple classes that somehow relate to one another they don't need to exist sort of in
+parallel in this way there could actually be some hierarchy between them so for instance in
+The Wizarding World we could argue that both a student and a professor are at the end of
+the day Wizards so maybe what should really Define is a third class for instance called
+wizard that has any of the common attributes for students and professors alike and for now
+we've kept it relatively simple the only thing they have in common is a name and a name in
+student and Professor respectively so why don't we minimally factor that out first all right so
+let me go ahead here and just to keep things organized at the top of my file let's define a
+third class called Wizard and a wizard will have its own initialization method so decore
+uncore init underscore uncore and self as always and a wizard let's say for now is only going
+to be initialized with their name in this way and now I'm going to go ahead and do some of
+that error checking so if not name we'll raise a value error in the Wizard class otherwise we'll
+go ahead and do self. name equals name and heck dot dot dot maybe some other
+functionality as well but not a subject which is specific to professors and not a house which
+I've claimed is specific to students now I think we can begin to maybe remove some of the
+redundancies in our other classes here so for instance down with student why don't I go
+ahead and remove this error checking here and remove this error this assignment of self.
+name equals name because I'm already doing that in Wizard and similarly down here in
+Professor why don't I do the same let's get rid of the error checking let's get rid of self. name
+equals name because I'm again I'm doing that already up there for Wizard as well but at the
+moment even though they're all in the same file I haven't told python that a student is a
+wizard and a professor is a wizard so I really need to link these two together and the way
+you can prescribe inheritance whereby one class should inherit from another or conversely
+one class should descend for another from another we can do this I can say class student
+but before the colon I can go in and say in parenthesis a student inherits from or is a
+subclass of wizard which conversely is the super class of the student class so this means
+that when I Define a student class go ahead and inherit all of the characteristics of a wizard
+as well and I'm going to do the same thing for her for Professor so parenthesis wizard after
+the class name professor and that's going to give me access to some of that same
+functionality but because my student class and my professor class still have their same init
+methods those are the methods that are going to get called whenever I create a student in
+code or I create a professor in code I need to somehow explicitly say that I also want to use
+the functionality in the Wizard classes init method and the way to do this in Python is is as
+follows let me go into my init method for student and let me call Super with no arguments
+which is a reference to the super class of this class so if this class is student the super class
+that is the parent class is Wizard so super open paren Clos paren will have the effect of
+accessing the super class and then I'm going to go ahead and explicitly call its in it method
+and I'm going to pass to the Wizards init method the name that the students init method was
+passed and I'm going to go ahead and do the same down here in Wizard this is one line of
+copy paste but I think I'm okay with it here because it's still allowing me to do all of the name
+assignment and the error checking up in the Wizard class instead I think we're okay now by
+just calling super. init for both student and Professor alike now admittedly this syntax is
+definitely out there the fact that we're calling super and parentheses and dots and
+underscore underscore on the left and the right of init here but it's just a combination of these
+two ideas super open parenthesis closed parenthesis is a way of programmatically
+accessing a current class's parent class or super class and underscore uncore in it of course
+is just referring to now that class's own initialization method now per the dot dot dots there
+could be a lot more going on in these classes but what's nice now is that wizard as a class is
+taking care of all of the assignments of a Wizard's name whether that wizard is a student or
+a professor and it's even doing some error checking to make sure that the name was
+actually passed in meanwhile student is inheriting all of that functionality and using it by
+calling the super class's own init method but it's additionally taking the house that's
+presumably passed into the student Constructor function and assigning it to its own instance
+variable self. house and similarly Professor are restoring in self-thought subject the subject
+that was passed into there that one as well now how might we use these classes well we'll
+continue to wave our hands with a little bit of detail here but if at the bottom of this file or any
+other file that Imports this one I could now write code like this I could create a student
+variable and assign it the return value of the student Constructor call and maybe that student
+is named Harry and that student's house for instance might be Gryffindor and meanwhile I
+might do something like this professor equals professor over here and notice the lowercase
+s on the left capital S on the right same for Professor on the left lowercase and uppercase on
+the right respectively Professor quote unquote seus and how about defense against the dark
+arts will be his subject and meanwhile if we want more generically just a wizard who at the
+moment is neither student nor Professor teaching classes actively we could even do that we
+could do wizard equals wizard in capital W on the right hand side of the equal sign because
+it's the name of the class and someone like Alin passing in only albus's name not a house
+not a subject because in this case he's known only as a wizard meanwhile with each of
+these calls this line of code here will ensure that the init method for the wizard class is called
+this line of code here will ensure that the init method of the student class and in turn the init
+method of the super class wizard is called and then lastly on this final line of code will this
+syntax ensure that the init method of the professor class is called which in turn calls the init
+method of the super class as well any questions now on this idea of inheritance which is a
+key feature of a lot of objectoriented programming languages um so is there any situation
+where because uh from what I've seen so far A lot of times there's like a lot of nesting if you
+do superar does it go one up is there any situation where you know it's nested in another
+class as well um above wizard let's say a really good question if you were to have a a super
+super class so your hierarchy is even taller than the two levels of uh hierarchy that we
+currently have absolutely but what's nice about object-oriented Pro what's nice about
+inheritance as the name implies is just as you might have inherited certain traits as a human
+from your grandfather and grandmother or your great-grandfather or great-grandmother
+some of those properties can actually uh trickle down to you so to speak in the context of
+code as well so when you descend from another class that is when you subass a a super
+class or a super super class you actually do inherit all of the functionality not just from one
+level above you but from two or three so you can indeed access some of that functionality as
+well and you can even override it if you want some of these classes to behave a little bit
+differently than others other questions on inheritance so it's kind of similar to the last one but
+can you have like two parents on the same level a really good question so there are ways to
+implement uh um descendants from multiple parents and there's different ways to do this not
+just in Python but other languages we've kept things simple here though by having a single
+uh inheritance path a good question how about one more question on inheritance can we
+have multiple arguments in super. double init yes but in this case I'm only passing a name on
+line 18 and I'm only passing in name on line 10 why because on line two when I Define the in
+it method for the wizard class I only expect a single argument but I could absolutely have
+under common functionality like I could add in a petronis if both students and professors
+have patronises that can come out of their wands I could have two arguments instead we've
+been using this feature of object-oriented programming now for quite some time in the form
+of exceptions indeed if you look at the official documentation for exceptions in Python you'll
+see that there's not even the ones we've seen in class like value error and others there's any
+number of others as well but they are all themselves hierarchical in nature this is just a
+subset of the available exceptions that come built into Python and you can actually as a
+programmer create your own exceptions as well but as this chart here uh captures
+hierarchically all exceptions we've seen thus far actually descend from or inherit from Super
+classes already so for instance at the bottom of this list here is value error which we've seen
+quite a bit and if you follow the line straight up on this asky rendition of this chart you'll see
+that value error has a parent class or super class called exception and the exception class
+meanwhile has a parent class called base exception why did the authors of python do this
+well it turns out that whether you have a uh value error or a key error or an assertion error or
+any number of others there's a lot of functionality common to all of those types of errors that
+you want uh all that you want a programmer to be able to use and so it turns out that the the
+authors of python decided you know what let's not have a dozen or more different classes
+that all just have copy pasted similar functionality let's create this hierarchy so that even
+though the exceptions toward the bottom of this list are very precise they at least inherit that
+is borrow some very common functionality up above so it turns out that when you use the try
+and the accept keyword in Python generally speaking we've tried to catch very specific
+exceptions like value error but technically you could capture the parent or even the
+grandparent exception forgiven exception especially if you're not necessarily sure which one
+is going to get raised or better yet there could be many exceptions that get raised but you
+want to handle them all the same and you don't want to necessarily enumerate them in
+parentheses separated by commas you want to say you want to handle all exceptions of a
+certain super class in much the same way so this has been latent this whole time anytime
+we've seen or used or caught or now raised exceptions and built into python is this hierarchy
+and if you were to invent your own exception generally you wouldn't want to start from
+scratch you would want to descend from that is subass one of these existing exceptions and
+add your own twist on it your own functionality as well well there's one final feature of
+object-oriented programming that we'd like to share with you today and that it will perhaps be
+quite the eyeopener is what you can really do now that you have classes at your disposal
+and this too surprise has been a feature you and I have been taking for granted for weeks
+now this has just worked but it's been implemented in a way that you can now leverage
+yourself it turns out that Python and some other languages too support this notion of
+operator overloading whereby you can take very common symbols like plus or minus or
+other such syntax on the on the keyboard and you can Implement your own interpretation
+thereof plus does not have to equal uh addition and minus does not have to equal
+subtraction and in fact you and I have already seen another context in which Plus plus
+means something else plus has not always in Python meant addition per se what else has
+python used Plus for concatenation for concatenation for joining two strings for adding to a
+list can you use plus as well so plus has actually been funny enough overloaded by the
+authors of python for us and so we can use the same symbol in much the same way as
+addition but with different data types to solve slightly different problems well let me propose
+that we go back over to vs code here and let me go ahead and create a new Final file called
+vault. py so code of vault. and let me propose that we implement the idea of a vault at
+Gringotts keeping on theme wherein there's a bank in the World of Harry Potter and within
+this Bank uh families and individuals have vaults containing all sorts of money in The
+Wizarding World and the type of money that exists in the World of Harry Potter are coins
+called gallions and sickles and canuts and those are in descending order of value and so
+inside of a vault might be a whole bunch of coins gold silver and bronze essentially each in
+those denominations tucked away so how can I go about implementing first of all the idea of
+a vault so that I can store for instance for Harry Potter how much uh coinage is in his family's
+Vault or for Juan resley the same well let me go ahead and Vault up high and first create a
+class called Vault essentially meant to represent a bank vault perfect another real world or
+fantasy world entity that I want to represent with code I could use a tupple or a list or a
+dictionary but again I'm going to get a lot more functionality with classes and we'll see one
+final flourish with operators inside of this Vault class let's go ahead and do this let me Define
+my init method taking its first argument of self and let me Define uh three arguments to this
+when you create a vault in my code here I want to be able to initialize it with some number of
+gallions some number of sickles and some number of canuts I want the US the programmer
+to be able to pass in one or more of those values ideally but they can be optional so I'll give
+them defaults so let's go ahead and Define a parameter called gallion whose default value
+will be zero sickles whose default value will also be zero and canuts whose default value will
+be zero as well so the programmer can pass in one or two or three or heck even none of
+those and they'll all have some implied defaults how do I want to remember those values
+that are passed in well let me do this self. gallion equals gallion and self. sickles equals
+sickles and self. canuts equals canuts and so I could add some error checking especially if
+you don't pass in a number I could turn these into properties to do even more validation but
+let's keep it simple and as always Focus only on the new ideas so I'm just going to trust that
+these values were passed in and I'm going to immediately assign them to these instance
+variables what now do I want to do well let's come up with a way of printing out what is in
+someone's Vault ultimately but first let's do this let's create a a vault for The Potters by
+creating via assignment a new Vault and let's say that the Potters have 100 gallions 50
+sickles and 24 canuts all right and that's in that Vault and let's print out for instance Potter all
+right let's run this code and see how it works now let me go ahead and run python a vault.
+enter okay seems to work no syntax errors or anything else but this is not very enlightening
+how do I fix this thinking back to what we've done before you have to use underscore uncore
+s exactly I need to use one of those special methods that comes with classes and Define for
+myself how I want a vault to be printed as a string so let me go ahead and do that let me
+Define the stir method taking in self as its sole argument here and let's just return a very
+simple string that just reveals what's in the vault so I'm going to return a formatted F string
+uh inside of which is self. gallion and then the word uh gallion so I know which those are uh
+then then let's do self. sickles and let's output the word sickles and then lastly let's output
+self. canuts and then canuts here so I know in this string just how many of each of those uh
+coins I have in this particular family's Vault all right let me go ahead and run python of vault.
+py changing nothing else except the stir method and now we see indeed that Harry has 100
+gallions 50 sickles and 25 canuts all right well let's do one thing more here below that let's go
+ahead and Define a Weasley variable and Ron never seemed to have quite as much uh
+money in the vault as did Harry so let's say that the Weasley Vault will have 25 50 and a 100
+so I'll just reverse the order of those denominations uh rather than Harry's 100 5025 and now
+let me go ahead and print Weasley like this and let's go ahead and clear my terminal window
+run python of vaulty this time that stir method will be invoked twice once for each of those
+Vault objects and we'll see indeed that the first one for Harry's got 150 and2 respectively
+versus runs 25 50 and 100 respectively but now let's do something interesting suppose that
+you wanted to combine the contents of two vaults be it Harry's and Ron's or any other two
+people how would you go about doing this in code well if I wanted to combine the vaults for
+someone I could do this well I could do gallion equals let's do Potter do gallion uh plus
+Weasley do gallion that gives me a variable called gallions that has the sum of Harry and
+Ron's gallions let's next do sickles equals potter. sickles plus Weasley Doles and then lastly
+let's do canuts equals potter. canuts plus Weasley do canuts I've got three variables what
+can I now do with these values well let's create a third a new Vault uh total will be the name
+of this variable equals a new Vault capital V notice and now let's pass in those three new
+variables gallions sickles and Kuts and that's it and let's print out this total Vault so we should
+now see three vaults one for Harry for Ron and the combination the addition of the two let
+me go ahead and rerun python of vaulty and there we have it uh what was 15025 and 2550
+and 100 combined through addition now is 125 100 125 so pretty straightforward using
+techniques from weeks ago where we're just declaring a few new variables and doing some
+addition but wouldn't it be cool if I could do something like this wouldn't it be cool if I could
+just somehow not manually create my own Vault and do all of this annoying math up here
+what if I could just do Potter plus Weasley and get rid of all of this logic here like wouldn't it
+be nice if I overload the operator no we know as plus just like stir does just like list does to
+allow me to add two vaults together on the left and the right well it turns out in Python on and
+through operator overla there is a way to do just this if you consult the documentation there
+are there's this and so many other special methods that come with classes the third one we'll
+see here is this one here underscore uncore add underscore underscore and you'll see that
+it very generically is described in the documentation is working for any object be it a vault or
+a stir or a list or something else by convention it's going to take a first argument called self
+and then it's going to take some other argument by convention called Other Self in effect is
+going to be referring to whatever object is on the left of a plus sign other is going to be
+referring to whatever is on the right hand side of a plus sign thereby giving us a way of
+describing in code the operand on the left and the operand on the right of the operator Plus
+in between that is to say if I go back to VSS code here what I'm trying to do is Implement
+support for this well let me try without writing any other code just yet python a vault up high
+enter type error unsupported operand types for Vault and Vault that is to say python at this
+moment does not know what it means to add two vaults together right you and I might have
+an instinct probably want to combine the gallions and the sickles and the canuts respectively
+python doesn't know that it just knows that you have a new class called Vault but let's teach
+python to do this let me clear my terminal window let me scroll back up to the class itself
+where at the moment I only have two special methods in it and stir but let's add this third all
+right let me go into the class here and Define underscore uncore add underscore underscore
+and then specify its first parameter as self as before and then a second parameter for this
+particular method called by convention other now as always I could name those parameters
+anything I want but I'm going to stick with convention Here and Now inside of this method am
+I going to have to now add together the contents of two vaults well what two vaults well if we
+scroll down to our goal at hand the goal goal of course is to add this Vault plus this other
+Vault Potter plus Weasley respectively well it turns out in Python that when you do overload
+an operator like Plus what's going to happen automatically as soon as python sees that is it's
+going to call that underscore underscore ad underscore uncore method and it's going to
+pass into it two arguments whatever the operand is on the left Potter in this case and
+whatever the operand is on the right Weasley in this case and those values are going to get
+passed in as self and other respectively what that means is that we can access their
+contents up here in our implementation of AD as follows let me go ahead and Define a local
+variable called gallions and set that equal to for instance the sum of self dot gallions
+whatever's in uh Potter's vault in this case plus whatever is in Weasley's vault in this case
+which would be other. gallions let me do the same for sickles self. sickles plus other Doles
+and let me lastly do that for canuts so self. canuts Plus other. canuts but at the end of the
+day I'm going to need to return a brand new bigger Vault that contains all of those contents
+together and if we ultimately want to assign that bigger Vault to a variable like total here on
+the left we better indeed return a value from this ad method so I'm going to go ahead and
+give myself a brand new vault as by returning Capital vault which of course is going to call
+My Vault function into which I can now pass some of those initialization arguments well how
+many gallion sickles and canuts do I want this brand new Vault to contain well I want it to
+contain this many gallions this many sickles and this many canuts so ultimately what we're
+doing in this implementation of ad is adding together those gallion sickles and canuts
+passing them to the Vault function so that we get a brand new bigger Vault and return that Al
+together so now I've defined this new special method called add that should now just make
+Plus work for two vaults all right let's see let me run down to my terminal window python a
+vault high and hit enter and voila now we've implemented an overloaded operator plus to do
+what you and I as humans would hope would be the case when you add two vaults together
+but I've now written the code more specifically to teach python what it means concretely to
+add two vaults together and it's with very similar code in effect underneath the hood that
+python is doing this for two strings to concatenate them together to joining two lists into a
+new list with lists and so many other class as well any questions now on operator
+overloading or this example here how would you go about creating a function for adding a
+student and a vault for two two separate classes how would that be possible let me see what
+happens here I don't know off hand let's do this let's create a stir and see what happens if I
+add Potter plus a stir stir object yeah okay so it would work I'm just figuring this out as I go
+here Eric so just to re be clear what I did was I just changed Weasley to stir just to see what
+would happen when I add a vault plus a stir and it will work theoretically why because so
+long as the type of value on the left has an add method implemented other can be any type
+that you want you just have to decide in code what it's going to mean conceptually to add a
+vault plus a string which in this case probably doesn't make any sense at all but it's possible
+it's going to be the operand on the left and I'm inferring that I did not know the answer a
+moment ago I'm inferring that because what I got was an attribute error here on line 11
+because python did not like this other gallion didn't work but I could make it work by figuring
+something out really good question didn't know that one myself other questions on operator
+overloading can you define new operators in Python I don't think so there is a very long but
+precise list of operators that you can overload I do not not believe you can assign arbitrary
+characters to be operators in Python uh let me defer to Carter in the chat to revoke okay I'm
+seeing two of my colleagues are saying no not possible so I'm going to go with my first
+instinct no otherwise that'd be kind of cool you could make Emoji do whatever you want to
+how about one final question on operator overloading is that the only operation you can do
+uh is a far as like can you do a subtraction as well you can you can do so many others let
+me um if Carter you don't mind pulling up this URL here so this link here special method
+names in today's slides you'll see a long list of all of The Operators that you can overload
+you can do less than equals than plus equals minus equals pretty much any symbol you've
+seen me type on the screen can be overloaded in the context of classes so even though
+today we focused entirely on object-oriented programming this is a technique that we've
+been using really since the first week of the class because indeed those ins those stirs those
+floats those lists those dictionaries and so much more we're already underneath the hood
+this whole time classes and objects thereof but you now as a programmer have the ability to
+create your own classes with your own instance or class variables with your own instance or
+class methods with your own properties and even with your own custom behavior for
+operators so В конечном итоге, вы, безусловно, можете продолжать использовать
+простые кортежи, списки, словари или другие структуры, но
+объектно-ориентированное программирование, а вместе с ним и классы, а теперь и
+эти объекты, — всего лишь еще один инструмент в вашем арсенале. И, осмелюсь
+сказать, по мере того, как ваш код становится все более сложным, а задачи — все
+более масштабными, вы обнаружите, что возможность моделировать эти сущности
+реального или даже фантастического мира с помощью классов, связанных данных и
+функциональности в конечном итоге позволит вам определять код, который не только
+корректен, но и хорошо продуман . Это был CS50.
+

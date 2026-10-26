@@ -1,0 +1,599 @@
+Итак, [Музыка] [Музыка] Хорошо, это вводный курс по программированию на Python от
+CS50. Меня зовут Дэвид. На этой неделе мы сосредоточимся на условных операторах.
+Условные операторы в Python и других языках — это возможность задавать вопросы и
+отвечать на них, или решать, какую строку кода выполнить: эту, эту или другую. Они
+позволяют логически выбирать между двумя вариантами в вашем собственном коде.
+Как же мы можем принимать такие решения? Оказывается, Python обладает
+множеством встроенных синтаксических конструкций. Например, вот некоторые
+символы, которые можно использовать в Python для задавания вопросов, хотя и
+математических , но начнём с них, чтобы пример был максимально простым. Первый
+символ, как вы, возможно, знаете из математики, обозначает «больше». Второй символ
+может показаться не слишком знакомым, потому что мы обычно пишем всё это как
+одно целое на бумаге, но на клавиатуре, если вы хотите сказать «больше» или
+«равно», вы используете этот символ. Этот символ, конечно же, означает «меньше».
+Этот символ означает «меньше или равно». А этот символ — довольно любопытный
+пример, который мы видели в нашем обзоре функций. variables how we were able to
+assign values to variables using a single equal sign but that equal sign didn't represent
+equality it represented assignment from right to left that's great because it solved that
+problem but it kind of left us in a bit of a bind because how do we now compare two things
+left and right well in python and in many languages you actually use two equal signs so two
+equal signs represents equality comparing the thing on the left and the right one equal sign
+as always represents assignment copying the thing from the right to the left lastly this last
+symbol represents not equal to so the exclamation point or bang followed by an equal sign
+means not equal to some value next to it well to ask the questions using these symbols or
+any others we're going to need another keyword in python and that keyword quite simply as
+in english is if you can ask questions in python code along the lines of if the answer to this
+question is true then go ahead and execute this code for me so let's go ahead and write
+some of these examples here i'm going to go over to vs code and let's go ahead and create
+a program first called compare.pi the goal of which is simply to write code that compares
+values and makes decisions based on those values let's go ahead and type code of
+compare.pi in order to create a brand new file called compare in which we'll start to express
+some of this logic all right well what do we want to compare suppose we want to compare for
+the sake of discussion just a couple of integers but we'd like those integers to come from the
+user so that we can make decisions based on numbers we don't know the values of in
+advance well let's go ahead and do this as we've done in the past let's declare a variable like
+x let's assign it equal to the return value of the int function and pass to the in function the
+return value of the input function asking the user a question like what's x question mark as
+we've done in the past let's do this one more time with y asking the user for the value of y
+and again converting that ultimately to an int as well so with this amount in the story we have
+two variables x and y each of which has values and ideally we should be able to now
+compare these values so suppose i want to make a decision based on the values of these
+variables i'm going to use the keyword if and i'm going to use some of those mathematical
+symbols to actually ask the question itself so how about this if x is less than y then let's go
+ahead and just print as much out quote unquote x is less than y so this isn't a very
+interesting program yet i'm literally just stating the obvious based on the math but it's
+allowing me to now introduce some new syntax and exactly what is this syntax well it's this
+not just the keyword if which i've added here at the start of line four but then i ask my
+question here x less than y x is one variable on the left y is one variable on the right and of
+course the less than sign is expressing the mathematical question i have what i've
+highlighted here is technically called a boolean expression a boolean expression named
+after a mathematician named bull is simply a question that has a yes or no answer or
+technically a true or false answer and that's nice because if there's only two possible
+answers it's very easy for me and in turn the computer to make a decision do this or don't do
+this thing now notice if you come from other languages you might notice that i have not typed
+any parentheses they are not in fact necessary at least in this case in python but i have
+typed a colon at the end of the line and even more importantly at the next line i have begun
+my line with some indentation hitting the spacebar four times or just hitting tab once which
+will automatically be converted to the same that indentation is what tells python that line 5
+should only be executed if the answer to line 4's question is in fact true so if x is less than y
+that phrase will be printed thereafter well let's add a few more lines of code how about
+another question if x is greater than y then let's go ahead and print that x is greater than y
+and let's do one final question if x equals y then wait a minute what have i done wrong here
+right a good i here i don't want to assign y to x if x equals equals y is how i express equality
+let's go ahead and print out x is equal to y so i now have a three conditions if you will one
+question asking x less than y one asking x greater than y one x king x equals equals y let's
+run the code well down here in my terminal window i'm going to run python of compare.pi
+and hit enter what's x let's go with one what's y let's go with two this should of course
+execute that first line of code and tell me indeed that x is less than y exactly as i would
+expect there well what just happened though in code well let's take a look perhaps at this
+same code visually particularly if you're a more visual learner this i dare say is what just
+happened so what we're looking at here is a flow chart it's a diagram of this program's logic
+and more technically it shows the program's control flow that is the ability of you and code to
+control the flow of a program generally from top to bottom in fact let me go ahead and zoom
+in on the top of this flowchart and you'll see an oval at the very top that says quite literally
+start that is irrespective of what shape or layout the diagram is is where your own thinking
+and logic should start when trying to wrap your mind around this program notice that there's
+an arrow from start to this diamond shape and inside of that diamond is a question a boolean
+expression x less than y and this shape just means based on the answer to that question go
+left or go right specifically go left if the answer is true or go right if the answer is false well the
+inputs i typed were 1 and 2 respectively for x and y so of course 1 is less than 2 so that's
+why my program printed out quote unquote x is less than y but recall the code the code then
+proceeded to ask two more questions is x greater than y is x equal equal to y well the
+flowchart depicts those questions too notice that no matter whether the question had an
+answer of true or false the arrows both converge back down to this second diamond shape
+here and that second diamond shape asks the second question x greater than y that too has
+a true or false answer so we go one way or the other but if x is 1 and y is 2 then no the
+answer is false 1 is not greater than y so logically in the flowchart you follow the false arrow
+this time and notice along that false arrow you don't print anything this time that's why we
+only saw one print out on the screen now there was still a third question and this flowchart
+captures that as well the third diamond asks x equals equals y now that two has a false
+answer in this case because one of course does not equal equal y and so we again follow
+the third false branch here and that leads us of course to stop and stop just indicates that's it
+for the program so i think that's correct and that particular flowchart does happen to
+represent the actual code that i wrote so it's correct it does what it's supposed to do it
+answered the question correctly by printing on the screen x less than y but what is perhaps
+poorly designed about it let's make this first distinction it's not enough necessarily for the
+code that you write to be correct and do what you intend longer term especially as our
+programs get longer and more sophisticated more complicated we're going to want them to
+be well designed too thoughts on in what way this program is arguably not well designed
+even though it's correct let's see here uh khalid if i'm saying that right your thoughts too
+many ifs i think is getting repetitive we can make our code more concise maybe yeah it
+seems a little repetitive i'm asking if this if this if this and yet logically i should know the
+answer to some of those later questions once i figure one out and in short if you look at this
+diagram here notice that no matter whether i go left or i go right i'm always asking three
+questions no matter what all of those arrows lead to the first the second and the third
+diamond so i'm asking three questions no matter whether any of those answers are true or
+false well how might i go about improving this well let me propose that we introduce another
+keyword to our python vocabulary namely l if and this too is kind of a succinct one it's a
+conjunction of else if in english which allows us to ask a question that takes into account
+whether or not a previous question had a true or false answer well what do i mean by that
+well let me go back to my code here and let me propose that we now improve upon this here
+by asking ourselves ultimately how can we ask fewer questions and let me go ahead here
+and propose that instead of asking if if if let's make these conditions potentially mutually
+exclusive that is to say don't keep answering questions once we get back a true answer so
+i'm going to change my code up here as follows instead of asking if if if i'm going to say if x
+less than y l if x greater than y l if x equals equals y so i'm going to implicitly just like in
+english take into account that i'm only going to keep asking myself these questions if i
+haven't yet gotten a true response think about the logic here the english if x is less than y on
+line four print out x is less than y well if that's the case you're done logically because if the
+english is saying if x less than y else if x greater than y those are going to be mutually
+exclusive if the answer to the first question is true you don't have to keep asking questions to
+which you already logically know the answer so let me go ahead now and run this program
+and i think the behavior is going to be the same python of compare.pi what's x let's do 1
+what's y let's do 2 x is less than y now honestly i didn't really notice a difference when i ran
+the program and honestly my mac my pc my phone nowadays are so darn fast that these
+kinds of improvements aren't going to necessarily feel any faster until we're writing bigger
+faster programs but it's laying the foundation for writing better code longer term now what is
+the improvement i've just made well if previously my diagram looked like this which was
+problematic in so far as i was asking three questions no matter what even if i already figured
+out what i want to print on the screen this new version of the program that says if l if l if might
+look a little something like this instead now it got a little wider that's just because we drew the
+arrows to be a bit wider here but let's focus on just how many questions are getting asked let
+me zoom in at the top as before and let me propose that we note that the start oval is at the
+very top and it's asking us to ask one question first x less than y is one less than two but
+notice here let me zoom out if one is indeed less than two we follow this longer arrow down
+mark true we print out quote unquote x is less than y but then we immediately follow this
+next arrow down to the icon that says stop so that's what's implied by doing if l if l if if we get
+back a true answer right away to that first if we're going to print out x is less than y and then
+stop we're logically at the end of the program so this picture is just representing graphically
+what the code is actually doing but suppose i typed in something else suppose that my code
+actually ran and i typed in 2 for x and 1 for y that is to say the answer to the first question is
+now false but the answer to the second question is now true because of course 1 2 is
+greater than 1. well let's go back to the diagram same as before we start at the very top
+where it says start the very first question up here now x less than y is an answer of false
+because no 2 is not less than 1 so we follow this arrow to the next question this diamond is x
+greater than y well yes 2 is greater than 1 so now we follow this left arrow which is true we
+print out quote unquote x is greater than y and then stop so what's the improvement well in
+the first case we got lucky and we only had to ask one question and boom we're done this
+time we had asked two questions but then boom we're done only if x happens to equal y do
+we actually find ourselves logically getting all the way down to this final l if in my code and
+pictorially only if x is equal to y do we find ourselves going all the way down to the third
+diamond the third question asking is it equal to y or not now hopefully the answer at that
+point is not false we've included a false arrow just so that the program itself is well defined
+but logically we shouldn't actually be getting there anyway because it's got to be less than or
+greater than or equal to in this case well let me pause here to see if there's any questions
+now either on the code version thereof here or on this diagramming of that very same logic
+questions here on this control flow uh aren't we supposed to put an else at the end ah a
+good question and yes so that's going to be my my third and final approach and if you don't
+mind let's pivot there right away identifying a third keyword that indeed exists in python that
+allows us to be even better at expressing this logic to design this program even better and
+that's going to solve a particular problem so if i take us back to our code here notice that
+what i've highlighted earlier l if x equals equals y it's not wrong to ask that question in fact if
+you're trying to be especially thorough it makes perfect sense to check if x is less than y
+greater than y or equal to y but why don't i need to ask this third and final question we don't
+need to ask if x is equal to y anymore because logically if the two conditionals evaluate to
+false there is only one um conditional that will evaluate to true and that is x is equal to y
+exactly if we're all pretty comfortable with math and comparisons here of course x is either
+going to be less than y greater than y or equal to y but once you rule out the first two
+scenarios logically it's got to be the case that x must equal y if it wasn't the case that it's less
+than or greater than so hope proposed that we use this other keyword else and how do we
+use this well exactly as we might in english let me go back to my code here and instead of
+bothering to ask the third and final question let's not ask a question at all let's just have this
+catch-all so to speak a final line of code that says else just assume that x is equal to y
+therefore printing it as well so what's the upside of that my code is still going to work exactly
+the same and again my computer's so darn fast i don't even notice that it's working even
+faster than it was before but we would notice these kinds of things if we were doing a lot
+more work a lot bigger programs here but let me run python of compare.pi let's do for
+instance one and two it still works for that let's do two and one still works for that let's do one
+and one and it indeed now works for that but in these cases now let's consider the path we
+just went down previously our diagram when we had if l if l if in place looked a little
+something like this and notice that again we might have asked one question or two or worst
+case three whole questions but we can do better than that using else as hope proposed we
+can whittle this diagram now down to this and even though it looks like the diagram is getting
+bigger notice that it's having fewer building blocks inside of it there's fewer arrows and
+there's fewer nodes in this picture let's start at the top now start leads us to the first question
+still x less than y if the answer is true great we can say as much x is less than y and we can
+stop if it's not true if it's false we can ask the next question x is greater than y true or false if it
+is great we can print x is greater than y and stop else if it's not the case that x is greater than
+y the answer is false we can just immediately logically say x is equal to y we don't have to
+add the third question at all we can just immediately conclude there so what's the implication
+here you can see with these pictures a relative decrease in the complexity of a program the
+first one was very long and stringy with lots and lots of questions unnecessarily ultimately the
+next one got a little shorter and this one's even shorter still and again the fewer lines of code
+you have the less likely you are arguably to make any mistakes the easier it is for other
+people to read and so generally this readability this simplification is indeed a good thing well
+let's go ahead and add another piece of uh capability into python and that's this one here just
+like in english where you can ask this question or this other question you can say the same
+thing in python using literally this word or so let me go back to my python code here and let's
+propose how we might ask a couple of questions at once this time perhaps this time
+considering how we might ask not whether or not it's greater than or equal to and caring
+about the precise answer let's take a coarser approach here and let's just try to determine is
+x greater is x equal to y or not well let me go ahead and delete some of this code and
+change the question we're asking let me do this well if i care about whether it's equal or not
+let's check the possible scenarios if x is less than y or x is greater than y let's go ahead and
+print out x is not equal to y now why is that no pun intended if x is less than y well it's
+obviously not equal if x is greater than y it's obviously not equal so we can conclude x is not
+equal to y so if we instead want to make sure that it is equal to we can just use uh hopes
+else using print quote unquote x is equal to y and again why is this well if x is less than y or x
+is greater than y they're obviously not equal otherwise logically they must be equal in fact so
+let's run this let's go ahead and run python of compare.pi what's x1 what's y2 okay x is not
+equal to y let's do it again but 2 for x 1 for y x is not equal to y and one third time how about x
+is 1 and y is 1 x is now equal to y now if we want to compare that visually to let me propose
+that the picture looks a little something like this and again this is the exact same thing
+logically but it's a pictorial representation thereof what's the first question well if x is less than
+y well then we follow the true arrow and we say quote unquote x is not equal to y and then
+we stop but what if x is not less than y what if it's greater than y what if it's 2 and 1
+respectively then the answer to x less than y's first question is false so we go here we ask
+the second question because of the or and that asks is x greater than y if so notice this we
+can kind of reuse some of the same parts of this picture and just say x is not equal to y we
+don't need to add arrows and add boxes unnecessarily we can reuse lines of code picture
+parts of the picture just as we have lines of code and then we stop lastly we have the
+following if we know that x is not less than y we know that x is not greater than y it must be
+the case that x equals y we don't need to ask a third question another diamond we can just
+immediately print as much and then say stop as well well what could i do here i bet i could
+improve this code slightly and if we really want to be nitpicky i would argue that this is now
+really just a minor refinement but it's a good habit to get into thinking about could my code be
+better could my code be simpler could i improve this code further it's subtle but could i
+improve the design could i ask fewer questions could i tighten it up so to speak what do folks
+think you can ask if x is just equal to y then if we print x is equal to y else x is not equal to y
+perfect recall one of the other symbols we saw in the available list earlier we can check not
+just less than or greater than or equal to we can literally ask the question is it not equal to
+why are we wasting time asking if it's less than or if it's greater than well if all you care about
+is is it not equal i think we can do exactly that let's just ask the one simple question we do
+care about and so let me go back up here and let me just say not both of these questions
+let's get rid of the or let's just say if x is not equal to y then go ahead and print x is not equal
+to y and that too i think is going to work exactly the same but the picture now looks a little bit
+different notice that this was our flow chart earlier that represented that same logic and
+there's a bit of complexity you got to go left you got to go right based on the answer to these
+couple of questions if we now take into account what this version of the program looks like
+it's even simpler perhaps the simplest one we've seen yet when we start off the program we
+ask just one and only one question is x not equal to y and if so true we go ahead and print
+out x not equal to y if the answer is false then of course it must be equal to y so we say that
+instead and if we really want we could invert this if i go back here to my code and if for
+whatever reason you just prefer to think in terms of equal or not equal as opposed to not
+equal or equal it's really up to you we could change this to be equals equals but i'm going to
+have to change my print statements to be in the opposite order so let me go ahead now and
+reverse these two here and move the second one first and the first one second so now when
+i execute this code i'm asking still just one question so it's still just as good just as succinct
+but now the diagram instead of looking like this is going to change the not equal to equal
+equal and we just need to make sure that we print out the right thing accordingly and again
+here too just as the code is getting a little more compact a little more compact with fewer and
+fewer characters so are these diagrams these flow charts capturing the relative simplification
+of each of those programs too all right let me go ahead and pause here to see if there's any
+questions now on any of these versions of code yeah i have a couple of questions uh uh
+what if indentation is not used uh if indentation is not used your program will not work so
+python is a little different from a lot of languages in that it enforces the indentation
+requirement some of you who have been programming for years might not necessarily be in
+the best habit of indenting your code properly and one of the features arguably of python is
+that it makes you indent your code or it will not just work and i think did you have one other
+question uh yeah is the colon necessary is the colon necessary yes the colon two is
+necessary so with python what you see is what you get here and indeed it needs to be
+indented and the colon is necessary python does not use in the same way by convention as
+c and c plus plus and java curly braces to connote blocks instead it relies indeed on this
+indentation well let me propose that we introduce one other keyword here in python to see
+exactly how we might combine additional thoughts and that's going to be literally the word
+and a conjunction of one or two or more questions that we might want to ask at once and let
+me propose here that we explore this kind of logic by way of another program altogether in
+vs code whereby i'll go ahead now and create a new program say called grade.pi let's
+consider exactly what grade a student should get based on their score on an exam or a test
+or a quiz or some other assignment like that i'm going to go ahead and run code of grade.pie
+to give myself a new file and i'm going to go ahead and start by just getting the user's score
+again on some assignment or test or the like and i'm going to store it in a variable called
+score equal the return value of the int function which is going to convert whatever the user's
+input is when prompted for this score so again the user should just oblige by giving me a
+number like 0 or 1 or 2 or hopefully much higher than that like 97 98 99 100 assuming the
+test or assessment is out of 100 percentage points now how can i go about assigning a
+grade to the student's score well in the u.s it's very commonly the case that if you get
+between a 90 and 100 that's an a and if it's between an 80 and an 89 it's a b if it's 70 and 79
+it's a c and so forth all the way down to f which should be e but we'll see that there's a bit of a
+jump so how might i express this well i can use conditionals and i can ask a few questions
+and then print out the student's grade accordingly so let me express it like this if the
+student's score is greater than or equal to 90 and the student's score is less than or equal to
+100 so it's in that range let's go ahead and print out that their grade shall be an a because
+they're in the 90s above grades range l if the score is greater than or equal to 80 and the
+score is less than or equal to say 89 but here i have some options logically i can actually
+express myself in any number of ways and maybe just to be a little cleaner i'm going to say a
+score is less than 90 so i'm using less than instead of less than or equal to so i'm making
+sure that their boundaries between these grades are correct then i'm going to go ahead and
+give the student a b if it's in the 80s l if score is greater than or equal to 70 and the score is
+less than 80. i'm going to go ahead and give them a c l if the score is greater than or equal to
+60 and the score is less than 70 i'm going to go ahead and give them a d and here's where
+it's a little anomalous at least in some schools here else i'm going to go ahead and give them
+an f so we're skipping e all together and we're going to give an f instead for the grade so
+that's the catch-all and i think logically i've gotten this correct at least based on where i went
+to school growing up such that it's going to give an a or a b or c or a d else it's going to
+assume that you got an f well let's try just a few of these here let's run python of grade dot pi
+my score is let's let's start strong 100. all right i got an a didn't do as well the next time
+maybe it's a 95 still an a starting to slip further so i got an 89 the next time that's now say a b
+and let's say i really had a bad week and it's now like a 71 that's now a c or i didn't even
+submit it at all that's a an f all together right so it seems to work that's not really an
+exhaustive test but at least based on some sampling there my code seems to work as i
+expect but let's see if we can't tighten this up it's not wrong it's correct and indeed according
+to my own specifications i dare say this code is correct but can we tighten it up can we
+reduce the probability of bugs now or down the line can we increase the readability of it and
+can we increase the efficiency of it can we get the computer to have to answer fewer
+questions and still get the same result well let's see what we might do let me just kind of
+switch things up if only to demonstrate that we can use these symbols in different ways i
+could say as i've done if score is greater than or equal to 90 but i can actually do this i can
+flip it around instead of saying greater than or equal to let's say 90 is less than or equal to
+score and here let's say if 80 is less than or equal to score and here 70 is less than or equal
+to score and then lastly 60 is less than or equal to score so it's the same thing logically i'm
+just kind of switching things around just like you could do on paper pencil if you really wanted
+but now notice this trick and this is not possible for those of you who have programmed in c
+or c plus or java or other languages notice what i can do here is actually combine these
+ranges notice that i'm asking two questions two boolean expressions is 90 less than or equal
+to score and is score less than or equal to 100 well python allows you to nest these things
+like this and chain them together and just like you would on paper pencil in the real world
+you can encode in python do this which is just a little cleaner right it's tightening up the code
+a little bit it's fewer keystrokes it's faster to type it's easier to read moving forward so that's
+arguably better as well so that's one improvement it's largely aesthetic in this case it's still
+asking the same number of questions but it's doing it a little more succinctly still well what
+what more could i do here next well you know what each time i'm deciding these grades i
+don't think i have to ask two questions i don't have to ask is it greater than 90 and less than
+100 is it greater than 80 and less than 90 if i kind of rethink my logic i can maybe do this
+better still let me propose that we simplify this further and just do this if we know the input for
+the moment is going to be within 0 and 100 we can make some assumptions we could say
+something like if the score is greater than or equal to 90 well the student gets an a l if the
+score is greater than or equal to 80 the student gets a b l if scores greater than or equal to
+70 they get a c l if the score is greater than or equal to 60 they get a d else they get an f so
+what have i done here well instead of asking two questions every time checking the lower
+bound and the upper bound of that range i'm kind of being a little more clever here by asking
+if the score is greater than 90 well they've obviously gotten an a or better if your score is
+greater than 80 well you either deserve an a if it's really strong or a b if it's just above 80 but
+because of the if l if logic we've already checked as the student score greater than 90 and if
+it's not then we're asking the question well is it greater than 80. so you implicitly know it's
+somewhere in the 80 to 89 range else you know it's in the 70 to 79 reach else it's in the next
+range down so it's a minor optimization that allows us to ask fewer questions but again it's
+making the code arguably a little more readable certainly more succinct and then hopefully
+more maintainable longer term any questions then on these types of changes and this type
+of logic with our code uh what if we don't use alif at all what if we uh write the code in f yeah
+so that's a good question because it's actually going to have an unintended effect here let
+me get rid of the f temporarily and just focus on a through d if we revert to where we began
+today's story with conditionals saying if if if now our cleverness here of using broader strokes
+and not using an upper and lower bound ranges is going to come back to be a downside let
+me go ahead and run python of grade dot pi and suppose my score is uh 95 i am so darn
+excited i want my a but nope i just got an a a b a c and a d so logically that's broken things
+because if you don't make these conditions mutually exclusive every one of those questions
+is going to get asked and therefore answered and even if your grade is above a 90 it's also
+logically above an 80 above a 70 above a 60 and if i kept it in there i would have failed as
+well with an f really good question other questions here on this form of logic like it would
+there be any i guess better way to kind of clean up even just this simple statement like we
+had before the previous one that you had with the ltis oh i i i like your enthusiasm for
+simplifying things further i'm gonna go out on a limb here and say this is about as good as it
+gets at least using only conditional statements i can if my mind wanders think of a slightly
+more clever way to do this maybe with something called a loop or another programming
+construct we don't have that yet in our vocabulary but yes there's absolutely other ways to
+do it but i think not yet if we want to restrict ourselves to just words like if and or and else uh
+and elif and and and the like well let me propose that we pivot now to use another approach
+here that uses one other symbol that up until now we've not really had occasion to use let
+me propose that we implement a program uh that we'll call parity and mathematics parity can
+refer to whether a number is even or odd and that's kind of an interesting question and turns
+out it can be useful in other applications too to i just asked the question is a given number
+even or odd maybe that the user typed in and let me go ahead and write a new program
+called parity dot pi via code parity.pi in my terminal and let me propose that we use this as
+an opportunity to introduce the last of those arithmetic symbols at least most of which we're
+familiar with addition subtraction multiplication division but there's been on this list before this
+last one here a percent sign and it doesn't mean percentage in this case when used as an
+operator in programming in python rather it represents the so-called modulo operator for
+modular arithmetic or at least in our case we're going to use it to calculate the remainder
+when dividing one number by another well what do i mean by that well if you take a number
+like one divided by three three does not go into one eat cleanly so you have a remainder of
+one two divided by three has a remainder of two three divided by three has a remainder of
+zero because it divides cleanly four divided by three has a remainder of one because you
+can divide it in once but then that leaves one so it has a remainder of one and then lastly
+something like five divided by three has a remainder of course of two so that's all we mean
+by remainder how much is left over after dividing one number by another well if i go back
+now to my code and i consider how i might implement the question is this number even or
+odd let's consider how we might implement that since it's perhaps not necessarily obvious
+how we can use this additional building block but it turns out it's going to be very useful
+longer term well let's first just get a number from the user in a variable called x and i'm going
+to set that equal to the conversion to int of whatever the user inputs after asking them what's
+x question mark and we've done that before many times how do i now determine if x is even
+or odd well it turns out if i have access to a programmatic operator that tells me the
+remainder i think i can do this in fact let me just ask the group and this is just from grade
+school math perhaps what does it mean for a number to be even to be clear a number like 0
+2 4 6 8 10 12 14 16. those are all even numbers but what does that really mean elena if i'm
+saying that right uh even numbers it can divide it exactly by two for example two four six
+eight and ten perfect and we could go on all day long literally since there's an infinite number
+of those even numbers but it's nice that you formulated it in terms of a question that we can
+ask very clearly is this number cleanly divided by two that is can we divide it by two with no
+remainder a remainder of zero well that's perfect because if we have this operator this
+percent sign that allows us to answer just that what is the remainder we can presumably
+check is the remainder is 0 or is it 1. do we have nothing left over or do we have 1 left over
+well let's ask that if x divided by two has a remainder of zero as elena proposes let's go
+ahead and print out something like quote unquote even and just say as much to the user
+else i think we can assume that if a number is not even it's going to be odd if it's indeed an
+integer so i'm going to go ahead and print out quote unquote odd instead and let's go ahead
+and now run python of parity.pi in my prompt what's x let's start with 2. 2 is in fact even let's
+start with four is in fact even let's get thing let's get interesting with three three is now odd
+and i think we could do that all day long and hopefully get back indeed exactly that answer
+but what more could we do here how could we improve upon this well recall that we have the
+ability to invent our own functions and let me just propose for the sake of discussion that
+we're going to eventually find that it's useful to be able to determine if a number is even or
+odd and so we'd like to have that functionality built in and i don't think python has a function
+for telling me just that but i can invent it using code like just this so let me go into my earlier
+version here and let me propose that we do this let me go ahead and write a main function
+i'm going to get back into that habit of defining a main function to represent the main part of
+my program and i'm going to do what i did before i'm going to get an integer from the user's
+input asking them what's x question mark and then i'm going to ask this question for the
+moment i'm going to naively assume that the function already exists but that's a useful
+problem-solving technique even if i have no idea yet where i'm going with this how i'm going
+to invent and function that determines if a number is even i'm just going to assume that
+there's a function called is even and i'm going to call it blindly like this if is even passing in x
+then go ahead and print quote unquote even so if this magical function called is even returns
+true as its return value i'm going to print out that it's even else otherwise i'm going to assume
+that it's of course odd now the one problem with this program even if i call main over here is
+that is even does not exist and this program would break if i ran it right now but that's okay i
+have the ability recall to invent my own function so let me define with def a function called is
+even i want this function to take an argument and i'm going to call it n just a number
+generically i could call it x but again i don't want to confuse myself as to which x is which so
+i'm going to give it a different name and that's fine i'm just going to call it more generically n
+for number and then i'm going to do this i'm going to say if n percent 2 equals equal 0 just
+like before then and here's the magic you the programmer can actually return what are
+called boolean values we've seen in python that python has stirs or strings ins or integers
+floats or floating point values all of which are different types of data in python python also
+has a fourth data type called bool for a boolean value and even though this is just adding to
+our list the nice thing about bulls is that they can only be true or false an int can be any
+number of infinite possible values a bull can only be true or false and it must be capital t and
+capital f if you're writing itself so if i go back now to my code and i consider exactly what i
+want to return here well if x if n percent two equals equals zero that is if n divided by two has
+a remainder of zero well i think it's even to elena your definition so let's return true capital t
+else if it doesn't have a remainder of zero i'm pretty sure mathematically it's got to have a
+remainder of one but it doesn't matter i know it's not even so i'm going to return false and
+we've returned false instead capital f and now that we've defined both main and is even and
+i'm calling main at the bottom i think i've got this right python of parodied up high enter what's
+x let's try something simple like 2 and it's even let's do it again what's x how about 4 even
+once more what's x how about 3 and it's odd now what have i done here i've just made the
+point that if i want to create my own function called is even that answers this question for me
+that i can now use in this program and heck maybe future programs that i write i now have a
+function that no one gave me i gave myself that i can use and reuse and i can even perhaps
+share it with others i'm using that function now on line three just to make a decision i'm using
+a conditional up there and my boolean expression something that's true or false is going to
+be not something explicit like x less than y or y greater than x or the like it's going to be a
+function call i'm using a function as my boolean expression but that's okay because i know
+because i wrote it that that function is even returns true or it returns false and that's all i need
+in a conditional to make a decision to print even or print odd so let me pause here to see if
+there's any questions now on how i've implemented is even using this bool hello hi david first
+of all thank you for this wonderful class uh day before yesterday and today uh i have just one
+query like bases on my background of java there when we used to pass the argument we
+can also pass the address of the variables so is there any sort of this concept in python short
+answer no those who are unfamiliar with java or other languages or c or c plus plus there's
+generally ways to pass values in different mechanisms that allow you or disallow you to
+change them in python no everything we're going to see is actually in fact an object but more
+on that down the line how about time for one more question here on these bulls and these is
+evens so i actually had a question about um defining a function okay if that's okay so if you
+define one are you like within your code like you made it up are you allowed to use the dot
+operator like we did name dot strip and use it like that good question if you've created your
+own function can you use other functions like dot strip or dot title or dot capitalize that we've
+seen in the past you can use those on strings those functions come with strings you can't
+necessarily use them on your own functions unless your function returns a string for the
+examples you gave i'm returning a bull bulls have no notion of white space to the left or the
+right you can't call strip you can't call capitalize but if you were writing a different function that
+returns a string absolutely you could use those functions as well well let me turn our
+attention if i may back to this example here and consider as we now frequently do can we
+improve on the design of this code can i make this particular program better and i can there's
+a couple of ways here and i'll show you something that's now generally known as something
+pythonic there's actually this term of art in the python world where something is pythonic if
+it's just the way you do things in python which is to say we've seen already there's so many
+different ways to solve certain problems and in the python community of programmers there
+tend to be some ways that are smiled upon more than others and they tend to relate to
+features that maybe only python has but not other languages and here's some syntax that
+you might not have seen in languages like java or c or c plus if you've programmed before
+and if you've never programmed before this too is going to be new instead of asking a
+question like this if else using four lines in python you can actually collapse this into just one
+more elegant line if you will instead of asking if n divided by two has a remainder of zero
+return true else returned false let me delete all of that and just say this return true if n divided
+by 2 has a remainder of 0 else return false now those of you who do have prior programming
+experience might actually think this is kind of cool you can condense from four lines into one
+line that very same thought and one of the reasons why python is popular is that it does tend
+to read rather like english it's not quite as user friendly as most english or most human
+languages but notice now the line does rather say what you mean return true if n divided by
+two has a remainder of zero else false i mean that's pretty darn close to something you
+might say logically in english be it about even an odd or really anything else so that program
+is going to work exactly the same python of peridot pi let me type in two it's still even let me
+type in three it's still odd but i can refine this even further and again consistent with this idea
+of not just writing correct code but writing better and better code but still keeping it readable i
+can do one even better than this notice this value here is my boolean expression and it is
+going to evaluate to true or false is n divided by 2 having a remainder of 0 or not like that is
+by definition a boolean expression it has a yes no answer a true false answer well if your
+boolean expression itself has a true or false answer why are you asking a question in the
+first place why ask if why say else just return the value of your own boolean expression and
+perhaps the tightest version the most succinct and still readable version of this code would
+be to delete this whole line pythonic though it is and just return n modulo 2 equals equals 0.
+if it helps let me add parentheses temporarily because what's going to happen in
+parentheses will happen first n divided by 2 either does or does not have a remainder of zero
+if it does the answer is true if it doesn't the answer is false so just return the question if you
+will you don't need to wrap it explicitly with an if and an else and in fact because of order of
+operations you don't even need the parentheses so now this is perhaps the most elegant
+way to implement this same idea now which is better this is pretty darn good and it's hard to
+take fault with this because it's so very succinct but it's perfectly okay and just as correct to
+have an if and then an else even though it might be four total lines if that helps you think
+about your code more clearly and it helps other people reason about it as well so it turns out
+there's another syntax that you can use to implement the same idea of a conditional whereby
+you do something optionally based on the answer to some boolean expression and the
+keyword that you can now use in recent versions of python is called this match match is a
+mechanism that if you've programmed before is similar in spirit to something called switch in
+other languages for instance let me go ahead here and close out parity dot pi and let me go
+ahead and create a new file called house dot pi and in house stop pi i think what we're going
+to do is try to implement a program that prompts the user for their name and then just
+outputs what house they're known to be in in the world of harry potter so for instance let me
+go ahead and do this let me give myself a variable called name set it equal to the return
+value of the input function and i'll say something like what's your name question mark and
+then after that i'm just going to use a traditional if el if else construct to decide what house
+this person is in so let me say if name equals equals say harry as in harry potter well let's go
+ahead and print out harry's house which is gryffindor in the world of harry potter el if the
+name is instead hermione then go ahead and print out also quote unquote gryffindor she's in
+the same house too l if name equals equals ron let's go ahead and similarly print out
+gryffindor quote unquote and let's make this a little more interesting now l if name equals
+quote unquote how about draco draco malfoy in the books let's go ahead and print out quote
+unquote slytherin and just in case someone else's name gets inputted for now let's just
+pre-suppose that we don't recognize them and say by default else print out quote-unquote
+who question mark just to convey that we don't actually have a hard-coded response to that
+particular name let me go ahead now and run this as python of house dot pi enter and i'll go
+ahead and type in something like harry and voila we see that harry is indeed in gryffindor
+let's run it one more time python of house dot pi let's type in draco this time slytherin and
+now let's type in an unrecognized name let's go ahead and rerun python of house dot pi and
+let's go ahead and type in padma enter and who because we haven't actually hard coded
+with an l if condition in this case uh what house padma is meant to be in all right well it turns
+out there's other ways to implement this indeed there's some redundancy here in that we're
+checking if harry or hermione or ron are all in gryffindor i feel like we can at least tighten this
+code up a little bit using techniques we've seen already so let me go ahead and do this let
+me go up here and instead do something like this let's get rid of these two blocks of l-if's
+leaving just harry's for a moment and let's use that or keyword again and say or name
+equals equals quote unquote hermione or name equals quote unquote ron thereby
+consolidating all three cases if you will into just one if statement then we still have a separate
+lift for draco because he's not in fact in gryffindor and then the final else to catch anyone else
+all right let me go ahead now and run this version of the program python of house dot pi i'll
+type in hermione this time she too is still in gryffindor let me try it with ron and that too still
+seems to be correct well it turns out there's another approach altogether that can perhaps
+make your code a little less verbose you could imagine how complicated this code might get
+if we had not just harry and hermione and ron but a whole bunch of other names as well for
+gryffindor for slytherin and for all of the other hogwarts houses so you can imagine that code
+just getting pretty unwieldy pretty fast well it turns out another technique you can use is
+indeed this keyword called match which is very similar in spirit but the syntax is different and
+allows you to express the same ideas a little more compactly so let me go back to house dot
+pi and let me propose that i get rid of my current if elif else approach and instead do this
+literally use the keyword match and type the name of the variable or value that we want to
+match on and then i'm going to go ahead and include a colon and then underneath that i'm
+going to include literally a keyword called case and the first case i want to consider is going
+to be harry and i'm going to put harry in quotes because it's a string or a stir and i'm going to
+have another colon at the end of this line and indented under that one i'm going to go ahead
+and for now print out gryffindor which of course is harry's house otherwise i'm going to have
+another case for quote unquote hermione and similarly i'm going to have under that indented
+print quote-unquote gryffindor close quote now i'm going to have another case for ron also in
+quotes with a colon now print quote unquote gryffindor and now i'm going to have a other
+case for let's say draco this one gets a little more interesting because draco of course now is
+in slytherin and then i'm going to go ahead and leave it as that for now so let me go ahead
+and save this file and go back down to my terminal window running python of house stop
+high enter and let's go ahead and try harry and he seems still to be in gryffindor let's run it
+again for hermione enter gryffindor let's skip ahead to draco and type in draco's name he's
+indeed in slytherin now let's try another name that we haven't handled a case for like padma
+again enter and we're just ignored there's no output whatsoever because there wasn't a case
+for padma now we could of course go back in and explicitly add one for padma but what if
+we similarly to the else construct just want kind of a catch-all that handles anyone whose
+name is not explicitly specified well turns out the syntax for that using this new match
+statement is to still have another case but then to use this single underscore character which
+is used in other contexts in python but for here it's meant to say whatever case has not yet
+been handled go ahead and print out as we did before for instance quote unquote who with
+a question mark at the end now let's go ahead and rerun this python of house dot pi i'll type
+padma's name again and this time i think we're at least going to get an explicit response
+indicating who whereas previously we did not have the equivalent of that now i think we've
+regressed a little bit we went from tightening things up by putting harry and hermione and
+ron all in the same line in the same if statement but here we have now three case
+statements again for all three of those well we can tighten these this code up as well but the
+syntax is going to be a little bit different i'm going to go ahead and delete these two middle
+cases for hermione and ron and then up here next to harry's name before the colon i'm going
+to go ahead and use a single vertical bar and then a quote unquote hermione then another
+single bar and do quote-unquote ron and this is how using this relatively new match
+statement you can say the equivalent of harry or hermione or ron but more concisely than
+you could using an if statement alone as we implemented it previously so now one final run
+of the program with python of house stop high let's make sure that harry is still in gryffindor
+let's make sure that hermione's still in gryffindor let's make sure that ron is still in gryffindor
+and indeed all three of them are now as always with python and programming more
+generally there's going to be different ways you can solve these problems this is just another
+tool in your toolkit arguably it has tightened things up arguably it's perhaps a little more
+readable because there's a little less syntax going on a little less duplication of equal signs
+and elif and elephant elif all over the place but ultimately this would be an equally correct
+approach to that same problem but it turns out with the match statement you can do even
+more powerful forms of matching as well here we've used it simply to implement the same
+idea as that if l if else construct and it's worth noting if you've programmed in some other
+language the syntax here is indeed correct you do not need for instance a break statement
+as has been peppered throughout and you don't need something like default or something
+explicit you indeed just use this Подчеркивание используется в качестве универсального
+обозначения в конце команды, поэтому, просто добавив несколько новых ключевых
+слов, таких как if и else, мы получаем возможность задавать вопросы о значениях,
+анализировать ввод данных от пользователей и в конечном итоге принимать решения
+на их основе. А это и есть наши условные операторы, которые позволят нам
+использовать не только функции и переменные, но и циклы next, чтобы повторять одно
+и то же действие снова и снова.
+

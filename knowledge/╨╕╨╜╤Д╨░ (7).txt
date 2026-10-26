@@ -1,0 +1,992 @@
+зарубежная [Музыка] [Музыка] Это введение CS50 к Программирование на Python.
+Меня зовут Дэвид Малин, и на этой неделе мы поговорим о файловом вводе и выводе
+данных. До сих пор почти все написанные нами программы хранили всю собранную
+информацию в памяти, в переменных или внутри самой программы. Недостаток этого
+в том, что как только программа завершает работу, все, что вы вводили или делали с
+программой, теряется. С файлами, конечно, на вашем Mac или ПК, вы можете хранить
+информацию долговременно. Файловый ввод и вывод в контексте программирования
+— это написание кода, который может читать, загружать или записывать информацию,
+то есть сохранять информацию в сами файлы. Давайте посмотрим, сможем ли мы
+перейти от использования только памяти и переменных к написанию кода, который
+будет сохранять данные в файлах постоянно. Для этого я предлагаю сначала
+рассмотреть знакомую структуру данных, знакомый тип переменной, который мы уже
+видели, — это список. Используя списки, мы могли хранить более одного элемента
+информации. Раньше, используя одну переменную, мы обычно хранили одно
+значение, но если эта переменная — список, мы можем К сожалению, списки хранят
+несколько значений, но, к сожалению, они хранятся в памяти компьютера , поэтому
+после завершения работы программы даже их содержимое исчезает. Но давайте хотя
+бы начнем с чего-нибудь простого. Я сейчас в VS Code и собираюсь создать простую
+программу, используя Code of names.pi — программу, которая просто собирает имена
+людей, имена студентов, если хотите. Я сделаю это очень просто, как мы делали
+раньше, чтобы получить ввод пользователя и вывести его обратно. Я напишу что-то
+вроде: "Имя равно input" ( в кавычках), сохраняя в переменной с именем name
+возвращаемое значение input, как всегда. И, как всегда, я очень просто выведу
+красивую строку на F, которая гласит "hello comma", а затем в фигурных скобках в поле
+" имя" выведу "hello David" (привет, мир). Однако, если программа использует это,
+давайте я запущу ее, чтобы вспомнить, чего ожидать. Если я запущу python names.pi и
+нажму Enter, введу свое имя, например, David, то, конечно же, я увижу "hello comma".
+Дэвид, предположим, что мы хотим добавить поддержку не только одного имени, но
+и... multiple names maybe three names for the sake of discussion so that we can begin to
+accumulate some amount of information in the program such that it's really going to be a
+downside if we keep throwing it away once the program exits well let me go back into
+names.pi up here atub let me proactively give myself a variable this time called names plural
+and set it equal to an empty list recall that the square bracket notation especially if nothing's
+inside of it just means give me an empty list that we can add things to over time well what do
+we want to add to it well let's add three names each from the user and let me say something
+like this for underscore in range of three let me go ahead and prompt the user with the input
+function and getting their name in this variable and then using list syntax I can say names
+dot append name to that list and now I have in that list that given name one two three of
+them other points to note is I could use a variable here like I which is conventional but if I'm
+not actually using I explicitly on any subsequent lines I might as well just use underscore
+which is a pythonic convention and actually if I want to clean this up a little bit right now
+notice that my name variable doesn't really need to exist because I'm assigning it a value
+and then immediately appending it well I could tighten this up further by just getting rid of that
+variable altogether and just appending immediately the return value of input I think we could
+go both ways in terms of design here on the one hand it's a pretty short line and it's readable
+on the other hand if I were to eventually change this phrase to be not what's your name but
+something longer we might want to break it out again into two lines but for now I think it's
+pretty readable now later in the program let's just go ahead and print out those same names
+but let's sort them alphabetically so that it makes sense to be gathering them all together
+then sorting them and printing them so how can I do that well in Python the simplest way to
+sort a list in a loop is probably to do something like this for name in names but wait let's sort
+the names first recall that there's a function called sorted which will return a sorted version of
+that list now let's go ahead and print out an F string that says again hello bracket name close
+quotes all right let me go ahead and run this so python of names dot pi and let me go ahead
+and type in a few names this time how about Hermione how about Harry how about Ron and
+notice that they're not quite in alphabetical order but when I hit enter and that Loop kicks in
+it's going to print out hello Harry hello Hermione hello Ron in sorted order but of course now
+if I run this program again all of the names are lost and if this is a bigger program than this
+that might actually be pretty painful to have to re-input the same information again and again
+and again wouldn't it be nice like most any program today on a phone or a laptop or desktop
+or Cloud to be able to save this information somehow instead and that's where file i o comes
+in and that's where Files come in they are a way of storing information persistently on your
+own phone or Mac or PC or some Cloud servers disk so that they're there when you come
+back and run the program again so how can we go about saving all three of these names on
+in a file as opposed to having to type them again and again let me go ahead and simplify this
+file and again give myself just a single variable called name and set the return value of input
+equal to that variable so what's your name as before quote unquote and now let me go
+ahead and let me do something more with this value instead of just adding it to a list or
+printing it immediately out let's save the value of the person's name that's just been typed in
+to a file well how do we go about doing that well in Python there's this function called open
+whose purpose in life is to do just that to open a file but to open it up programmatically so
+that you the programmer can actually read information from it or write information to it so
+open is like the programmer's equivalent of like double clicking on an icon on your Mac or
+PC but it's a programmer's technique because it's going to allow you to specify exactly what
+you want to read from or write to that file formally its documentation is here and you'll see
+that its usage is relatively straightforward it minimally just requires the name of the file that
+we want to open and optionally how we want to open it so let me go back to vs code here
+and let me propose now that I do this I'm going to go ahead and call this function called open
+passing in an argument for names.txt which is the name of the file I would like to store all of
+these names in I could call it anything I want but because it's going to be just text it's
+conventional to call it something.txt but I'm also going to tell the open function that I plan to
+write to this file so as a second argument to open I'm going to put literally quote unquote W
+for right and that's going to tell open to open the file in a way that's going to allow me to
+change the contents and better yet if it doesn't even exist yet it's going to create the file for
+me now open returns what's called a file handle a special value that allows me to access that
+file subsequently so I'm going to go ahead and sign it equal to a variable like file and now I'm
+going to go ahead and quite simply write this person's name to that file so I'm going to
+literally type file which is the variable a linking to that file dot write which is a function
+otherwise known as a method that comes with open files that allows me to write that name to
+the file and then lastly I'm going to quite simply going to go ahead and say file Dot close
+which will close and effectively save the file so these three lines of code here are essentially
+the programmers equivalent to like double clicking an icon on your Mac or PC making some
+changes in Microsoft Word or some other program and going to file save we're doing that all
+in code with just these three lines here well let's see now how this works let me go ahead
+now and run python of names.pi and enter let's type in a name I'll type in Hermione enter all
+right where did she end up well let me go ahead now and type code of names.txt which is a
+file that happens now to exist because I opened it in right mode and if I open this in a tab
+we'll see there's Hermione well let's go ahead and run names.pi once more I'm going to go
+ahead and run python of names.pi enter and this time I'll type in Harry let me go ahead and
+run it one more time and this time I'll type in Ron and now let me go up to names.text where
+hopefully I'll see all three of them here but no I've just actually seen Ron What might explain
+what happened to Hermione and Harry even though I'm pretty sure I ran the program three
+times and I definitely wrote the code that writes their name to that file what's going on here
+do you think I think because we're not appending them we should append the names since
+we are writing directly it is erasing the old content and it is replacing with the last uh set of
+characters that we mentioned exactly unfortunately quote unquote W is a little dangerous not
+only will it create the file for you it will also recreate the file for you every time you open the
+file in that mode so if you open the file once and write Hermione that worked just fine as we
+saw but if you do it again for Harry if you do it again for Ron the code is working but each
+time it's opening the file and recreating it with brand new contents so we had one version
+with Hermione one version with Harry and one final version with Ron but ideally I think we
+probably want to be appending as bashal says each of those names to the file not just
+clobbering that is overwriting the file each time so how can I do this it's actually a relatively
+easy fix let me go ahead and do this as follows I'm going to first remove the old version of
+names.text and now I'm going to change my code to do this I'm going to change the W quote
+unquote to just a quote unquote a for append which means to add to the bottom to the
+bottom to the bottom again and again now let me go ahead and rerun python of names.pi
+and enter I'll again start from scratch with Hermione because I'm creating the file new notice
+that if I now do code of names.txt enter we do see that Hermione is back so we've after
+removing the file it did get recreated even though I'm using append which is good but now
+let's see what happens when I go back to my terminal and this time I run python of names.pi
+again this time typing in Harry and let me run it one more time this time typing in Ron so
+hopefully this time in that second tab names.text I should now see all three of them but but
+but but this doesn't look ideal what have I clearly done wrong foreign something tells me
+even though all three names are there it's not going to be easy to read those back unless
+you know where each name ends and Begins the English form it's not correctly the English
+format is not correct like it's a correct it's concatenating them it is it's it can it's well it appears
+to be concatenating but technically speaking it's just appending to the file first Hermione then
+Harry then Ron it has the effect of combining them back to back but it's not concatenating
+per se it really is just a pending let's go to another hand here what really have I done wrong
+or equivalently how might I fix it would be nice if there were some kind of gaps between each
+of the names so we could read them more cleanly Hello uh we should add a new line before
+we write new name good we want to add a new line ourselves so whereas print by default
+recall always outputs automatically a line ending of backslash n unless we override it with
+the named parameter called end write does not do that right takes you literally and if you say
+right Hermione that's it you're getting the H through the E if you say right Harry you get the H
+through the uh y you don't get any extra new lines automatically so if you want to have a new
+line at the end of each of these names we've got to do that manually so let me again close
+names.txt and let me remove the current file and let me go back up to my code here and I
+can fix this in any number of ways but I'm just going to go ahead and do this I'm going to
+write out an F string that contains name and backslash n at the end we could do this in
+different ways we could manually print just the new line or some other technique week but
+I'm going to go ahead and use my f strings as I'm in the habit of doing and just print to the
+name and the new line all at once I'm going to go ahead now and down to my terminal
+window run python of names dot Pi again enter we'll type in Hermione I'm going to run it
+again type in Harry I'm going to type it again and this time Ron now I'm going to run code of
+names.txt and open that file and now it looks like the file is a bit cleaner indeed I have each
+of the name on its own line as well as a line ending which ensures that we can separate one
+from the other now if I were you know writing code I bet I could parse that is read the
+previous file by looking at differences between lowercase and uppercase letters but that's
+going to get messy quickly generally speaking when storing data long term in a file you
+should probably do it somehow cleanly like doing one name at a time well let's now go back
+and I'll propose that this code is now working correctly but we can design it a little bit better it
+turns out that it's all too easy when writing code to sometimes forget to close files and
+sometimes this isn't necessarily a big deal but sometimes it can create problems files could
+get corrupted or accidentally deleted or the liked depending on what happens in your code
+so it turns out that you don't strictly need to call close on the file yourself if you take another
+approach instead more pythonic when manipulating files is to do this to introduce this other
+keyword called quite simply with that allows you to specify that in this context I want you to
+open and automatically close some file so how do we use with it simply looks like this let me
+go back to my code here I've gotten rid of the close line and I'm now just going to say this
+instead instead of saying file equals open I'm going to say with open then the same
+arguments as before and somewhat curiously I'm going to put the variable at the end of the
+line why that's just the way this is done you say with you call the function in question and
+then you say as and specify the name of the variable that should be assigned find the return
+value of open then I'm going to go ahead and indent the line underneath so that the line of
+code that's writing the name is now in the context of this with statement which just ensures
+that automatically if I had more code in this file down below no longer indented the file would
+be automatically closed as soon as line 4 is done executing so it doesn't change what has
+just happened but it does automate the process of at least closing things for us just to
+ensure I don't forget and so that something doesn't go wrong but suppose now that I wanted
+to read these names from the file all I've done thus far is write code that writes names to the
+file but let's assume now that we have all of these names in the file and heck let's go ahead
+and add one more let me go ahead and run this one more time python of names.pi and let's
+add in Draco to the mix so now that we have all four of these names here how might we
+want to read them back well let me propose that we go into names.pi now or we could create
+another program altogether but I'm going to keep reusing the same name just to keep us
+focused on this and now I'm going to write code that reads an existing file with Hermione
+Harry Ron and Draco together and how do I do this well it's similar in spirit I'm going to start
+this time with with open and then the first argument is going to be the name of the file that I
+want to open as before and I'm going to open it this time in read mode quote unquote R and
+to read a file just means to load it not to save it and I'm going to name the return value file
+and now I'm going to do this yes and there's a number of ways I can do this but one way to
+read all of the lines from the file at once would be this let me declare a variable called lines
+let me access that file and call a function or a method that comes with it called read lines so
+if you read the documentation on file i o and python you'll see that open files come with a
+special method whose purpose in life is to read all the lines from the file and return them to
+me as a list so what this line 2 is doing is it's reading all of the lines from that file storing them
+in a variable called lines now suppose I want to iterate over all of those lines and print out
+each of those names for line in lines this is just a standard for Loop in Python lines as a list
+line is the variable that will be automatically be set to each of those lines let me go ahead
+and print out something like oh hello uh comma and then I'll print out the line itself all right so
+let me go to my terminal window run python of names.pi now I have not deleted names.txt so
+it still contains all four of those names and hit enter and okay it's not bad but it's a little ugly
+here what's going on when I ran names.pi it's saying hello to Hermione to Harry to Ron to
+Draco but there's these gaps now between the lines what's explains that symptom if if
+nothing else it just looks ugly it happens because in the text file we have new line symbols
+uh in between those names and the print always adds another new line at the end so you
+you use the same symbol twice perfect and here's a good example of a bug a mistake in a
+program but if you just think about those first principles like how do each of the lines of code
+work that I'm using you should be able to reason exactly as Rafal did there to say that all
+right well one of those new lines is coming from the file after each name and then of course
+print all of these Weeks Later is still giving us for free that extra new line so there's a couple
+of possible solutions I could certainly do this which we've done in the past and pass in a
+named argument to print like end equals quote unquote and that's fine I would argue a little
+better than that might actually be to do this to strip off of the end of the line the actual new
+line itself so that print is handling the printing of everything the person's name game as well
+as the new line but you're just stripping off what is really just an implementation detail in the
+file we chose to use new lines in my text file to separate one name from another so arguably
+it should be a little cleaner in terms of design to strip that off and then let print print out what
+is really just now a name but that's ultimately a design decision the effect is going to be
+exactly the same well if I'm going to open this file and read all the lines and then iterate over
+all of those lines and print them each out I could actually combine this into one thing
+because right now I'm doing twice as much work I'm reading all of the lines then I'm iterating
+over all of the lines just to print out each of them well in Python with files you can actually do
+this I'm going to erase almost all of these lines now keeping only the with statement at top
+and inside of this with statement I'm going to say this for line in file go ahead and print out
+quote unquote hello comma and then line Dot R strip so I'm going to take the approach of
+stripping off the end of the line but notice how elegant this is so to speak I've opened the file
+in line one and if I want to iterate over every line in the file I don't have to very explicitly load
+all read all the lines then iterate over all of the lines I can combine this into one thought it in
+Python you can simply say for line and file and that's going to have the effect of giving you a
+for Loop that iterates over every line in the file one at a time and on each iteration updating
+the value of this variable line to be Hermione then Harry then Ron then Draco so this again
+is one of the appealing aspects of python is that it reads rather like English for line and file
+print this it's a little more compact when written this way well what if though I don't want quite
+this Behavior because notice now if I run python of names.pi it's correct I'm seeing each of
+the names and each of the hellos and there's no Extra Spaces in between but just to be
+difficult I'd really like us to be sorting these hellos really I'd like to see Draco first then Harry
+then Hermione then Ron no matter what order they appear in the file so I could go in of
+course to the file and manually change the file but if that file is changing over time based on
+who is typing their name into the program that's not really a good solution in code I should be
+able to load the file no matter what it looks like and just sort it all at once now here is a
+reason to not do what I've just done I can't iterate over each line in the file and print it out but
+sort everything in advance right logically if I'm looking at each line one at a time and printing
+it out it's too late to sort I really need to read all of the lines first without printing them sort
+them then print them so we have to take a step back in order to add now now this new
+feature so how can I do this well let me combine some ideas from before let me go ahead
+and start fresh with this let me give myself a list called names and assign it an empty list just
+so I have a variable in which to accumulate all of these lines and now let me open the file
+with open quote unquote names.txt and it turns out I can tighten this up a little bit it turns out
+if you're opening a file to read it you don't need to specify quote unquote r that is the implicit
+default so you can tighten things up by just saying open names.text and you'll be able to
+read the file but not write it I'm going to give myself a variable called file as before I am going
+to iterate over the file in the same way for line in file but instead of printing each line I'm
+going to do this I'm going to take my names list and append to it and this is appending to a
+list in memory not appending to the file itself I'm going to go ahead and append the current
+line but I'm going to strip off the new line at the end so that all I'm adding to this list is each of
+the students names now I can use that familiar technique from before let me go outside of
+this with statement because now I've read the entire file presumably so by the time I'm done
+with lines four and five again and again and again for each line in the file I'm done with the
+file it can close I now have all of the students names in this list variable let me do this for
+name in not just names but the sorted names using our python function sorted which does
+just that and do print quote unquote with an F string hello comma and now I'll plug in bracket
+name so now what have I done I'm creating a list at the beginning just so I have a place to
+gather my data I then on lines three through five iterate over the file from top to bottom
+reading in each line one at a time stripping off the new line and adding just the student's
+name to this list and the reason I'm doing that is so that on line seven I can sort all of those
+names now that they're all in memory and print them in order I need to load them all into
+memory before I can sort them otherwise I'd be printing them out prematurely and Draco
+would end up last instead of first so let me go ahead in my terminal window and run python
+of names.pi now and hit enter and there we go the same list of four hellos but now they're
+sorted and this is a very common technique when dealing with files and information more
+generally if you want to change that data in some way like sorting it creating some kind of
+variable at the top of your program like a list adding or appending information to it just to
+collect it in one place and then do something interesting with that collection that list is exactly
+what I've done here now I should note that if we just want to sort the file we can actually do
+this even more simply in Python particularly by not bothering with this names list nor the
+second for Loop and let me go ahead and instead just do more simply this let me go ahead
+and tell python that we want the file itself to be sorted using that same sorted function but
+this time on the file itself and then inside of that for Loop let's just go ahead and print right
+away our hello comma followed by the line itself but still stripping off of the end of it any
+white space therein if we go ahead and run this same program now with pythonupnames.pi
+and hit enter we get the same result but of course it's a lot more compact but for the sake of
+discussion let's assume that we do actually want to potentially make some changes to the
+data as we iterate over it so let me undo those changes leave things as is where by now
+we'll continue to accumulate all of the names first into a list maybe do something to them
+maybe forcing them to uppercase or lowercase or the like and then sort and print out each
+item let me pause and see if there's any questions now on file IO reading or writing or now
+accumulating all of these values in some list hi is there a way to sort the files but instead if
+you want it from alphabetically from A to Z is there a way to reverse it from zet to a is there a
+like a little extension that you can add to the end to do that or would you have to create a
+new function if you wanted to reverse the contents of the file yeah so if you instead of sorting
+them from a to z in ascending order if you're one of them in descending order is there an
+extension for the there is indeed and as always the documentation is your friend so if the
+goal is to sort them not in alphabetical order which is the default but maybe reverse
+alphabetical order you can take a look for instance at the formal python documentation there
+and what you'll see is this summary you'll see that the sorted function takes a first argument
+generally known as an iterable and something that's iterable means that you can iterate over
+it that is you can Loop over it one thing at a time what the rest of this line here means is that
+you can specify a key like how you want to sort it but more on that later but this last named
+parameter here is reverse and by default per the documentation it's false it will not be
+reversed by default but if we change that to true I bet we can do that so let me go back to vs
+code here and do just that let me go ahead and pass in a second argument to sorted in
+addition to this iterable which is my names list iterable again in the sense that it can be
+looped over and let me pass in Reverse equals true thereby overriding the default of false let
+me now run python of names Dot pie and now Ron's at the top and draco's at the bottom so
+there too whenever you have a question like that moving forward consider what does the
+documentation say and see if there's a germ of an idea there because odds are if you have
+some problem odds are some programmer before you have had the same question other
+thoughts um and the second question can we find a specific name really good question can
+we limit the number of the names in the file and can we find a specific one we absolutely
+could if we were to write code we could for instance open the file first count how many lines
+are already there and then if there's too many already we could just exit with sys.exit or
+some other message to indicate to the user that sorry the class is full as for finding someone
+specifically absolutely you could imagine opening the file iterating over it with a for loop
+again and again and then adding a conditional like if the current line equals equals Harry
+then we found the chosen run and you can print something like that so you can absolutely
+combine these ideas with previous ideas like conditionals to ask those same questions how
+about one other question on file IO uh so I just thought about this function like uh read all
+lines and it looks like it's uh like separate all the lines by this special character backslash n
+but it looks like we don't need it a character and we we always trip it and it looks like some
+bad design of function why why wouldn't we just strip it inside this function a really good
+question so we are in my examples thus far using our strip to reverse uh to strip from the
+end of the line all of this white space you might not want to do that in this case I am stripping
+it away because I know that each of those lines isn't some generic line of text each line really
+represents a name that I have put there myself I'm using the new line just to separate one
+value from another in other scenarios you might very well want to keep that line ending
+because it's a very long series of text or a parallel graph or something like that where you
+want to keep it distinct from the others but it's just a convention we have to use something
+presumably to separate one chunk of text from another there are other functions in Python
+that will in fact handle the removal of that white space for you read lines though does literally
+that though it reads all of the lines as is well allow me to turn our attention back to where we
+left off here which is just names to propose that with names.text we have an ability it seems
+to store each of these names pretty straightforwardly but what if we wanted to keep track of
+other information as well suppose that we wanted to store information including a student's
+uh name and their house at Hogwarts be it Gryffindor or Slytherin or something else well
+where do we go about putting that you know Hermione lives in Gryffindor so we could do
+something like this in our text file Harry lives in Gryffindor so we could do that Ron lives in
+Gryffindor so we could do that and Draco lives in Slytherin so we could do that but I worry
+here but I worry now that we're mixing apples and oranges so to speak like some lines or
+names some lines are houses so this probably isn't the best design if only because it's
+confusing or it's ambiguous so maybe what we could do is Adopt A convention and indeed
+this is in fact what a lot of programmers do they change this file not to be names.text but
+instead let me create a new file called names.csv CSV stands for comma separated values
+and it's a very common convention to store multiple pieces of information that are related in
+the same file and so to do this I'm going to separate each of these types of data not with
+another new line but simply with a comma I'm going to keep each student on their own line
+but I'm going to separate the information about each student using a comma instead and so
+now we sort of have a two-dimensional file if you will row by row we have our students but if
+you think of these commas as representing a column even though it's not perfectly straight
+because of the lengths of these names it's a little it's a little Jagged you can think of these
+commas as representing a column and it turns out these CSV files are very commonly used
+when you use something like Microsoft Excel Apple numbers or Google spreadsheets and
+you want to export the data to share with someone else as a CSV file or conversely if you
+want to import a CSV file into your preferred spreadsheet software like Excel or numbers or
+Google spreadsheets you can do that as well so CSV is a very common very simple text
+format that just separates values with commas and different types of values ultimately with
+new lines as well let me go ahead and run code of students.csv to create a brand new file
+that's initially empty and we'll add to it those same names but also some other information as
+well so if I now have this new file students.csv inside of which is one column of name so to
+speak and one column of houses how do I go about changing my code to read not just those
+names but also those names and houses so that they're not all on one line we somehow
+have access to both type of value separately play well let me go ahead and create a new
+program here called students.pi and in this program let's go about reading not a text file per
+se but a specific type of text file a CSV a comma separated values file and to do this I'm
+going to use similar code as before I'm going to say with open quote unquote students.csv
+I'm not going to bother specifying quote unquote R because again that's the default but I'm
+going to give myself a variable name of file and then in this file I'm going to go ahead and do
+this for line and file as before and now I have to be a bit clever here let me go back to
+students.csv looking at this file and it seems that on my loop on each iteration I'm going to
+get access to the whole line of text I'm not going to automatically get access to just
+Hermione or just Gryffindor recall that the loop is going to give me each full line of text so
+logically what would you propose that we do inside of a for Loop that's reading a whole line
+of text at once but we now want to get access to the individual values like Hermione and
+Gryffindor Harry and Gryffindor how do we go about taking one line of text and gaining
+access to those individual values do you think just instinctively even if you're not sure what
+the name of the functions would be you can access access it as you would and if you were
+using a dictionary like using a key and value so ideally we would access it using it a key in
+value but at this point in the story all we have is this Loop and this Loop is giving me one line
+of text that is the time I'm the programmer now I have to solve this there is no dictionary yet
+in question about another suggestion here um so you can somehow split the two words
+based on the comma yeah even if you're not quite sure what function is going to do this
+intuitively you want to take this whole line of text Hermione comma Gryffindor Harry comma
+Gryffindor and so forth and split that line into two pieces if you will and it turns out
+wonderfully the function we'll use is actually called split that can split on any characters but
+you can tell it what character to use so I'm going to go back into students.pi and inside of this
+Loop I'm going to go ahead and do this I'm going to take the current line I'm going to remove
+the white space at the end as always using R strip here and then whatever the result of that
+is I'm going to now call split and quote unquote comma so the split function or method
+comes with strings stirs in Python any stir has this method built in and if you pass in an
+argument like a comma what this strip split function will do is split that current string into one
+two three maybe more pieces by looking for that character again and again ultimately strip
+uh ultimately split is going to return to us a list of all of the individual parts to the left and to
+the right of those commas so I can give myself a variable called row here and this is a
+common Paradigm when you know you're iterating over a file specifically a CSV it's common
+to think of each line of it as being a row and each of the values they're in separated by
+commas as columns so to speak so I'm going to deliberately name my variable row just to be
+consistent with that convention and now what do I want to print well I'm going to go ahead
+and say this print how about the following in F string that starts with curly braces well how do
+I get access to the first thing in that row well the row is going to have how many parts two
+because if I'm splitting on commas and there's one comma per line that's going to give me a
+left part and a right part like Hermione and Gryffindor Harry and Gryffindor when I have a list
+like row how do I get access to individual values well I can do this I can say Row Bracket
+zero and that's going to go to the first element of the list which should hopefully be the
+student's name then after that I'm going to say is in and I'm going to have another curly
+brace here for Row Bracket one and then I'm going to close my whole quote so it looks a
+little cryptic at first glance but most of this is just F string syntax with curly braces to plug in
+values and what values am I plugging in well rho again is a list and it has two elements
+presumably Hermione in one and Gryffindor and the other and so forth so bracket zero is the
+first element because remember we start indexing at zero in Python and one is going to be
+the second second element so let me go ahead and run this now and see what happens
+python of uh students.pi enter and we see Hermione's in Gryffindor Harry's and Gryffindor
+Ron is in Gryffindor and Draco is in Slytherin so we have now implemented our own code
+from scratch that actually parses that is reads and interprets a CSV file ultimately here now
+let me pause to see if there's any questions but we'll make this even easier to read in just a
+moment any questions on what we've just done here by splitting by comma so my question
+is uh can we edit any line of code anytime we want or uh the only option that we have is to
+append uh the lines or let's say if we want to let's say change headies uh house to let's say
+Slytherin or some other house yeah a really good question what if you want to in Python
+change a line in the file and not just a pen to the end you would have to implement that logic
+yourself so for instance you could imagine now opening the file and reading all of the
+contents in then maybe iterating over each of those lines and as soon as you see that the
+current name equals equals Harry you could maybe change his house to Slytherin and then
+it would be up to you though to write all of those changes back to the file so in that case you
+might want to in simplest form read the file once and let it close then open it again but open
+for writing and change the whole file it's not really possible or easy to go in and change just
+part of the file though you can do it it's easier to actually read the whole file make your
+changes in memory then write the whole file out but for larger files where that might be quite
+slow you can be more clever than that well let me propose now that we clean this up a little
+bit because I actually think this is a little cryptic to read Row Bracket zero Row Bracket one
+it's it's not that well written at the moment I would say but it turns out that when you have a
+variable that's a list like row you don't have to throw all of those variables into a list you can
+actually unpack that whole sequence at once that is to say if you know that a function like
+split returns a list but you know in advance that it's going to return two values in a list the first
+and the second you don't have to throw them all into a variable that itself is a list you can
+actually unpack them simultaneously into two variables doing name comma house so this is
+a nice python technique to not only create but assign automatically in parallel two variables
+at once rather than just one so this will have the effect of putting the name in the left
+Hermione and it will have the effect of putting Gryffindor the house in the right variable and
+we now no longer have a row we can now make our code a little more readable by now
+literally just saying name down here and for instance house down here so just a little more
+readable even though functionally the code now is exactly the same all right so this now
+works and I'll confirm as much by just running it once more python of students.pi enter and
+we see that the text is as intended but suppose for the sake of discussion that I'd like to sort
+this list of output I'd like to say hello again to Draco first then hello to Harry then Hermione
+then Ron how can I go about doing this well let's take some inspiration from the previous
+example where we're only dealing with names and instead do it with these full phrases so
+and so is in-house well let me go ahead and do this I'm going to go ahead and start scratch
+and give myself a list called students equal to an empty list initially and then with open
+students.csv as file I'm going to go ahead and say this for line in file and then below this I'm
+going to do exactly as before name comma house equals the current line stripping off the
+white space at the end splitting it on a comma so that's exact same as before but this time
+before I go about uh printing the sentence I'm going to store it temporarily in a list so that I
+can accumulate all of these sentences and then sort them later so let me go ahead and do
+this students which is my list dot append let me append the actual sentence I want to show
+on the screen so another F string so name is in house just as before but notice I'm not
+printing that sentence I'm appending it to my list not a file but to my list why am I doing this
+well just because as before I want to do this for student in the sorted students I want to go
+ahead and print out students like this well let me go ahead and run python of students.pi and
+hit enter now and I think we'll see indeed Draco is now first Harry a second Hermione is third
+and Ron is fourth but this is arguably a little sloppy right it seems a little hackish that I'm
+constructing these sentences and even though I'm technically want to sort by name I'm
+technically sorting by these whole English sentences so it's not wrong it's achieving the
+intended result but it's not really well designed because I'm just kind of getting lucky that
+English is reading from left to right and therefore when I print this out it's sorting properly it
+would be better really to come up with a technique for sorting by the students names not by
+some English sentence that I've constructed here on line six so to achieve this I'm going to
+need to make my life more complicated for a moment and I'm going to need to collect
+information about each student before I bother assembling that sentence so let me propose
+that we do this let me go ahead and undo these last few lines of code so that we currently
+have two variables name and house Each of which has name in the student's house
+respectively and we still have our Global variable students but let me do this recall that
+python supports dictionaries and dictionaries are just collections of keys and values so you
+can associate something with something else like a name with Hermione like a house with
+Gryffindor that really is a dictionary so let me do this let me temporarily create a dictionary
+that stores this Association of name with house let me go ahead and do this let me say that
+the students here is going to be represented initially by an empty dictionary and just like you
+could create an empty list with square brackets you can create an empty dictionary with curly
+braces so give me an empty diction missionary that will soon have two keys name and
+house how do I do that well I could do it this way student Open Bracket name equals the
+student's name that we got from the line student bracket house equals the house that we got
+from the line and now I'm going to append to the students list plural that particular student
+now why have I done this I've admittedly made my code more complicated it's more lines of
+code but I've now collected all of the information I have about students while still keeping
+track what's a name what's a house the list meanwhile has all of the students names and
+houses together now why have I done this well let me for the moment just do something
+simple let me do for students in students and let me very Simply Now say print the following
+F string the current student with this name uh is in this current student's house and now
+notice one detail inside of this F string I'm using my curly braces as always I'm using inside
+of those curly braces the name of a variable as always but then I'm using not bracket zero or
+one because these are dictionaries now not list but why am I using single quotes to surround
+house and to surround name why single quotes inside of this F string to access those Keys
+yes um because you have double quotes in that in that line 12 and so you have to tell python
+to differentiate exactly because I'm already using double quotes outside of the F string if I
+want to put quotes around any strings on the inside which I do need to do for dictionaries
+because recall when you index into a dictionary you don't use numbers like lists 0 1 2
+onward you instead use strings which need to be quoted but if you're already using double
+quotes it's easiest to then use single quotes on the inside so python doesn't get confused
+about what lines up with what so at the moment when I run this program it's going to print out
+those hellos but they're not yet sorted in fact what I now have is a list of dictionaries and
+nothing is yet sorted but let me tighten up the code too to point out that it doesn't need to be
+quite as verbose if you're in the habit of creating an empty dictionary like this on line six and
+then immediately putting in two keys name and house each with two values name and house
+respectively you can actually do this all at once so let me show you a slightly different
+different syntax I can do this give me a variable called student and let me use curly braces
+on the right hand side here but instead of leaving them empty let's just Define those keys
+and those values now quote unquote name will be name and quote unquote house will be
+house this achieves the exact same effect in one line instead of three it creates a new
+non-empty dictionary containing a name key the value of which is the student's name and a
+house key the value of which is the student's house nothing else needs to change that will
+still just work so that if I again run python if students.pi I'm still seeing those greetings but
+they're still not quite actually sorted well what might I go about doing here in order to what
+could I do to improve upon this further well we need some mechanism now of sorting those
+students but unfortunately you can't do this we can't sort all of the students now because
+those students are not names like they were before they aren't sentences like they were
+before each of the students is a dictionary and it's not obvious how you would sort a
+dictionary inside of a list so ideally what do we want to do if at the moment we hit line 9 we
+have a list of all of these students and inside of that list is one dictionary per student and
+each of those dictionaries has two keys name and house wouldn't it be nice if there were ran
+code to tell python sort this list by looking at this key in each dictionary because that would
+give this the ability to sort either by name or even by house or even by any other field that
+we add to that file so it turns out we can do this we can tell the sorted function not just to
+reverse things or not it takes another position National it takes another named parameter
+called key where you can specify what key should be used in order to sort some list of
+dictionaries and I'm going to propose that we do this I'm going to first Define a function
+temporarily for now called get name and this functions purpose in life given a student is to
+quite simply return the student's name from that particular dictionary so if student is a
+dictionary this is going to return literally the student's name and that's it that's the sole
+purpose of this function in life what do I now want to do well now that I have a function that
+given a student will return to me the student's name I can do this I can change sorted to say
+use a key that's equal to whatever the return value of get name is and this now is a feature
+of python python allows you to pass functions as arguments in two other functions so get
+name is a function sorted is a function and I'm passing in get name to sort it as the value of
+that key parameter now why am I doing that well if you think of the get name function as just
+a bunch a block of code that will get the name of a student that's handy because that's the
+capability that sorted needs when given a list of students Each of which is a dictionary sorted
+needs to know how do I get the name of the student in order to do alphabetical sorting for
+you the authors of python didn't know that we were going to be creating students here in this
+class so they couldn't have anticipated writing code in advance that specifically sorts on a
+field called student let alone called name let alone house so what did they do they instead
+built into the sorted function this named parameter key that allows us all these years later to
+tell their function sorted how to sort this list of dictionaries so now watch what happens if I
+run python of students.pi and hit enter I now have a sorted list of output why because now
+that list of dictionaries has all been sorted by the student's name I can further do this if as
+before we want to reverse the whole thing by saying reverse equals true we can do that too
+let me rerun python of students.pi and hit enter now it's reverse now it's Ron then Hermione
+Harry and Draco but we can do something different as well what if I want to sort for instance
+by house name reversed I could do this I could change this function from get name to get
+house I could change the implementation up here to be get house and I can return not the
+student's name but the student's house and so now notice if I run python of students.pi enter
+notice now it is sorted by house in reverse order Slytherin is first and then Gryffindor if I get
+rid of the reverse but keep the get house and rerun this program now it's sorted by house
+gryffindors first and Slytherin is last and the upside now of this is because I'm using this list
+of dictionaries and keeping the students data together until the last minute when I'm finally
+do doing the printing I now have full control over the information itself and I can sort by this
+or that I don't have to construct construct those sentences in advance like I rather hackishly
+did the first time all right that was a lot let me pause here to see if there are questions so
+when when we're starting the files should we every time should we use the loops or like uh
+like a dictionary or or any kind of list can be sort by just sorting not looping or any kind of
+stuff a good question and the short answer with python alone you're the programmer you
+need to do the Sorting with libraries and other techniques absolutely you can do more of this
+automatically because someone else has written that code what we're doing at the moment
+is doing everything from scratch ourselves but absolutely with other functions or libraries
+some of this could be made uh more uh easily done some of this could be made easier other
+questions on this technique here it's equal to the returned value of the function can it be
+equal to uh just uh a variable or a value it well yes it should equal a value so I'm speci and I
+should clarify actually since this was not obvious so when you pass in a function like get
+name or get house to the sorted function as the value of key that function is automatically
+called by the get by the sorted function for you on each of the dictionaries in the list and it
+uses the return value of get name or get house to decide what strings to actually use to
+compare in order to decide which is alphabetically correct so this function which you pass
+just by name you do not pass in parentheses at the end is called by the sorted function in
+order to figure out for you how to compare these same values how can we use nested
+dictionaries I have read about the nested dictionaries what is the difference between nested
+dictionaries and the dictionary inside a list I think it is sure um uh so we are using a list of
+dictionaries why because each of those dictionaries represents a student and a student has
+a name and a house and we want to I claim maintain that Association and it's a list of
+students because we've got multiple students four in this case you could create us a
+structure that is a dictionary of dictionaries but I would argue it just doesn't solve a problem I
+don't need a dictionary of dictionary I need a list of key value pairs right now that's all so let
+me propose if we go back to students.pi here and we revert back to the approach where we
+have get name as the function both used and defined here and that function Returns the
+student's name what happens to be clear is that the sorted function will use the value of key
+get name in this case calling that function on every dictionary in the list that it's supposed to
+soar and that function get name Returns the string that sorted will actually use to decide
+whether things go in this order left right or in this order right left it alphabetizes things based
+on that return value so notice that I'm not calling the function get name here with
+parentheses I'm passing it in only by its name so that the sorted function can call that get
+name function for me now it turns out as always if you're defining something be it a variable
+or in this case a function and then immediately using it but never once again needing the
+name of that function like get name we can actually tighten this code up further I can actually
+do this I can get rid of the get name function altogether just like I could get rid of a variable
+that isn't strictly necessary and instead of passing key the name of a function I can actually
+Pass Key what's called an a Lambda function which is an anonymous function a function
+that just has no name why because you don't need to give it a name if you're only going to
+call it in one place and the syntax for this in Python is a little weird but if I do key equals
+literally the word Lambda then something like student which is the name of the parameter I
+expect this function to take and then I don't even type the return key i instead just say
+student bracket name so what am I doing here with my code this code here that I've
+highlighted is equivalent to the get name function I implemented a moment ago the syntax is
+admittedly a little different I don't use def I didn't even give it a name like get name i instead
+I'm using this other keyword in pi python called Lambda which says Hey python here comes
+a function but it has no name it's Anonymous that function takes a parameter I could call it
+anything I want I'm calling it student why because this function that's passed in as key is
+called on every one of the students in that list every one of the dictionaries in that list what
+do I want this Anonymous function to return well given a student I want to index into that
+dictionary and access their name so that the string Hermione and Harry and Ron and Draco
+is ultimately returned and that's what the sorted function uses to decide how to sort these
+bigger dictionaries that have other Keys like house as well so if I now go back to my terminal
+window and run python of students.pi it still seems to work the same but it's arguably a little
+better design because I didn't waste lines of Code by defining some other function calling it
+in one and only one place I've done it all sort of in one breath if you will all right let me pause
+here to see if there's any questions specifically about Lambda or Anonymous functions and
+this tightening up of the code and I have one question like whether we could Define Lambda
+twice can you you can use Lambda twice you can create as many Anonymous functions as
+you'd like and you generally use them in context like this where you want to pass to some
+other function a function that itself does not need a name so you can absolutely use it in
+more than one place I just have only one use case for it how about one other question on
+Lambda or Anonymous functions specifically what what if our Lambda would take more than
+one line for example if sure if your Lambda function takes multiple parameters that is fine
+you can simply specify commas followed by the names of those parameters maybe X and Y
+or so forth after the name student so here too Lambda looks a little different from Death in
+that you don't have parentheses you don't have the keyword def you don't have a function
+name but ultimately they achieve that same effect they create a function anonymously and
+allow you to pass it in for instance as some value here so let's now change students.csv to
+contain not students houses at Hogwarts but their homes where they grew up so Draco for
+instance grew up in Malfoy Manor Ron grew up in the borough Harry grew up in uh number
+four privet drive and according to the internet no one knows where Hermione grew up the
+movies apparently took certain liberties with where she grew up so for this purpose we're
+actually going to remove Hermione because it is unknown exactly where she was born so
+we still have some three students but if anyone can spot the potential problem now how
+might this be a bad thing well let's go and try and run our own code here let me go back to
+students.pi here and let me propose that I just changed my semantics because I'm now not
+thinking about Hogwarts houses but the students own home so I'm just going to change
+some variables I'm going to change this house to a home this house to a home as well as
+this one here I'm still going to sort the students by name but I'm going to say that they're not
+in a house but rather from a home so I've just changed the names of my variables in my
+grammar in English here ultimately to print out that for instance Harry is from number four
+privet drive and so forth but let's see what happens here when I run python of this version of
+students.pi having changed students.csv to contain those homes and not houses enter huh
+our first value error like the program just doesn't work What might explain this value error the
+explanation of which rather cryptically is too many values to unpack and the line in question
+is this one involving split how did all of a sudden after all of these successful runs of this
+program did line five suddenly now break in the line instruments.csv you have three values
+there's a line that you have three values and incident yeah I spent a lot of time trying to
+figure out where every student should be from so that we could create this problem for us
+and wonderfully like the first sentence of the book is number four privet drive and so the fact
+that that address has a comma in it is problematic why because you and I decided some
+time ago to just standardize on commas CSV comma separated values to denote the uh we
+standardized on commas in order to delineate one value from another and if we have
+commas grammatically in the student's home we're clearly confusing it as this special
+symbol and the split function is now for just Harry trying to split it into three values not just
+two and that's why there's too many values to unpack because we're only trying to assign
+two variables name and house now what could we do here well we could just change our
+approach for instance like one Paradigm that is not uncommon is to use something a little
+more a little less common like a vertical bar so I could go in and change all of my commas to
+Vertical bars that too could eventually come back to bite Us in that if my file eventually has
+vertical bar somewhere it might still break so maybe that's not the best approach I could
+maybe do something like this I could escape the data as I've done in the past and maybe I
+could put quotes around any English string that itself contains the comma and that's fine I
+could do that but then my code students.pi is going to have to change too because I can't
+just naively split on a comma Now I'm going to have to be smarter about it I'm going to have
+to take into account split only on the commas that are not inside of quotes and oh it's getting
+complicated fast and at this point you need to take a step back and consider you know what
+if we're having this problem odds are many other people before us have had the same
+problem it is incredibly common to store data in files it is incredibly common to use CSV files
+specifically and so you know what why don't we see if there's a library in Python that exists
+to read and or write CSV files rather than reinvent a wheel so to speak let's see if we can
+write better code by standing on the shoulders of others who have come before us
+programmers passed and actually use their code to do the reading and writing of csvs so we
+can focus on the part of our problem that you and I care about so let's propose that we go
+back to our code here and see how we might use the CSV Library indeed within python
+there is a module called CSV the documentation for it is at this URL here in Python's official
+documentation but there's a few functions that are pretty readily accessible if we just Dive
+Right In and let me propose that we do this let me go back to my code here and instead of
+Reinventing this wheel and reading the file line by line and splitting on commas and dealing
+now with quotes and privet drives and so forth let's do this instead at the start of my program
+let me go up and import the CSV module let's use this library that someone else has written
+that's dealing with all of these Corner cases if you will I'm still going to give myself a list
+initially empty in which to store all these students but I'm going to change my Approach here
+now just a little bit when I open this file with with let me go in here and change this a little bit
+I'm going to go in here now and say this reader equals CSV dot reader passing in file as
+input so it turns out if you read the documentation for the CSV module it comes with a
+function called reader whose purpose in life is to read a CSV file for you and figure out
+where are the commas where are the quotes where are all the the potential Corner cases
+and just deal with them for you you can override certain defaults or assumptions in case
+you're using not a comma but a pipe or something else but by default I think it's just going to
+work now how do I iterate over a reader and not the raw file itself it's almost the same the
+library allows you still to do this for each row in the reader so you're not iterating over the file
+directly now you're iterating over the reader which is again going to handle all of the parsing
+of commas and new lines and more for each row in the reader what am I going to do well at
+the moment I'm going to do this I'm going to append to my students list the following
+dictionary a dictionary that has a name whose value is the current Row's First Column and
+whose house or rather home now is the Rose second column now it's worth noting that the
+reader for each line in the file indeed returns to me a row but it returns to me a row that's a
+list which is to say that the first element of that list is going to be the student's name as
+before the second element of that list is going to be the student's home as now before but if I
+want to access each of those elements remember that lists are zero indexed we start
+counting at zero and then one rather than one and then two so if I want to get at the
+student's name I use Row Bracket zero and if I want to get at the student's home I use Row
+Bracket one but in my for Loop we can do that same unpacking as before if I know this CSV
+is only going to have two columns I could even do this for name home in reader and now I
+don't need to use list notation I can unpack things all at once and say name here and home
+here the rest of my code can stay exactly the same because what am I doing now on line a
+I'm still constructing the same dictionary as before albeit for homes instead of houses and
+I'm grabbing those values now not from the file itself and my use of split but the reader and
+again what the reader is going to do is figure out where are those commas where are the
+quotes and just solve that problem for you so let me go now down to my terminal window
+and run python of students.pi and hit enter and now we see successfully sorted no less that
+Draco is from malform Manor Harry is from number four comma privet drive and Ron is from
+the borough questions now on this technique of using CSV reader from that CSV module
+which again is just getting us out of the business of reading each line ourself and reading
+each of those commas and splitting so my questions related to Something in the past um I
+recognize that you are reading a file every time you well you we're assuming that we have
+the CSV file to hand already in this case um is it possible to make a file readable and
+writable so in in in case if you want you could you could write some stuff to the file but then
+at the same time you could have another function that reads through the phone that's
+changes to it as you go along a really good question and the short answer is yes however
+historically the mental model for a file is that of a cassette tape years ago not really in use
+anymore but cassette tapes are sequential whereby they start at the beginning and if you
+want to get to the end you kind of have to unwind the tape to get to that point the closest
+analog nowadays would be something like Netflix or any streaming service where there's a
+scrubber that you have to go left to right you can't just jump there or jump there you don't
+have Random Access so the problem with files if you want to read and write them you or
+some Library needs to keep track of where you are in the file so that if you're reading from
+the top and then you write at the bottom and you want to start reading again you seek back
+to the beginning so it's not something we'll do here in class it's more involved but it's
+absolutely doable for our purposes we'll generally recommend read the file and then if you
+want to change it write it back out rather than trying to make more piecemeal changes which
+is good if though the file is massive and it would just be very expensive time wise to change
+the whole thing other questions on this CSV reader is possible to write a paragraph in that
+file absolutely right now I'm writing very small strings just names or houses as I did before
+but you can absolutely write as much text as you want indeed other questions on CSV
+reader IP like input key will be your name or home so short answer yes we could absolutely
+write a program that prompts the user for a name and a home a name and a home and we
+could write out those values and in a moment we'll see how you can write to a CSV file for
+now I'm assuming as the programmer who created students.csv that I know what the
+columns are going to be and therefore I'm naming my variables accordingly however this is a
+good segue to one final feature of reading csvs which is that you don't have to rely on either
+getting a row as a list and using bracket zero or bracket one and you don't have to unpack
+things manually in this way we could actually be smarter and start storing the names of
+these columns in the CSV file itself and in fact if any of you have ever opened a spreadsheet
+file before be it in Excel Apple Numbers Google spreadsheets or the like all odds are you've
+noticed that the first row very frequently is a little different it actually is bold face sometimes
+or it actually contains the names of those columns the names of those attributes below and
+we can do this here and students.csv I don't have to just keep assuming that the student's
+name is first and that the student's home is second I can explicitly bake that information into
+the file just to reduce the probability of mistakes down the road I can literally use the first row
+of this file and say name comma home so notice that name is not literally someone's name
+and home is not literally someone's home it is literally the words name and home separated
+by a comma and if I now go back into students.pi and don't use CSV reader but instead I use
+a dictionary reader I can actually treat my CSV file even more flexibly not just for this but for
+other examples too let me do this instead of using a CSV reader let me use a CSV dict
+reader which will now iterate over the file top to bottom loading in each line of text not as a
+list of columns but as a dictionary of columns what's nice about this is that it's going to give
+me automatic access now to those columns names I'm going to revert to just saying for Row
+in reader and now I'm going to append a name and a home but how am I going to get
+access to the current rows name and the current rows home well earlier I use bracket zero
+for the first and bracket one for the second when I was using a reader a reader returns lists
+addict reader or dictionary reader returns dictionaries one at a time and so if I want to access
+the current Row's name I can say row quote unquote name I can say here for home row
+quote-unquote home and I now have access to those same values the only change I had to
+make to be clear was in my CSV file I had to include on the very first row little hints as to
+what these columns are and if I now run this code I think it should behave pretty much the
+same python of students.pi and indeed we get the same sentences but now my code is more
+robust against changes in this data if I were to open the CSV file in Excel or Google
+spreadsheets or apple numbers and for whatever reason change the columns around maybe
+this is a file that you're sharing with someone else and just because they decide to sort
+things differently left to right by moving the columns around previously my code would have
+broken because I was assuming that name is always first and home is always second but if I
+did this be it manually in one of those programs or here home comma name and suppose I
+reversed all of this the home comes first followed by Harry the borough then by Ron and
+then lastly Malfoy Manor then Draco notice that my file is now completely flipped the First
+Column is now the second and the second's the first but I took care to update the header of
+that file the first row notice my python code I'm not going to touch it at all I'm going to rerun
+python of students.pi and hit enter and it still just works and this too is an example of like
+coding defensively like what if someone changes your CSV file your data file ideally that
+won't happen but even if it does now because I'm using a dictionary reader that's going to
+infer from that first row for me what the columns are called my code just keeps working and
+so it keeps getting if you will better and better any questions now on this approach yeah
+what is the importance of online CSV file what's the importance of the new line in the CSV
+file it's partly a convention in the world of text files we humans have just been for decades in
+the habit of storing data line by line it's visually convenient it's just easy to extract from the
+file because you just look for the new lines so the new line just separates some data from
+some other data we could use any other symbol on the keyboard but it's just common to hit
+enter to just move the data to the next line just a convention other questions it seems to be
+working fine if you just have name and home I'm wondering what will happen if you want to
+put in more data um say you wanted to add a house to both the name and the home sure if
+you wanted to add the house back so if I go in here and add house last and I go here and
+say uh Gryffindor for Harry Gryffindor for Ron and Slytherin for Draco now I have three
+columns effectively if you will home on the left name in the middle house on the right each
+separated by commas with weird things like number four comma privet Drive still quoted
+notice if I go back to students.pi and I don't change the code at all and run python of
+students.pi it still just works and this is what's so powerful about a dictionary reader it can
+change over time it can have more and more columns your existing code is not going to
+break your code would break would be much more fragile so to speak if you were making
+assumptions like the first column's always going to be named the second column's always
+going to be house things will break fast if those assumptions break down so not a problem in
+this case well let me propose that besides reading csvs let's at least take a peek at how we
+might write a csv2 if you're writing a program in which you want to store not just students
+names but maybe their homes as well in a file how can we keep adding to this file let me go
+ahead and delete the contents of students.csv and just re-add a single simple row name
+comma home so as to anticipate inserting more names and homes into this file and then let
+me go to students.pi and let me just start fresh so as to write out data this time I'm still going
+to go ahead and import CSV I'm going to go ahead now and prompt the user for their name
+so input quote unquote what's your name question mark and I'm going to go ahead and
+prompt the user for their home so home equals input quote unquote where's your home
+question mark now I'm going to go ahead and open the file but this time for writing instead of
+reading as follows with open quote unquote students.csv I'm going to open in append mode
+so that I keep adding more and more students and homes to the file rather than just
+overwriting the entire file itself and I'm going to use a variable name of file I'm then going to
+go ahead and give myself a variable called writer and I'm going to set it equal to the return
+value of another function in the CSV module called CSV dot writer and that writer function
+takes as its sole argument the file variable there now I'm going to go ahead and just do this
+I'm going to say writer dot right row and I'm going to pass into right Row the line that I want
+to write to the file specifically as a list so I'm going to give this a list of name comma home
+which of course are the contents of those variables now I'm going to go ahead and save the
+file I'm going to go ahead and rerun python of students.pi hit enter and what's your name
+well let me go ahead and type in Harry as my name and number four comma privet Drive
+enter now notice that input itself did have a comma and so if I go to my CSV file now notice
+that it's automatically been quoted for me so that subsequent reads from this file don't
+confuse that comma with the actual comma between Harry and his home well let me go
+ahead and run it a couple of more times let me go ahead and rerun python of students.pi let
+me go ahead and input this time Ron and his home as the borough let's go back to
+students.csv to see what it looks like now we see Ron comma the burrow has been added
+automatically to the file and let's do one more python of students.pi enter let's go ahead and
+give draco's name and his home which would be Malfoy Manor enter and if we go back to
+students.csv now we see that Draco is in the file itself and the library took care of not only
+writing each of those rows per the function's name it also handled the escaping so to speak
+of any strings that themselves contain the comma like Harry's own home well it turns out
+there's yet another way we we could implement this same program without having to worry
+about precisely that order again and again and just passing in a list it turns out if we're
+keeping track of what's the name and what's the home we could use something like a
+dictionary to associate those keys with those values so let me go ahead and back up and
+remove these students from the file leaving only the header row again named comma home
+and let me go over to students.pi and this time instead of using CSV writer I'm going to go
+ahead and use csv.dictriter which is a dictionary writer that's going to open the file in much
+the same way but rather than write a row as this list of name comma home what I'm now
+going to do is follows I'm going to first output an actual dictionary the first key of which is
+Name colon and then the value thereof is going to be the name that was typed in and I'm
+going to pass in a key of Home quote unquote the value of which of course is the home that
+was typed in but with dict writer I do need to give it a hint as to the order in which those
+columns are when writing it out so that subsequently they could be red even if those
+orderings change let me go ahead and pass in field names which is a second argument to
+dictwriter equals and then a list of the actual columns that I know are in this file which of
+course are name comma home those times in quotes because that's indeed the string
+names of the columns so to speak that I intend to write to in that file all right now let me go
+ahead and go to my terminal window run python of students.pi this time I'll type in Harry's
+name again I'll again type in number four comma privet Drive enter let's now go back to
+students.csv and voila parries back in the file and it's properly escaped or quoted I'm sure
+then if we do this again with Ron and the burrow and let's go ahead and run it one third time
+with Draco and Malfoy Manor enter let's go back to students.csv and Via this dictionary
+writer we now have all three of those students as well so whereas with CSV writer the onus
+is on us to pass in a list of all of the values we want to put from left to right with a dictionary
+writer technically they could be in any order in the dictionary in fact I could just have correctly
+done this passing in home followed by name but it's a dictionary and so the ordering in this
+case does not matter so long as the key is there and the value is there and because I have
+passed in field names as the second argument to dict writer it ensures that the library knows
+exactly which column contains name or home respectively are there any questions now on
+dictionary reading dictionary writing or csvs more generally India any specifics the specific
+situation for me to use a single quotation or double quotation because after the print we use
+a single quotation to represent the key of the dictionary but after the reading or writing we
+use the double quotation it's a good question in Python you can generally use double quotes
+or you can use single quotes and it doesn't matter you should just be self-consistent so that
+stylistically your code looks the same all throughout sometimes though it is necessary to
+alternate if you're already using double quotes as I was earlier for a long F string but inside
+that F string I was interpolating the values of some variables using curly braces and those
+variables were dictionaries and in order to index into a dictionary you use square brackets
+and then quotes but if you're already using double quotes out here you should generally use
+single quotes here or vice versa but otherwise I'm in the habit of using double quotes
+everywhere others are in the habit of using single quotes everywhere it only matters
+sometimes if one might be confused for the other other questions on dictionary uh writing or
+reading uh yeah I did my question is can we use multiple CSV files in any program
+absolutely you can use as many CSV files as you want and it's just one of the formats that
+you can use to save data other questions on csvs or file IO thanks for taking my question uh
+so when you're reading from the file the um you had the um as a dictionary you had the
+fields called um couldn't you just call it when you're reading could couldn't you just call the
+row in the previous version of the of the students uh Pi file um when you're reading the uh
+when you're reading each row you are splitting out the um the fields by name yeah so when
+you're appending to the uh to the students list can you just call the uh for row and reader
+students.append row rather than uh rather than naming each of the fields oh very clever uh
+short answer yes insofar as dick to reader returns one dictionary at a time when you Loop
+over it rho is already going to be a dictionary so yes you could actually get away with doing
+this and the effect would really be the same in this case good observation how about one
+more question on csvs yeah when reading in csvs from my past work with data a lot of things
+can go wrong I don't know if it's a fair question that you can answer in a few sentences but
+are there any best practices to double check that sort of no mistakes occurred it's a really
+good question and I would say in general if you're using code to generate the csvs and to
+read the csvs and you're using a good Library theoretically nothing should go wrong it should
+be 100 correct if the libraries are 100 correct you and I tend to be the problem like when you
+let a human touch the CSV or when Excel or apple numbers or some other tools involved
+that might not be aligned with your code's expectations things then yes can break the goal
+really sometimes honestly the solution is manual fixes you go in and fix the CSV or you have
+a lot of error checking or you have a lot of try except just to tolerate mistakes in the data but
+generally I would say if you're using CSV or any file format internally to a program to both
+read and write it you shouldn't have concerns there you and I the humans are the problem
+uh generally speaking and not the programmers the users of those files instead all right
+allow me to propose that we leave csvs behind but to note that they're not the only file format
+you you can use in order to read or write data in fact they're a popular format as is just raw
+text files dot txt files but you can store data really any way that you want we've just picked
+csvs because it's representative of how you might read and write from a file and do so in a
+structured way where you can somehow have multiple Keys multiple values all in the same
+file without having to resort to what would be otherwise known as a binary file so a binary file
+is a file that's really just zeros and ones and they can be laid out in any pattern you might
+want particularly if you want to store not textual information but maybe graphical or audio or
+video information as well so it turns out that python is really good when it comes to having
+libraries for really everything and in fact there's a popular Library called pillow that allows you
+to navigate image files as well and to perform operations on image files you can apply filters
+a lot Instagram you can animate them as well and so what I thought we'd do is leave behind
+behind text files for now and Tackle one more demonstration this time focusing on this
+particular library and image files instead so let me propose that we go over here to vs code
+and create a program ultimately that creates an animated gif these things are everywhere
+nowadays in the form of memes and animations and stickers and the like in an animated gif
+is really just an image file that has multiple images inside of it and your computer or your
+phone shows you those images one after another sometimes on an endless loop again and
+again and so long as there's enough images it creates the illusion of Animation because your
+mind and mind kind of fills in the gaps visually and just assumes that if something is moving
+even though you're only seeing one frame per second or some sequence thereof it looks like
+an animation so it's like a simplistic version of a video file well let me propose that we start
+with maybe a couple of uh costumes from another popular programming language and let
+me go ahead and open up my first cost team here number one so suppose here that this is a
+costume or really just a static image here costume1.jif and it's just a static picture of a cat no
+movement at all let me go ahead now and open up a second one costume2.jif that looks a
+little bit different notice and I'll go back and forth this cat's legs are a little bit aligned
+differently so that this was version one and this was version two now these cats come from a
+programming language from MIT called scratch that allows you very graphically to animate
+all this and more but we'll use just these two static images costume one and costume two to
+create our own animated gif that after this you could text to a friend or message them much
+like any meme online well let me propose that we create this animated gif not by just using
+some off-the-shelf program that we downloaded but by writing our own code let me go
+ahead and run code of costumes.pi and create our very own program that's going to take as
+input to or even more image file files and then generate an animated gif from them by
+essentially creating this animated gif by toggling back and forth endlessly between those two
+images well how am I going to do this well let's assume that this will be a program called
+costumes.pi that expects uh two command line arguments the names of the files the
+individual costumes that we want to animate back and forth so to do that I'm going to import
+sys so that we ultimately have access to sys.org V I'm then from this pillow Library going to
+import support for images specifically so from pil import image capital i as per the library's
+documentation now I'm going to give myself an empty list called images just so I have a list
+in which to store one or two or or more of these images and now let me do this for each
+argument in sis.org V I'm going to go ahead and create a new image variable set it equal to
+this image dot open function passing in ARG now what is this doing I proposing that
+eventually I want to be able to run python of costumes.pi and then as command line
+arguments specify costume1.jif space costume two dot shift so I want to take in those file
+names from the command line as my arguments so what am I doing here well I'm iterating
+over sys.org V all of the words in my command line arguments I'm creating a variable called
+image and I'm passing to this function image.open from the pillow library that specific
+argument and that library is essentially going to open that image in a way that gives me a lot
+of functionality for manipulating it like animating now I'm going to go ahead and append to
+my images list that particular image and that's it so this Loop's purpose in life is just to iterate
+over the command line arguments and open those images using this Library the last line is
+pretty straightforward I'm going to say this I'm going to grab the first of those images which is
+going to be in my list at location zero and I'm going to save it to disk that is I'm going to save
+this file now in the past when we use csvs or text files I had to do the file opening I had to do
+the file writing maybe even the closing I don't need to do that with this Library the pillow
+library takes care of the opening the closing and the saving for me by just calling save I'm
+going to call this save function and just to leave space because I have a number of
+arguments to pass I'm going to move to another line so it fits I'm going to pass in the name
+of the file that I want to create costume.jif that will be the name of my animated gif I'm going
+to tell this library to save all of the frames that I pass to it so the First costume the second
+costume and even more if I gave them I'm going to then append to this first image the image
+is zero uh the following images equals this list of images and this is a bit clever but I'm going
+to do this I want to append the next image there images one and now I want to specify a
+duration of 200 milliseconds for each of these frames and I want this to Loop forever and if
+you specify Loop equals zero that is Time Zero it means it's just not going to Loop a finite
+number of times but an infinite number of times instead and I need to do one other thing
+recall that sys.org V contains not just the words I typed after my program's name but what
+else does sys.org v contain if you think back to our discussion of command line arguments
+what else is insist.orgv besides the words I'm about to type like costume one dot GIF and
+costume two yeah so we'll actually get in that their original name of the program we want to
+run the costume set pie indeed we'll get the original name of the program costumes.pi in this
+case which is not a gif obviously so remember that using slices in Python we can do this if
+sys.orgv is a list and we want to get a slice of that list everything after the first element we
+can do one colon which says start at location one not zero and take a slice all the way to the
+end so give me everything except the first thing in that list which to McKenzie's point is the
+name of the program now if I haven't made any mistakes let's see what happens I'm going to
+run python of costumes.pi and now I'm going to specify the two images that I want to
+animate so costume1.jif and costume2.gif what is the code now going to do well to recap
+we're using the sys library to access those command line arguments we're using the pillow
+library to treat those files as images and with all the functionality that comes with that Library
+I'm using this images list just to accumulate all of these images one at a time from the
+command line and in line seven through nine I'm just using a loop to iterate over all of them
+and just add them to this list after opening them with the library and the last step which is
+really just one line of code broken onto three so that it all fits I'm going to save the first image
+but I'm asking the library to append this other image to it as well not bracket zero but bracket
+one and if I had more I could express those as well I want to save all of these files together I
+want to pause 200 milliseconds a fifth of a second in between each frame and I want it to
+Loop infinitely many times so now if I cross my fingers as always hit enter nothing bad
+happened and that's almost Это всегда хорошо. Давайте теперь запустим файл
+code.com/common.jif, чтобы открыть его в VS Code. На итоговом изображении я вижу
+очень счастливого кота. И действительно, теперь мы увидели, что можем не только
+читать и записывать файлы, но и читать и записывать файлы, состоящие из двоичных
+нулей и единиц. Мы только начали, используя библиотеку Pillow. Но в конечном итоге
+это даст нам возможность читать и записывать файлы так, как мы хотим. Итак, мы
+увидели, что с помощью файлового ввода-вывода мы можем манипулировать не
+только текстовыми файлами, будь то TXT-файлы или CSV-файлы, но и двоичными
+файлами. В данном случае это изображения. Но если мы углубимся, мы сможем
+исследовать аудио и видео и многое другое, используя эти простые примитивы. Эта
+возможность читать и записывать файлы… На этом пока всё. До встречи в следующий
+раз!
+

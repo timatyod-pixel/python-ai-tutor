@@ -1,0 +1,847 @@
+Итак, [Музыка] [Музыка] Хорошо, это вступление CS50 к Программирование на Python.
+Меня зовут Дэвид Мэйлин, и на этой неделе мы сосредоточимся на циклах. Эта
+способность в Python и многих других языках программирования повторять одно и то
+же действие снова и снова, своего рода цикл. Давайте начнем с того, чтобы понять,
+почему у нас есть эта способность делать что-то циклически, используя циклы . Я
+открою VS Code и в окне терминала создам с помощью кода программу cat.pi на
+Python, которая мяукает, как кошка. Я начну с реализации этой кошки, используя
+команду print. Мы сделаем так, чтобы кошка не издавала звуков, а просто трижды
+выводила на экран «мяу-мяу-мяу». Думаю, самый простой способ сделать это —
+просто один раз вывести «мяу», затем еще раз и последний раз на экран. А теперь
+перейдем в окно терминала, запустим команду `python cat.pie` и введем «мяу-мяу-
+мяу». Хорошо, вот так. Программа работает, эта программа действительно работает.
+Если моя цель — заставить кошку мяукать три раза, позвольте мне предложить просто
+помочь нам разобраться в том, что происходит внутри. the computer let me propose that
+we consider this flow chart so as before we have this flowchart that starts with a this oval
+which just means start reading here and then notice it goes via arrows to a meow meow
+meow and then it stops it's perfectly correct and honestly it's wonderfully simple but i dare
+say we can find fault with my code nonetheless why is my code arguably poorly designed
+now the answer is going to be loops in some way but let's see if we can identify in what way
+the code is actually poorly designed in some sense let's see any thoughts alex okay so i
+mean repeating the same action like three times or even more just not i'm going to have it
+yeah i'm just repeating myself and honestly it's not that big a deal if we go back to my code
+here am i really uh doing such a bad thing by just printing meow meow meow three times not
+really but let's consider the logical extension of this suppose i wanted me out four times or
+five times or 50 times or 500 times do you really think even if you've never programmed
+before is the solution to this problem really going to be to hit copy paste 50 times like
+probably not we can probably do better than that and beyond it just being ugly at that point
+having so many lines of identical code just imagine if you wanted to change the code maybe
+i changed my mind and i don't want to make a cat i want to make a dog so now it has to say
+woof woof multiple times now i have to change that in like 50 different places and yeah sure i
+could do find and replace but come on like we're programmers now there's got to be a better
+way than just repeating ourselves so i bet we can do better than that if we think about a little
+harder what we how we go about structuring this program and we can do that if we augment
+our vocabulary just a little bit it turns out in python and in other languages too there's a
+keyword called while and while is one way that we can express what's called a loop a block
+of code that's going to do something again and again and again zero times one time two
+times fifty times as many times as we want but while rather leaves to us the the particulars of
+how we express ourselves to do something again and again so let me go back over to vs
+code here and let me propose that i do this while is a construct that allows me to ask a
+question again and again and anytime we've seen a question it's been in the form of a
+boolean expression a question to which the answer is true or false well how could i do this
+how could i print out meow three times and ask three times a question to which the answer
+is true or false well what if i did some counting right like literally on my fingers and if i'm trying
+to count maybe down from three i want to meow three times i can put three fingers up and i
+can meow and then i can put like one of the fingers down and then meow and i can put one
+of the fingers down and i can meow put one of the fingers down and maybe the question i
+can ask every time i meow is do i have any fingers up still do i have any fingers up still do i
+have any fingers up stone if the answer is true keep going if the answer is false stop so how
+can i translate that to code well once we've added this while keyword i think we have all the
+building blocks already let me propose that i do this let me propose that i give myself a
+variable and i'll call it i for integer but i could call it anything i want and i'm going to initialize it
+to 3. then i'm going to use this new feature of python while and i'm going to ask a question
+the answer to which must be true or false and i'm going to say while i does not equal 0. so
+i'm going to ask the question while i does not equal 0 do the following notice the colon at the
+end of the line notice my indentation and just like with functions just like with conditionals you
+indent the lines that you only want to execute as part of this other thing what do i want to do
+while i does not equal zero well i think i just want to meow but it's not enough just to write
+this code if i were to very dangerously run python of cat.pi and hit enter right now what might
+happen on the screen whether you've programmed before or not why is this a very bad thing
+potentially it's not going to break things but it might it might lose control of my computer
+somehow any thoughts uh yeah timo hi uh i think it's going to continue uh to print out mel
+since i is always equal to three and the wow is always true yeah exactly if i'm initializing i to
+three that is setting it equal to three on line one then i'm asking the question while i does not
+equal zero and that's going to be true it does not equal zero it obviously equals three print
+meow and the way a while loop works is that the python interpreter just keeps going back
+and forth it goes from line one to line two then to line three and then it goes back to line two
+to ask the question again if the answer's still true it goes to line three it then goes back to line
+two if the answer is still true it goes back to line three and to timu's point if you're never
+actually changing the value of i it's always three you're just going to be looping literally
+forever and this is an accidental infinite loop so we've got to be smarter than that i'm not
+going to hit enter because i don't want to lose control over my computer here such that it's
+printing out meow forever fortunately if you ever do do that and you find yourself in an
+accidental infinite loop control c for cancel or interrupt is going to be your friend if you ever
+seem to lose control you don't need to like reboot or turn off the computer you can just hit
+control c in your terminal window and that will likely fix it all right well what do i want to do
+then after meowing each time i think what i'd like to do here is maybe something like this let
+me update i to equal whatever the current value is uh minus one here whoops sorry minus
+one so if i on each iteration i'm updating i to be one less one less one less it should
+eventually hit zero at which point the answer to nine two's question will now be false so let's
+see if this works i'm gonna go down to my terminal window and run python of cat dot pi and i
+indeed get three meows why because i've kind of wired this up kind of like a machine in
+software if you will i've set i equal to three then i keep asking this question but i keep turning
+the gears i keep changing the value of the variable to make sure that ultimately it is actually
+being decremented that is decreased by one until we eventually hit zero now for those of you
+who think a little more graphically let me pull up one of our usual flowcharts this is just a
+representation graphically of the exact same thing notice what's happening i first start the
+program and then i initialize i to 3 and then i ask the first of my questions again the diamonds
+always represent questions and the answer is going to be true or false does i not equal 0
+well it doesn't equals 3 so if i follow the true line i meow and then i follow this arrow and i
+update i to equal i minus 1 at this point in the story i presumably equals 2 mathematically i
+follow the arrow and there's the loop this is why it's nice to see this graphically perhaps
+because you can literally see the loop back and forth now i ask the question again does 2
+not equal 0 well it does not equal 0. it's 2 so we meow again we change i from two to one
+well does one not equal zero well obviously if one is not zero so we meow again we
+decrement i again i is now zero does zero not equal zero no it equals zero so the answer is
+false and we stop so there perhaps more so than any of our flowcharts before do you really
+see the structure of what's happening inside of the program and you don't have to get into
+the habit of making these charts or creating these charts but just as a first pass at what's
+going on inside of the computer that's indeed one way to visualize it instead well let me
+propose that like always there's many different ways to solve this problem and suppose you
+just like to think a little differently maybe you don't like starting at 3 and then counting down
+to zero y maybe your just brain doesn't work that way and you prefer to count up instead of
+down totally fine let me go ahead and change my code here to set i equal to one instead of
+three and here let me just change my logic rather than checking for not equal to zero like
+maybe you don't like thinking in terms of not because it's a little confusing and it might be
+let's just check that i is less than or equal to three so we'll be a little more explicit we'll count
+from one up through three each time printing meow but i'm gonna need to change this line
+here let me see if we can't call on someone to change line four for me how do i wanna
+change line four to be consistent with counting from one up to and through three i would be
+plus one every time you meow yeah exactly in this case we want to add one not subtract one
+and in fact if you think about this this two could end very poorly right if you start counting at
+one and you keep subtracting one subtracting one subtracting one i think we're going to find
+ourselves with the same problem which is that we're never going to stop because we're
+going to keep getting more and more negative as opposed to ever getting up to the number
+3. so i think you're right i need to change this to be i equals i plus 1. and now notice just for
+clarity 2 the equal sign is again our assignment operator from right to left logically this might
+otherwise strike you as strange like how can i equal itself plus 1 well it doesn't until you
+execute this code from right to left you add 1 to i or you subtract one from i and then you
+update the value of i on the left the assignment copies the value from the right to the left well
+how else might i do this well i will say that most programmers computer scientists more
+generally tend to start counting from zero it's a convention and it actually has upsides even
+in python and other languages where generally speaking it's a good thing to start counting
+from zero instead of counting like we might in the real world from one let's go ahead and
+adopt that convention now let me set i equal to zero and i need to make a change now
+notice if i don't change my logic this program just became buggy the cat has a bug it's now
+meowing four times if i run it as is but the easiest fix here would be to change my inequality
+to be this less than instead of less than or equal to now i'm starting at zero but i'm going up
+two but not through three and even though this might of all the things we've seen thus far
+see maybe the least familiar most of us might start at one two than three it's a good habit to
+get into now start at zero and go up two but not through the value that you care about
+ultimately three in this case here well let me tighten things up a bit here not only will this now
+fix my counting problem it now meows three times as expected there's a more succinct way
+to express i equals i plus one and this is because it's such a popular thing to do in code you
+can instead just say i plus equals one and that's it you don't need to put everything on the
+right hand side this is a special syntax that says the exact same thing increment i but it does
+it with a few fewer keystrokes it's just a little more pleasant to type it's a little faster to read
+it's just a convention those of you who have programmed in c c plus plus python not python c
+c plus plus java javascript might have seen plus plus before or minus minus sorry python
+doesn't have it so you cannot use that this is as succinct as your line of code might get all
+right let me pause here to see then if there's any questions about these implementations of
+while loops can we use stuff like for loops which have a certain i value initialized to it at the
+start and it runs from the particular condition you put into the um into the thing and increment
+it as as you go along short answer no you cannot do what you're describing but there is
+another type of for loop that we will soon see but let's come to that in just a moment other
+questions on loops using while here so i had a question about the flowcharts okay there
+were certain yeah there were certain symbols for the certain kind of the statements so they
+uh are they certainly used for that kind of statement that they are putting [Music] they are so i
+deliberate i deliberately use certain types of symbols certain shapes here uh whereby an
+oval is conventional for start and stop i used rectangles for any statement of code like an
+assignment or a printing and so forth and i use diamonds to represent questions that you
+might ask conditions as we've seen if you're doing this for yourself if you're just trying to
+make sense of your code and writing it down you certainly don't need to use these formal
+symbols but i tried to be consistent with some prac best practices and in fact let me come
+back to the same picture because this was the first version of our picture but we've since
+modified our code a couple of times this recall was the version where the question we were
+asking was i not equal to zero let me go ahead and just change this code now to represent
+the next version we did which recall changed our logic to start counting from one it changed
+our question to check is i less than or equal to three but then everything else was the same
+except for the counting which is now plus instead of minus and then we refined it a little bit
+further by counting now from zero up to but not through three and we tightened up this code
+here by just incrementing one by using the slightly more succinct syntax so at this point
+these flowcharts might become less and less useful for us because once you've wrapped
+your mind around the concept and hopefully the picture helps bring that concept to life it's
+certainly fine to focus entirely on the code and only think about or even draw something like
+this if you need to wrap your mind around something more complicated than you're used to
+well let me go ahead if i may and propose that we transition to another approach of types of
+loops using another keyword here namely a for loop and this is a word that does exist in
+other languages but doesn't necessarily have as many features as other languages might
+use it for but there is a different type of loop not a while loop but a for loop and a for loop is
+going to explode or allow us to express ourselves a little differently but to do so i propose
+that the easiest way is if we introduce one other idea in python which is that of a list and here
+too no pun intended we're adding to the list of data types that python supports we've seen
+stirs or strings ins or integers floats or floating point values bools or boolean expressions
+python also has lists which is another type of data but wonderfully this one's probably pretty
+familiar a list of things in the real world is a list of things in python it's a way of containing
+multiple values all in the same place all in the same variable so what do i mean by this well
+let me propose that we go back to our vs code here and let me kind of start fresh with my
+code here and not use a while loop at all but let me use this new keyword for the way the for
+loop works is that it allows you to iterate over a list of items so what does this look like it
+might look like this 4 i in the following list of items 0 1 2. this is my starting point and on each
+iteration of this loop that is on each execution of this loop again and again i want to print out
+meow now i'll admit i kind of like the look of this code already even though there's some new
+syntax here because it's just shorter than the while loop right the while loop had multiple
+lines a moment ago and it was entirely up to me to decide what i is i have to check a
+condition i have to increment or decrement i like i was doing a lot of work relatively speaking
+to make that thing turn to make that loop go and go it was very mechanical in a sense you
+can kind of in your mind's eye maybe see the gears turning as all of these variables are
+changing and these questions are being asked a for loop kind of simplifies all of that and it
+just says if you want a variable like i a number and you know in advance how many times
+you want this loop to execute three times we'll just kind of specify what it is you want i to take
+on as values explicitly in this loop i will be automatically initialized by python to be zero then
+meow will be printed then python will automatically update i to equal one then meow will be
+printed then python will automatically update i to b2 and meow will be printed and because
+that's it for the values in that list python will stop and it will only meow a total of three times
+what is the list the list in this program is exactly that zero comma one comma two and notice
+the square brackets those aren't parentheses those are square brackets that represent a list
+that's how you know visually as the programmer that's how python knows as the language
+that you intend for that to be a list so let me go ahead and run this python of cat dot pi and it
+works just the same but it's only two lines it's pretty readable once you have familiarity with
+that construct but to my constant point about correctness not necessarily being the same as
+design in what sense is this program perhaps poorly designed it seems to work it meows
+three times but why might this not be the best way to solve this problem even if you've never
+programmed before again think about corner cases things that may or may not happen think
+about extreme cases that really test the quality of this code okay i think that because like we
+can we are saying zero one three two and then like if you want to print a million you say one
+two three yeah exactly and that's what i mean about thinking about the extreme cases if
+you're trying to decide for yourself if your own code is good or someone else's code is good
+it might look so at first glance but think about the extreme well what if it's not three things it's
+a million things i mean are you really gonna write out one zero through a million or zero
+through nine uh you know nine hundred ninety nine thousand uh nine hundred ninety nine
+thousand nine hundred ninety nine like no you're not going to write that many numbers on
+the screen there's got to be a better way so let's do the better way from the get go rather
+than set the stage for doing something poorly and the one way we can solve this problem to
+improve the design is don't just manually specify the list of values use a function someone
+else's function that comes with python that gives you the list you want and the easiest way to
+do that in python is to use a function called range that returns to a range of values it expects
+as input at least one argument and that number is going to be the number of values you
+want back those values are going to start at 0 and go to 1 to 2 and so forth but they will go
+up 2 but not through the number you specify so by specifying range 3 you're essentially
+being handed back 1 2 3 values and by default those values are 0 1 and 2 and that's it but
+what's brilliant about this is that now to hope's point if i do want to meow a million times i
+mean that is an angry cat i can now do a million by just typing a million i don't have to literally
+type zero comma one comma two comma three comma four all the way up to nine hundred
+ninety nine thousand nine hundred ninety nine i just do this so that's got to be a better way
+long term so that's indeed one improvement we can indeed make here still using a for loop
+but now using this range function and just to show you something else that's pythonic this is
+not strictly necessary but it's commonly done there's a minor improvement we can make
+here even if we're just meowing three times and notice that even though i'm defining a
+variable i i'm not ever using it and it's kind of necessary logically because python presumably
+has to use something for counting right it has to know what it's iterating over but there's this
+convention in python where if you need a variable just because the programming feature
+requires it to do some kind of counting or automatic updating but you the human don't care
+about its value a pythonic improvement here would be to name that variable a single
+underscore just because it's not required it doesn't change the correctness of the program
+but it signals to yourself later it signals to colleagues or teachers that are looking at your
+code too that yes it's a variable but you don't care about its name because you're not using it
+later it's just necessary in order to use this feature this loop in this case here so just a minor
+improvement or change there but to really get you intrigued by what's possible in python let's
+take this one step further so if we really want to be pythonic this one if you've programmed
+before is kind of going to blow your mind so to speak whereby if i want the cat to meow three
+times what if i actually do this print open parenthesis quote unquote meow times three all
+right you have to be kind of a geek to think this is cool but this is kind of cool so you can
+literally just print what you want multiply it by the number of times that you want it and you
+will get back exactly that result now i've kind of made a mistake here so let's see what this
+does it's not quite as beautiful as this code might look to to you to some of you to me let me
+run python of cat dot pi enter okay it's a really like hungry cat or something it's meowing
+really fast but i can fix this i bet let's think about now some of the basic building blocks we've
+discussed the problem is clearly that literally meow meow meow is being repeated three
+times but it's not as pretty as i want it i want it to be meow meow meow on separate lines
+what might be a possible solution here while still using this multiplication operator and think
+back we've used plus to concatenate strings you can apparently use multiplication to
+concatenate strings but more than once again and again and again how could i clean this up
+without reverting to my for loop or my while loop and still use multiplication in this way we
+can use the escape sequence which should be backslash n amazing yes think back to
+backslash n which is the way you as the programmer can express a new line in code and i
+think if i take your advice i put a backslash n there inside of my quotes so that at the end of
+every m-e-o-w there's a new line let's see how this looks let me clear my screen and run
+python of cat dot pi okay so close i like this let me call on someone else the only thing i don't
+like and i know i'm being really nitpicky now is that it's meow meow meow on separate lines
+but there's kind of this extra blank line which i'm just not loving aesthetically i think we can
+make in the equal to column column not back n yeah so here too like all of these things
+we've seen in past weeks are kind of coming together right recall that the print function lets
+you control what the line ending is by default it's backslash in itself which is why at the very
+end of this print the cursor is being moved again to the next line well we need to just override
+that so let me go into my code here and let me change this to comma end equals quote
+unquote so that it's no longer the default backslash n it's instead now going to be uh nothing
+whatsoever that should eliminate then hopefully that additional uh blank line so let me run
+this one last time here python of cat dot pi enter and there we have it so now you know at
+least as programming goes it's kind of cool that i can distill this into a short line and express
+myself all at once now to be fair it's a little less readable like now i've got backslash n i've got
+times three i've got end equals quote-unquote so you don't have to do things this way my
+previous approach with a for loop totally fine my previous approach with a while loop totally
+fine and in some sense perfectly well designed but this is just yet another way to do it but it's
+not a good thing if you or your teacher your colleague your friend are going to struggle to
+read your own code but this is a feature of python that some languages do not in fact have
+all right well let me propose that things get more interesting still if we're not just smelling
+three times only but we're meowing some variable number of times let's ask the user how
+many times this cat should meow so let me clear the screen here and let me figure out well
+how do i get a number from the user the catch here is that if i want the user to give me a
+number i'm not doing math per se i'm meowing and therefore the user has to give me a
+positive value the user has to give me a positive value so how can i insist on this well if i just
+do this n equals int of input what's n question mark well i want to check like i could say if n is
+less than zero like if it's negative well i could do this well then ask again int input what's n
+question mark okay well what if the user still doesn't give me a positive number what if
+they're being really difficult they're not paying attention and they typed in two negative
+numbers well if n is less than zero well let's do it again n equals right this does not end well
+you can't infinitely many times keep checking is it negative is it negative is it negative right
+the program would never be done written so we can do this i think better maybe with a loop
+so let me propose this a very common paradigm in python when you want to get user input
+that matches a certain expectation you have that it's all positive that it's all negative or just
+something like that you just immediately say while true you deliberately and a little
+dangerously but very conventionally induce an infinite loop now what is an infinite loop it's
+just one that goes forever and we've seen how that can happen accidentally mathematically
+it's absolutely going to happen when you say while true why well the answer to the true
+question is always true so this is a way of deliberately inducing a loop that by default is going
+to go forever so we're going to need a way of breaking out of this loop when we have the
+number we want the convention though inside of this otherwise an infinite loop is to ask the
+question you care about like give me an int by prompting the user for input like what's n
+question mark and then just ask your question so if n is less than zero then i think we want
+python to just continue to prompt the user again that is we want the code to stay in the loop
+recall the input function and hope that the user gives us a better answer if this time around
+it's less than zero so let's just literally use python's keyword continue which says just that
+continue to stay within this loop else if it's not less than zero let's go ahead and just break
+out of the loop altogether using another keyword in python break break will break you out of
+the most recently begun loop in this case if it's not the case that n is less than zero so this
+will work and it will allow us to get a value that's zero or greater from the user but i think we
+can tighten it up further so as to not bother having an if and an else why don't we instead just
+say if n is greater than zero go ahead and break in fact it's not that interesting a program if
+we even allow the user to type in zero so let's wait until they give us an integer that is greater
+than zero and then break out of this loop and what can i thou do down here for i in range of
+whatever that value n is print meow and honestly i don't need i here so let me come back to
+that principle before and let me just change it to an underscore just to be pythonic if you will
+so what's going on lines one through four deliberately implement an infinite loop that
+otherwise by default is going to go forever but i'm asking a question inside of that loop after
+getting an int from the user on line two i'm then checking is it greater than zero or is it zero is
+it negative none of which makes sense for a meowing cat like i want the cat to meow at least
+one time so if it is greater than zero break and this break statement even though it's indented
+indented twice has the effect of breaking out of the most recently begun while loop so once
+the user gives you a positive value then we get to line six at which point we meow that many
+times because of line six and seven so if i run this now python of cat dot pi enter well what's
+n let's start with three where we began meow meow meow well this time let me go ahead
+and increase the size of my terminal window just temporarily let me run python of cat dot pi
+let me do it 10 times meow 10 times now appears on the screen and the takeaways here are
+not just that we can meow 10 times or do something again and again but this is a very
+common paradigm in python when you want to do something again and again and again but
+only until the user actually gives you a value that you care about here and let me propose
+actually now that we practice a little more what we've been preaching especially when it
+comes to say especially when it comes to say writing your own functions you know now that
+i'm doing all this mailing it might be nice to actually have a meow function that the inventors
+of python didn't envision so let me do this let me actually get rid of all this code and let me go
+ahead and do this let me go ahead and say define a main function as i've done before and
+let me just blindly call meow 3. meow doesn't exist yet but when it does that'll be great so let
+me go ahead now and define meow so my meow function should take as input a parameter
+called n or anything i want and this part's pretty easy now how do you meow in times well for
+underscore in the range of n go ahead and just print meow so same code as before nothing
+new here i'm just putting that logic inside of a meow function that's going to have this side
+effect of printing meow and now as before let me go down here and let me make sure i call
+main and if i now run this code python of cat dot pi meow meow meow it's always going to
+do three because i've hard coded the 3. well let's make one improvement here let me go
+ahead now and maybe do this let me ask the user for a number so let's say something like
+this number equals get number all right unfortunately there is no function in python called get
+number that gets a positive number from the user but i can invent that so define get number
+open for enclosed paren and then inside of this function let me do this while true go ahead
+and get a number from the user converting it to an int asking them what's n question mark
+and then if n is what i want it's a greater than zero value a positive number i don't want to
+break this time necessarily although i could i instead want to return the value so i can
+actually do this instead and this too is a feature of python this ability not to just break out of a
+block of code but also to return a value in code to actually return a value gives you the ability
+ultimately to return explicitly a value so that your function has not just a side effect
+necessarily but it actually hands back just like input does just like int does just like float does
+an actual value to the user now to be clear i don't have to return n here i can still break out of
+the loop as i've done in the past with code like this but then after the loop i still have to return
+n and so what's happening here is that if you use break to get out of the loop but you need to
+hand back a value from a function you still have to use the return keyword now explicitly
+either in the loop as i did or now outside of the loop but still inside of the function the last
+thing i'm going to do here now is change that 3 which we hard coded earlier to actually be
+the value of the variable we've gotten from the user so that now down here if i run python of
+cat dot pi enter what's n i can type in three i get my three meows or if i only want one i now
+get one meow instead all right so if we now have this ability to do things again and again in
+these loops let's see if we can't solve some other problems via which to express ourselves
+cyclically but get back some interesting answers as well let me propose for instance that we
+look a little more closely at these lists it turns out that in python and really in programs in
+general it's useful to have a list of values because we're going to be able to work with more
+and more data larger and larger data sets so let me propose that we come back to vs code
+here and let's do something that's perhaps a little familiar to some folks the world of
+hogwarts and let me go ahead and code up a file called hogwarts and let's see if we can't
+have a list of students at hogwarts here so i have a new tab called hogwarts.pi and let me go
+ahead and propose that i just define in this program a list of students whose names i know in
+advance so i'm not going to get user input for now i'm just going to know from the get go that
+the three students i want to consider are these a variable is going to be called students it's
+going to equal as i've done in the past a square bracket which means hey here comes a list
+and those values are going to be hermione in quotes because it's a string harry in quotes
+because it's a string and then ron in quotes because it's a string as well so this is a list of
+length three it's similar in spirit to my list of length three earlier but that had three inch zero
+one two now i have a list of three strings instead and this isn't very useful at the moment but
+let me just do something as a check for myself let me print out each of these students well
+wait a minute how do i print the contents of a list well in the past when we've printed a
+variable we've just printed out the name of the variable but i don't want to print out all of
+hermione and harry and ron all at once maybe i want to print out hermione first then harry
+then ron so i need a way to express more precisely which value do i want from this list and
+the way you do this in python is you use square brackets in another way if you have a
+variable in this case called students and you want to go inside of that variable and get a
+specific value that is to say you want to index into the list you use square brackets this way
+using numbers inside of the square brackets and here's where we see that it is useful to
+think and count in terms of zero on up instead of one on up these lists in python are shall we
+say zero indexed the first item in a list is at location zero the second item in a python list is at
+location one and the third is at location two so you're always kind of off by one mentally but
+you get used to it if you've never programmed before over time so let me print out all three
+students so let me print out students bracket 0 then students bracket 1. then lastly let me
+print students bracket 2 and this is my third and final line and of course if i run this code it
+probably does what you would guess if i run python of hogwarts.i there's hermione harry and
+rob each on their own lines there but there's got to be a better way right especially if i don't
+know in advance who's going to be in this list if next year there's some new students at
+hogwarts we can use a loop to do something automatically without having to manually type
+out zero and then one and two well here's another feature of python you can use a for loop
+not just a count from zero to one to two you can use python to just iterate over anything not
+just numbers but strings so i could actually do this for student in students colon and then
+indented underneath that i can say print student now it doesn't matter if i have three students
+or four or four hundred this two lines of code this loop will print all of those students for me
+one at a time so if i now run python of hogwarts dot pi there's the same list but i don't need to
+know in advance how long that actual list is now notice i made a conscious decision here i
+didn't call this variable underscore because this time i'm using the variable and while i could
+do this now no no no your code is getting way too cryptic if you're naming the variable
+underscore and you're using the variable underscore now you're helping no one now you're
+confusing the reader yourself down in the down the line you should call your variables what
+they are so in very appropriate name though i'm sure you could come up with others would
+be student and here you could say you would say student as well if you'd prefer to be more
+succinct it's not unreasonable to do something succinct in a loop like this for s in students
+using maybe the same letter that the list itself begins with but again why bother python is
+meant to be more readable if you have a list of students iterate over them one student at a
+time let me pause here to see if there's now questions about lists as i've now defined them a
+list of strings in this case or using a for loop now to iterate over and print each of those
+names yeah so is it not necessary to initiate student in this case or we can just declare a
+variable in the loop good question you do not need to manually initialize it python takes care
+of initializing the student variable to hermione first then harry second then ron third unlike
+other languages you don't need to initialize it to something yourself it just exists and it will
+work other questions on loops and lists in this way since you described break so is there any
+concept of continuous so that we can skip a particular case in loops yes you can continue
+using another syntax as well we haven't shown that for now we focused only on break okay
+sure can this follow work with either hash tables or different kind of fight tables or arrays uh
+indeed so we're getting ahead of ourselves there but there are yet other types of data in
+python and indeed you can use a for loop to iterate over those as well anything that is
+iterable so to speak is a piece of data that can be used with a loop like this but more on
+those more on those soon in fact let me transition here to show just another way of solving
+the same problem because up until now when we've used loops we really have relied on
+numbers and that's fine if you prefer to sort of stay in that space suppose i did want to iterate
+using numbers like i and 0 1 2 and so forth let me propose that we could change this code
+as follows if you would prefer to think about or if the program you're trying to implement
+requires that you use numbers like this you might do this for i in well i don't want to just say
+students because then i is not going to be a number i is going to be literally hermione then
+harry then rob i need to iterate from zero to one to two right if i know a list with three
+elements has these locations 0 1 2 i need to create a loop somehow that starts at 0 and
+ends at 2. previously when i wanted to do that i needed range but this 2 is not going to work i
+can't just say in the range of students because students is not a number it's not an integer so
+you can't pass it to range range expects an integer but there is a solution here it turns out
+that there is a function in python called length or len len that will tell you the length of a list
+and other things down the line too and now i think i can assemble these building blocks in a
+way that can allow me to use numbers in this way so range doesn't take a list of strings it
+takes a number and ideally that number is going to be 3 so i get a range of values 0 1 and 2.
+so i think i can nest my functions like this if i first get the length of the student's list that's
+going to be 3 then i pass that return value as the argument to range that's going to give me
+back a range of value 0 then 1 then 2. and what that's going to allow me to do then encode if
+i want is not just this i could do print now students bracket i and this is now where the syntax
+we're seeing is getting very expressive new and perhaps unfamiliar but if i can do open
+bracket 0 close bracket or open bracket 1 close bracket or open bracket 2 close bracket
+turns out i can actually put a variable in there and i can express any number inside of those
+brackets so as to print these all out dynamically in a loop let me do this python of hogwarts
+dot pi enter there's hermione harry and ron and now if i'm just curious i just want to poke
+around or maybe i want to do a ranking like who are the top three students in the school or in
+gryffindor well i can print multiple things at a time we've seen let me print out not just the
+students at location i but rather let's print i first and then the student at location i so two
+things to print and we know that print can take two arguments we've seen that before they'll
+be separated by a space let me go ahead and rerun this now i see that okay hermione is the
+top student but she's in zeroth place that's a little weird like we don't need to show the
+human using my program that we started counting at zero i can clean this up i can just add
+one to the i up here and now we see sort of a top three list of students hermione is number
+one harry is number two and of course ron is number three so we can get access to all of
+those same values as well or any questions now on on these lists any questions now on
+these lists this length these ranges or otherwise my question is uh for i in range can you
+explain this once more uh so let me rewind in time we started off doing this for i in 0 1 2 and
+then we printed out meow three times in that way the way that the for loop works is that it
+creates for you a variable that i've called i but i could call it anything i want it then assigns i
+initially to the first thing in the list it then automatically assigns i to the next thing in the list
+and then it assigns i to the third thing in the list and each time it does all of the indented code
+underneath we realize though that this is not going to scale well if i want to do something like
+a million times so we introduced range instead that has the effect of doing the same thing it
+returns to me a range of values a list of three things really so the behavior is exactly the
+same if we now fast forward to this hogwarts example now though what i'm doing is just
+combining these smaller ideas i'm still creating a for loop i'm still creating a variable called i i
+want to do it over a range of values but how many values well if i use the length function and
+pass to the length function the list of values lengths purpose in life is to tell me how long is
+this list and it's three so that's almost as though before i had just done something like this but
+i don't want to hard code three i want to dynamically figure out how many students are at
+hogwarts so i'm just composing composing composing or nesting all of these various ideas
+all right if i may let me transition now to hog in hogwarts still to introduce one final type of
+data before we combine everything with a few final programs it turns out in python there's
+not just strings not just ins not just floating point values not just bools not just lists there are
+also what are called dictionaries or dicks which are a data structure that allows you to
+associate one value with another literally a dictionary like in the human world if you were to
+open in a dictionary be it in english or any other human language what's inside of a
+dictionary well it's a bunch of words and definitions a computer scientist though and a
+programmer would describe those more generically as keys and values something
+associated with something else that's all a dictionary is it allows you to associate something
+with something else and notice this is already more powerful more interesting than a list a list
+is just a set of multiple values but a dictionary is sort of two-dimensional if you will just like a
+human dictionary a book it associates something with something else like words with their
+definitions now what does this actually mean in practice well suppose that we wanted to
+keep track of who is in what house at hogwarts well i could do it using lists alone let me go
+back to vs code here and let me just temporarily but in a way that i'm not going to like
+ultimately let me create another variable called houses set it equal to uh gryffindor
+corresponding to hermione's house gryffindor corresponding to harry's house and gryffindor
+corresponding to ron's house and let's add draco in there so we now have four instead of
+three students just so we have a little variety and he was in slytherin so now we have two
+lists and we could just agree amongst ourselves that whoever is first in the students variable
+lives in the first value in houses whoever is second in students lives in the second house
+whose ever third in students lives in the third house we could do that but honestly that is
+going to break down quickly when we have a lot of students when we have a lot of houses
+and what if we want to keep track of more things than that what if we want to keep track of
+every student's house and the patronus this uh this image that they conjure up magically well
+then we need a third list like this is just gonna get messy quickly if we're just on the honor
+system using multiple lists where everything lines up logically it doesn't end up well when
+your code gets more complicated but i do want to implement this idea i want to associate
+something with something a student with a house a student with a house a student with a
+house and so forth so how can i go about doing this well let me go back to my code here and
+let me propose that we do this using a python dictionary and this is the last of the new syntax
+really that we'll see here's the new syntax instead of using square brackets we're going to
+use curly braces for dictionaries as well we've seen curly braces in the context of f strings
+completely unrelated sometimes you run out of keys on the keyboard and the authors of a
+language need to start reusing symbols in different ways that's what's about to happen we're
+using curly braces in a different way now so let me create a variable called students and let
+me go ahead and set it equal to open curly brace and close curly brace this is an empty
+dictionary at the moment and here's how a dictionary works it allows you to associate
+something with something else and you do that like this hermione quote unquote colon and
+then the value thereof what do you want to associate with hermione well gryffindor what do i
+want to associate harry with well i want to associate him with gryffindor what do i want to
+associate ron with well i want to associate him with gryffindor well this is actually not going to
+this is going to get very ugly quickly once we add in draco and slytherin my code is going to
+get too long it's going to start rapping so this is purely aesthetic it is perfectly acceptable in
+python and other languages to format your code a little more readily and just add new lines if
+it makes it more readable and one way of doing this might be as follows i still have my curly
+brace up here i still have my curly brace down here but notice it's a little more readable now
+in that i have my keys on the left my somethings and my values on the right my other
+somethings it's just a little easier to skim top to bottom you could format it differently as well
+but i'm going to go ahead and add in now draco who lives of course in in slytherin so now i
+have each of these keys on the left and values on the right which is really again just a code
+implementation of this idea a little chart that you might write up with paper pencil when
+associating something with something else so how do i now use this code in an interesting
+way the syntax is almost the same if i want to print out the very first student hermione's
+house i could do this print out the name of the variable but i need to go inside of the variable
+i need to index into it and what's neat about dictionaries is that whereas lists have locations
+that are numeric zero one two hermione harry ron respectively dictionaries allow you to use
+actual words as your indices so to speak your indexes to get inside of them so if you want to
+print out hermione's house the key you care about is quote-unquote hermione and what this
+syntax here will do notice it's not a number zero or one or two it's literally hermione's name
+this is like going to the chart earlier and saying all right give me uh hermione is my key
+gryffindor is the value that's what we're doing here syntactically we're looking up hermione
+and getting the value thereof so if i go back to my code that should print out gryffindor and if i
+do this a few times students bracket quote unquote harry should give me harry's house print
+students open bracket ron that should give me ron's house and then lastly if i do this with
+students bracket draco that should give me draco's house now it's a little manual still i bet we
+can improve this but let me run python on hogwarts.high and we should see gryffindor
+gryffindor gryffindor slytherin which is exactly what we'd expect now all we've done again is
+we've just now moved from having just a simple list of names to again sort of two dimensions
+associating like we would on paper pencil something with something else keys with values
+respectively allow me if you will even though i realize this is getting a little fancy allow me to
+escalate things slightly here and transition from looking at just for instance uh that pattern
+there just hard coding those values there to actually printing these out more dynamically let
+me go ahead and use our loop and this question came up earlier as well let me go ahead
+and say for each student in students go ahead and print out for instance the students
+variable at well let's just say student first let's keep it simple so this is not going to be that
+interesting yet but when i run python of hogwarts.pi and hit enter notice what should i see let
+me take a question here to see what am i going to see when i hit enter now when i'm doing
+for student in students yeah i think we would only see keys perfect so good intuition it could
+have gone both ways could have been values the houses but when you use a for loop in
+python to iterate over a dictionary by design it iterates over all of the keys so we should see i
+think hermione harry ron and draco let me hit enter now enter and indeed you're exactly right
+we see just the keys but that's not really that useful if what i really care about is who lives
+where can i print out both well i think i can let me go ahead and do this let me print out not
+just the student's name the key but let me use the key their name to index into the dictionary
+right if i know the word in the dictionary let me look up its definition if i know the student's
+name let me look up their house and the syntax for this just like a list is students bracket and
+just like in the past we used i when i was a number we can also with a dictionary use a string
+so if the student's name is the key then this syntax students open bracket student close
+bracket will go to hermione's location and get back her house we'll go to harry's location and
+get back his house and so forth so if i do python of hogwarts.pie enter now i see hermione
+gryffindor harry griffin or ron gryffindor draco slytherin now it looks like i've given them all
+new last names but i can clean that up this is just a print thing let's go ahead and change our
+separator from the default space to maybe a space comma and just using print features now
+let me run the same program again enter now i've just got some nice pretty commas in there
+to make clear that hermione's last name is not in fact gryffindor but that's just a print detail
+any questions then on these dictionaries and what i've just done questions on these
+dictionaries and this looping over them here um i just can't get my head around the uh for
+student in students does uh if i'm just correct me if i'm right does that mean it imports the list
+of students and uses the indexes or in other words hermione harry and ron as the indexes in
+the actual um the list of students correct so this is just a feature of python when you use a for
+loop with a dictionary what happens is this if this is the dictionary here with the keys on top
+and the values on bottom you get to choose what the variable's called i called my variable
+student just because it makes sense because i want one student at a time and what the for
+loop does just like it did with numbers before the zero the one and the two it allows me to for
+instance set student equal initially to hermione's name and then the next iteration of the loop
+the next cycle sets student equal to harry's name then ron then draco it just kind of happens
+automatically like that is what the python interpreter does for you when it sees a for loop like
+that so it's very similar in spirit to iterating with a for loop over a list but rather than iterate
+over the numeric location zero one two it iterates over the bold faced keys in this
+representation here graphically and allow me to give us one other example on hogwarts
+before we look at one other familiar domain at the risk of things escalating a little bit let me
+propose that we continue the story with one final hogwarts example like this what if we have
+more information about each of our students and this is kind of inevitable right if you're
+implementing a program that's a database with people or customers or employees or
+anything else you can imagine having a lot of data about anything you're representing in
+your program here for the sake of discussion suppose that every student at hogwarts of
+course has a name they have already a house but they also have a patronus for those
+unfamiliar this is the animal or entity that comes out of the end of their wand when they make
+a certain magical spell the point here being is that we want to associate not just one thing
+with the student but multiple things as well their name their house and their patronus in this
+case well what might code like this look like well let me go back to hogwarts.i and let me
+start fresh for just a moment and let me propose that i enhance this with a bit more data and
+this data is going to look as follows my students variable now i'm going to propose we think
+of it as a list what if we have a list of dictionaries as follows indeed i want to literally
+implement this picture here so notice that my previous picture just represented a single
+dictionary but suppose i wanted to compose a list of dictionaries that is four students so a list
+of four students and suppose that each of those students is itself a dictionary a collection of
+key value pairs keys and values something and something else well here's one other way we
+can do this in code let me go back to vs code here and let me define a variable called
+students that is equal to a list and i'm going to preemptively move my cursor onto separate
+lines because i know this is going to be long and i want to fit all of the elements of this list
+inside of it i'm now going to create a dictionary one dictionary per student and how do i
+create a dictionary i just use those curly braces but it's up to me to define what those keys
+are and let me propose that one key this time won't be the student's name explicitly it will
+literally be the word name and they're going to have the name hermione this same student is
+going to have another key called house and the value is going to be gryffindor and the same
+student is going to have a third key called patronus and the value of that is going to be i had
+to look it up in otter according to the book now i'm going to create a second dictionary inside
+of this list and again a dictionary it's like literally like the human dictionary of words it's a book
+that contains keys and values words and definitions what are the three words i'm storing in
+each of my dictionaries name house and patronus what are the definitions of those words for
+hermione hermione gryffindor and otter respectively for harry the definitions are going to be
+different in this new dictionary let me give myself another pair of curly braces and say this
+name quote-unquote colon harry house here is again going to be gryffindor and this one i i
+knew his patronus is going to be in this case a stag all right next a third dictionary the name
+here will be ron and i'm going to go ahead and do that just like this next i have the house and
+he too was gryffindor lastly how to look this one up ron's patronus was a jack russell terrier
+lastly is draco in a third in a fourth dictionary now so another pair of curly braces the name of
+the student is of course draco the house of this student is slytherin and draco interestingly
+enough at least according to the internet has no patronus was never revealed in the books
+or the movies so it turns out this is actually a wonderful teachable moment there is a special
+keyword in python that is literally none n-o-n-e with the first letter capitalized this represents
+officially the absence of a value so i could a little sloppily do something like quote unquote
+but does that mean i didn't get around to typing it or not it's a little clearer semantically to say
+literally none a special keyword in python to make clear that i know draco has no patronus
+it's not just an oversight on my part now that i have this what do i have in the computer's
+memory i have a list how do i know it's a list because i see a square bracket at the beginning
+and another square bracket at the end that's just my visual clue okay i don't know
+necessarily what else is going on here but there's a list of something what is in that list well
+here too the syntax is our clue because this line two starts with a curly brace and ends with a
+curly brace i just know that is a dictionary a collection of key value pairs now this all fit on my
+screen perfectly so i didn't bother moving all of the key value pairs onto new lines it would
+have made it really tall so i kept it all together here this time but how many keys does this
+first dictionary have put another way in hermione's physical dictionary how many words are
+in that dictionary three the words are name house and patronus what are the three
+definitions or values of those words in hermione's dictionary hermione gryffindor and otter
+respectively and the same story goes for harry then for ron then for draco i have by design
+chosen to give them dictionaries that have all the same keys all the same names but they all
+have unique values and that's my design that's my prerogative as a programmer so why is
+this useful at the end of the day now i have access to a whole collection of interesting data
+about all of these students and i can still do a loop i can say for student and students that's
+going to allow me to iterate over this list of students and let me go ahead and print out just
+one thing at a time let me print out the current student's name so as complicated as the
+dictionary is this should be pretty comfortable for student and students is just going to iterate
+over every student in the list one two three four total the next line is just gonna print out the
+value of the name key it's like opening a physical dictionary looking up the word name and
+giving us hermione harry ron and draco respectively from each dictionary so if i run this
+version of hogwarts and hit enter there i get all three of their names but what if i want more
+information than that i want both their names and their houses well just add to prince
+arguments student open bracket house close bracket all right let's go ahead and run this
+python of hogwarts.pi and hit enter so i now see hermione gryffindor harry gryffindor and so
+forth well we can aesthetically clean this up a little bit by adding a separator with print like a
+comma and a space just so that when i run this again i now see some comma separating
+these values but recall that students have not just a name not just a house but also that
+patronus so if we want to print out that too we now have the syntax via which to go into that
+same dictionary for each student and output their patronus as well as their house and their
+name so if i run this program one final time now i see all of the data in this here dictionary so
+this is a lot to absorb all at once i'm sure it's the last of our new data types on top of lists we
+have these dictionaries but again a dictionary at the end of the day is just a collection of
+values similar to these values here that allow you to associate keys with values and the first
+version of this program associated literally the students names with their houses but then i
+realized in my next version wait a minute what if every student has not just a name in a
+house but a patronus let's actually standardize the names of our keys to be name house and
+patronus and then the values of those keys can actually be the data like hermione gryffindor
+otter and so forth questions now on these dictionaries and iteration thereof i just was
+wondering if the suppose the dictionary is very huge and if i want to look up for a specific
+student so how do i know where to look that student from like can we sort it out in
+alphabetical order or numeric order or anything like that in short answer yes one of the
+features of python is that it makes these dictionaries very highly performant for you that is
+even if they're very large as they will be in future weeks when we manipulate more data
+python will find the data you care about quickly for you and in fact that is a feature of the
+language that is a feature of a dictionary to get you the data quickly and there are functions
+that you can use you can sort the data you can sift through it you can do very performant
+operations as we eventually will allow me then to propose as we wrap up these loops that
+we solve just a few final problems that will perhaps evoke fond memories of yesteryear at
+least for me where in one of my favorite games growing up was this one here on the original
+nintendo and this is a two-dimensional world where the characters move up down and right
+not so much to the left in jumping over pyramids and obstructions like these and allow me to
+propose that we use this just for inspiration not to do something that's quite as colorful or
+graphical as this but just to focus on for instance this barrier in the middle of the world here
+that mario or luigi had to jump over and so this here seems to be like three bricks stepped on
+top of one another and we won't do things quite graphically but let's just implement a very
+simple python based version of this textually using maybe just hashes for bricks because
+there's a pattern here one on top of the other and i bet we can solve this in any number of
+ways well let me switch back over to vs code here and let me propose that we create a
+program called mario.pi using code in the terminal window and then up here let me start by
+implementing that same picture as simply as i can printing out just literally the hash and then
+the hash and then a third final hash this is going to be a very textual approximation of it but i
+think if i run python mario.pi i've got a very simple version of that same column of bricks so to
+speak but you can imagine that certainly in a game where maybe these the columns get
+higher or lower it would be nice to write code that's actually a little more dynamic than that
+and doesn't just use print print print which is literally copy and paste it would seem so let me
+at least adopt some of today's lessons learned and instead do something like this for
+underscore in range of three let's now print out just one of these at a time but the fact that
+i've now used a three to range means if i want to change it to something bigger or smaller i
+change it in one place not in three or more places and this code too of course if i got it right
+is just going to print out the exact same thing so we're iterating here but let's see if we can
+now integrate our discussion of writing functions of our own to begin writing something a little
+more dynamic and solving more complicated problems ultimately one of the nice things
+about functions is that they allow us to not just write code that we can use and reuse they
+allow us to create abstractions if you will an abstraction is a simplification of a potentially
+more complicated idea and we've seen this a few times over the course of the weeks for
+instance we had a function called hello which granted didn't do all that much it just printed
+hello but it allowed me to think about the function as exactly what it does not generically
+printing something but literally saying hello i've been able to get a number using something
+similar by defining my own function like get number well let me go ahead and for instance
+assume for the moment that i've had the fourth ought to in my function main use a function
+called print column that seems as good a name as any to use a function that prints a column
+of bricks well how can i go about now implementing this abstraction this simple idea print
+column with actual code well we've seen before with def we can do just that let me define a
+function called print column let me accept as its input generically speaking a parameter
+called height i could call it n or h but i'll be a little more explicit now with heights just so i
+remind myself what it's doing and now i think i can just borrow some of that same code from
+before for underscore in range of height go ahead and print out a single hash and then at the
+end of this whole program let's just call main so i've kind of complicated the code it doesn't
+do anything more just yet but it's setting me up for solving what i think are going to be more
+sophisticated problems if i run python of mario.hi we're back where we began but i now have
+a function an abstraction print column that's going to allow me to think about printing some
+chunk of the world of mario at a time and i can do this in different ways too notice that if i
+really want i could do something like this i could re-implement now print column in different
+ways especially if i'm using print column all over my code or maybe still a colleague of mine
+a friend someone else on the internet is using my print column function what's also not a
+nice about functions you've written is you can change the underlying implementation details
+of them but so long as you don't change the name of the function or its parameters or what it
+returns if anything no one else knows the difference you can change the internal
+implementation as much as you want if you want to improve it or make fixes over time so for
+instance another way we could implement print column recall would be something like this a
+bit clever with one hash and then a new line and then maybe we could do multiplication of
+strings and then end this line with quote-unquote again it's okay if you're not comfortable
+with this syntax this was a more clever approach we saw in the past but if i run python of
+myo.pi here i'll still see a column of three but what's important here is that main does not
+need to know that the underlying implementation of print column has changed well let's
+transition to a different dimension if you will and rather than print out just these vertical bricks
+let's fast forward in the game to this part of the world here at some part mario encounters
+these bricks in the sky that if he jumps up underneath they become coins and so he he gains
+to his score but let's go ahead and focus only on those coins and let me propose that we
+print out oh just these four question marks here and let me go back to vs code here and let
+me propose that within vs code here just like before we try to abstract this away so let me go
+ahead and get rid of this version because we're now going horizontal instead of vertical with
+our output and let me just say well print row four times let me just abstract away the problem
+at hand i don't know yet how i'm gonna print those four question marks but let's call it print
+row four and i'll assume i'll now solve this problem let's now go down that rabbit hole of
+solving the problem define a function called print row it's going to take a width instead of a
+height because it's horizontal instead of vertical and how can i do this well now we have an
+opportunity to do string multiplication even more elegantly i can say quote unquote question
+mark times width and this is a very pretty pythonic way of printing what could otherwise be a
+loop and that's fine but this is going to go ahead and print those question marks for me let's
+do python of mario.pi enter and now i've got four question marks it's not nearly as pretty as
+the more graphical version but it is at least a building block toward having now a reusable
+function like print row and why am i doing all this like why are we over engineering the
+solution to these problems by having print column in print row well it's a useful
+problem-solving technique as soon as your world does not look one-dimensional like this or
+with the column version but what about this later in super mario brothers does mario have to
+jump down into this world where there's a lot of these underworld barriers and this one here
+for instance looks like a square it's two-dimensional there's a height and a width to it and that
+is to say there's a bunch of different ways we could implement this thing if maybe for
+discussion it's like a three by three grid a three by three square of sorts well how can we go
+about solving this here problem well let me propose we come back to vs code and let me
+propose that we think about this in a couple of different ways i could do this like this if i if i
+know where i'm going you know maybe i'm a seasoned programmer let me go ahead and do
+this let me print out a square the width and the height of which is three that's an abstraction
+i'm just taking for granted for a moment that there is already a function called print square
+that's going to be width 3 and height 3 as well but someone's got to implement this and at
+the moment there's only me at the keyboard so let's go ahead and implement that square let
+me go ahead and define a function called print square that takes in a specific size both for
+height and for width and here's where we have an opportunity to use some of those loops
+and we can use those loops in a way we haven't yet if i want to print out all of these rows but
+also all of these columns i now have to think not just cyclically like a loop allows but i need to
+think two-dimensionally and if you're familiar with like an old-school typewriter or even a
+printer nowadays it generally prints from top to bottom so even if you have multiple columns
+you print out one line at a time and while you're on that line the printer or the typewriter prints
+from left to right and that's kind of the mental model to have with your black and white
+terminal window all of the output for every example thus far starts at the top and goes down
+to the bottom from top to bottom left to right so we have to generate our output our square in
+that same way so let me propose that we do this let me propose that we know we need to
+iterate this many times three or more generally size so let me do this for i in the range of size
+what do i need to do three times well i want to print out what one two three rows of bricks but
+within each row of bricks what do i want to print one two three bricks specifically so if we go
+back to our diagram here and i stipulate that it's indeed meant to be a three by three square
+three wide and three tall what do i want to do to print the first row i want to print brick brick
+brick brick brick what do i want to print on the second row brick brick brick and the third row
+brick brick brick so i'm doing three things three times there's a lot of printing that must
+happen so let me go back to my code here and let me propose now that we think of this
+outer loop that i've just started as representing each of our rows for i in range of size is going
+to ensure no matter what i do next that i can print out one two three rows or more generally
+size where size could be three but it could be smaller or larger what do i want to do on each
+of the rows well just like an old school typewriter or printer on each row i want to print out
+brick brick brick brick brick brick brick brick brick well that sounds like a cycle some kind of
+loop so maybe i can have inside of one loop another loop i don't want to use i again because
+i don't want to use the same variable and mess up my counting so i'm going to by convention
+use j very common to use i and then j maybe k but after that you shouldn't keep nesting
+inside of each other let me go ahead and say for j in range of size 2 because it's a square
+and then each of these rows let me print out a single hash but no new line but after each row
+let me print only a new line so there's a lot going on here especially if you've never touched
+python let alone loops but notice what i've done here too and i'll add some comments for
+clarity for each row in square for each brick in row print brick and here is where comments
+and more generally pseudo code can really help explain to yourself and to others what your
+lines of code are doing on line eight i'm iterating from i equals 0 on up to psi so 0 1 2. on line
+11 i'm doing the exact same thing but using j from 0 1 2. but that's good because i represents
+now each of my rows and while i'm on each of those rows inside of this outer loop i'm going
+to do brick brick brick one two three one two three one two three but i don't want my cursor
+to keep moving to the next line while i'm on a row so i'm just overriding that line ending but
+let me ask a question of the group now why on line 16 do i have a print here all by itself why
+do i have a print all by itself notice that it's below the inner loop but inside of the outer loop so
+to speak what is that loop on line 16 doing ultimately every time you finish a line you have to
+add a new line and at the end of it so print it prints a new line perfect i don't want a new line
+after every brick i only want to do that at the end of the row and that's why my comments
+now are perhaps enlightening notice that this loop here is just iterating for each brick in the
+row once i'm done with that inner loop so to speak once i'm done with these highlighted lines
+here to evelyn's point i need to print out one blank new line and we've not done this before
+but when you call print with no arguments all you get is that automatic line ending the
+backslash n where the cursor moves to the next line so if i now roll go back to my terminal
+window and run mario.pi i think i should get a 3x3 square and it doesn't quite look like a
+square on my screen because these hashes are a little taller than they are wide but it is in
+fact 3x3 but let me propose as we've always done here how we might tighten up this code
+further just for clarity's sake let me get rid of my comments for a moment just so we can see
+how many lines of code we have total and let me propose that we maybe do this let me
+propose that you know what this inner loop especially if you're having trouble wrapping your
+mind around one loop inside of another loop you don't strictly need it what if we do this trick
+again what if we print out inside of the outer and only loop each of those hashes times the
+number of times we want them right we draw inspiration from an earlier approach and we
+run python now of mario dot pi same result but now print square is really nice and compact it
+has one explicit loop and it's still printing out using string multiplication all of the hashes at
+once on that row if you like abstraction and you'd like to wrap your mind more around what
+the code is doing well let's do this if you're not quite clear on what's going on let's propose
+that you implement a function called print row passing in size and let me propose that this
+print row function it simply taken that width and print out the individual hash times that many
+times in other words here's an opportunity for abstraction whereby well what does it mean to
+print a row well when you're implementing print square i don't really care what it means to
+print a row i just need to know that someone's taking care of printing the row you can kind of
+pass the buck to another function altogether and how does print row work well it could use a
+for loop it could use this string multiplication trick this is a way to take a larger program and
+this is probably the most complicated one we've looked at thus far и разложить это на
+более мелкие компоненты, которые, будучи собранными, позволят достичь конечной
+цели. На этом наш обзор циклов в Python заканчивается. Эта возможность циклически
+повторять действия снова и снова, а также сочетание их с условными операторами,
+задавать и отвечать на вопросы, а также их комбинация с функциями и переменными,
+позволяют нам иметь большинство необходимых строительных блоков для решения
+гораздо более масштабных, интересных и личных задач. В ближайшие недели мы
+начнем понимать, что именно может пойти не так, но мы также познакомим вас со
+всеми инструментами, с помощью которых вы сможете устранять эти же проблемы.
+

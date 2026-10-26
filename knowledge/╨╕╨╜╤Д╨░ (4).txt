@@ -1,0 +1,484 @@
+так [Музыка] [Музыка] Итак, это вводное занятие CS50 по программированию на
+Python. Меня зовут Дэвид Малин, и на этой неделе мы поговорим об исключениях.
+Исключения в Python, как и в других языках программирования, означают проблемы в
+вашем коде. Действительно, когда в вашей программе возникает исключение, это не
+значит, что это хорошо, это значит, что что-то пошло не так, и в идеале вы должны
+как-то это исправить. Итак, что же может пойти не так? Я открою VS Code на своем
+компьютере, и в окне терминала запущу команду `hello.pi`. Это, конечно же, откроет
+новую вкладку ` hello.pi`, в которой я смогу написать свой код. Давайте напишем очень
+простой код, чтобы просто сказать «привет миру ». Давайте напишем `print quote hello
+comma world`. И я забыл закрыть кавычки. Это ошибка, которую вы, возможно, уже
+совершили или, безусловно, совершите в будущем. Она довольно незаметна, потому
+что вы можете не заметить, что пропустили её. что ж, позвольте мне, с некоторым
+оптимизмом, перейти к моему terminal window now and run python of hello dot pi and hit
+enter and that's the first of my errors my gosh i've only written one line of code and i seem to
+have more lines of errors on the screen but the salient point is this bottom most thing here
+notice where it says syntax error a syntax error is a problem with the code that you have
+typed your syntax just like english and other human languages have syntax associated with
+them so does my code and it's not quite correct something is awry i didn't follow the
+instructions properly and it does elaborate for me unterminated string literal now that's a bit
+arcane that is a bit of a confusing error message but unterminated would generally mean
+that i started something but didn't stop it i didn't terminate it string of course is a sequence of
+text like we discussed before or stir in python and literal generally refers to something that
+you literally typed it's not a variable it's something like quote unquote or just quote hello
+world so the fix here of course is going to be to go ahead and terminate that string and
+actually close the quote and if i now go back down into my terminal window and rerun python
+of hello.pi now i'm saying hello to the world so the catch with syntax errors here is that
+syntax errors are entirely on you to solve a syntax error is a problem that you've got to go
+back into your code and fix from the get go you can't just kind of hope that it's going to
+resolve itself or expect that other parts of your code will catch it for you syntax errors just
+must be fixed but there's a lot of other types of errors in python that might be described as
+runtime errors that happen while your code is running and it's really up to you to write some
+additional code defensively to detect when those errors happen because you don't
+necessarily know for instance what input humans are going to type into your program and so
+you better be ready defensively to accommodate things that they type or even mistype so for
+instance let's go back over here to vs code and let me propose that we take a look at a new
+file altogether i'm going to close hello.pi and i'm going to write code of say number dot pi so
+let's play around with some numbers in python and the first thing i'm going to go ahead here
+and do with number.pi after opening this new tab is i think i'm going to go ahead and print
+type up a relatively simple program that maybe prompts the user for an integer like x and
+then just prints out what x is so we're going to start super simple but again in starting simple
+we'll be able to really see where i've done something wrong well here we go i'm going to go
+ahead and say a variable called x is going to get assigned the value of the return value of
+input quote unquote what's x question mark and i'm going to include a space to move the
+cursor over a little bit and then ultimately i'm going to go ahead and oh wait a minute if i'm
+wanting to get an int from the user recall that i need to do something proactively i need to
+actually convert that input to an integer using the int function in python so now i'm passing
+the return value of input as the argument to int and that will store an x ultimately an integer
+not a string that looks like an integer all right let me go ahead now and just quite simply print
+out what this is i'm going to go ahead and print out quote unquote x is x but i don't want to
+literally say x is x i want to plug in the value of x so maybe the easiest way to do that is to
+surround it with curly braces and then if i'm using these curly braces and i want python to
+interpolate the value of that variable that is substitute what x actually is in between those
+curly braces recall that i need to use a format string or an f string by prefixing this whole
+thing with an f now that i've done that let's go ahead and see what happens i'm going to go
+ahead in my terminal window and run python of number.pi i hit enter and so far so good all is
+well i'm being prompted for x let me go ahead and type in a number like 50. all right that
+seems to work program seems to be correct or is it what could go wrong in this program
+even though nothing did just go wrong but if i run it and run it and run it again during the
+running of my program what could still go wrong especially if i'm not the human interacting
+with it but some other human instead any volunteers here for this one what could go wrong
+and in what way is this program not really correct even though at first glance it seems so
+what uh what is any interpreter might be code in a in a integrated ide we can't code in a
+interpreter so i'm not calling an integer i'm still having trouble hearing you but what i think i
+heard is that if what the user types in is not in fact an integer i can't just blindly convert it to
+an int if i'm not putting too many words into your mouth i think what i should perhaps do here
+is be a little defensive and let me see if i can't simulate exactly the problem that could go
+wrong here let me go ahead and run again python of number.pi let me try another number
+and in fact when testing your code generally it's a good idea to test corner cases maybe
+numbers that aren't quite as plain as 50 or 49 or 51 let's choose some numbers that might
+be a little more interesting if only mathematically like zero all right zero seems to work my
+code still prints out that x is 0. what might be another corner case to consider well let me go
+ahead and try a negative number that 2 is pretty different in spirit from 50. negative 1 okay
+that works too well let me try it one more time i've tried positive numbers negative number
+zero let me try something like a cat so literally c-a-t typing in a string that doesn't even look
+like a number and yet let's see now what happens when i hit enter all right we'll see now
+we've got another kind of error it's not a syntax error because i didn't make a typographical
+mistake i didn't forget some piece of syntax i actually now have a error with one of my values
+and it's in a value i didn't even anticipate the human me in this case typed it in long after i
+wrote the code so what does this refer to a value error well let's see what the explanation is
+invalid literal for int with base 10 quote-unquote cat now this too is a bit of a mouthful and
+unfortunately in python in a lot of programming languages the error messages are written for
+pretty comfortable programmers and of course when you're learning programming for the
+first time you might not be so comfortable with the programming language let alone the error
+messages but let's see if we can't glean some insight so invalid literal well again a literal is
+just something that's been typed in it would seem for int what is int exactly well int is the
+function i'm using to convert the user's input to a corresponding integer base 10 that refers to
+the decimal system which is the default that python's using and it looks like at the end of the
+day what python really doesn't like is that i passed cat quote unquote to the int function so
+how do i go about actually fixing this problem well i could just add instructions in my program
+maybe i could add a line of print telling the user more explicitly be sure to type an integer or
+please don't type cat please don't type strings of course the user might still not oblige they
+might not be reading the instructions so that too is probably not an effective strategy what we
+really want to do is write our code with error handling in mind we want to write lines of code
+that not only accomplish the problems we care about but that also handle errors that might
+unexpectedly happen and in general when programming programming defensively assume
+that the users aren't going to be paying attention or worse they're malicious they're trying to
+crash your program so we want to handle as many errors as we can now how do we go
+about doing that in python well it turns out whether you want to catch a value error or other
+types of errors as well though not syntax error python actually has this keyword called try
+and it's sort of aptly named if you want to try to do something in python you can literally use
+this keyword and you can check whether or not something exceptional something erroneous
+has happened so using both try and this other keyword accept can i go and try to do
+something except if something goes wrong i can do something else instead so let's consider
+how can i go about trying to convert the user's input to an end except if something goes
+wrong well let me go back to my code here and let me propose that i now modify this
+example as follows let me go ahead and above my first line of code i literally write try and a
+colon telling python try to do the following i'm going to go ahead and indent my existing lines
+of codes here by the same number of spaces four in this case and then i'm going to add one
+more new line down here that literally says accept value error and notice it's important that
+i've capitalized the v and i've capitalized the e these symbols are case sensitive and this is
+now an opportunity after this colon to tell python what i want to do in exceptional cases when
+the number or the input from the user is not in fact a number and i'm going to say something
+plain like print quote unquote x is not an integer i'm at least going to tell the user roughly
+what the problem actually is so notice another detail the indentation is important because i
+have try on line one and i've indented lines two and three those are the two lines of code that
+i'm trying except if i see a value error line 5 because it's indented is what is going to get
+executed in cases of those errors let me go ahead now back to my terminal window and run
+python of hello of python of number dot pi enter and let's go ahead and type in 50 again still
+seems to work and of course i'm trying and succeeding let me go ahead and try once more
+this time though with the word cat or really anything that's not a decimal number and now
+you'll see much more cleanly x is not an integer i'm not seeing some scary error message
+that i of a user am i'm going to have no idea how to handle now you the programmer have
+anticipated that something exceptional can happen and you've gone about actually handling
+the error for the user giving them an appropriate error message instead let me pause here
+and see are there any questions now on what we've just done by introducing try and accept
+to handle this value error is value ever the only type of ever you can get or the other types is
+value-added the only thing you can catch there are other errors as well and we'll see a few of
+them today and there's many many more honestly that if you continue programming and
+programming in python you're going to see a lot of them over the weeks the months the
+years to come but the technique for handling them is going to be largely the same other
+questions on try accept or these exceptions more generally yes sir actually to use the accept
+block you need to know the type of error right like here you knew it for the value error what is
+what if you can't anticipate this particular type of error a really good question so i'm being
+very good about catching so to speak the very error that i know might happen i don't know
+when it might happen because it's going to depend on the user but i know what kind of error
+will happen from the int function there is a way in python where you can say except if
+anything goes wrong and you can literally omit value error and just catch everything the
+problem with that is that it sometimes hides other bugs in your code because you don't
+necessarily know what's going wrong and if you don't necessarily know what's going wrong
+how can you possibly handle it correctly so bad practice and put another way it's lazy to do
+that to just say catch everything and i'll deal with it here so a much better practice would be
+to figure out what kind of errors could happen and include mention of them explicitly as i've
+done now with that said if you read python's official documentation as you'll eventually
+invariably do it is not great about telling you proactively what kinds of errors can be raised in
+this way so it's a bit of contradictory advice you should do it this way but it's not always
+obvious what you should be checking for but you get better at it with practice and some of
+the times the documentation does spell out what could go wrong let me turn our attention
+now back to this and point out that even though this is better code it is more correct in the
+sense that i'm not just leaving it to the user to see some really ugly default python error
+message that most people are going to have no idea what to do with i'm at least handling it
+more elegantly and i'm printing out x is not an integer so it's at least more instructive but this
+isn't necessarily the best way to implement this code why well here too i'm actually still being
+a little lazy so notice that i'm trying to do not one line of code but two lines of code and this
+isn't a huge deal because we're only talking about two lines of code but in the interest of pr
+preaching best practices you should really only be trying to do the one or very few lines of
+code that can actually raise an exception that can actually fail in some way i am pretty sure
+that calling print here is not going to raise a value error whether x is an int or a string or a
+float or anything else the format string feature of python is going to handle printing it just fine
+so really what i'm going to do is this i'm going to move this line 3 down to the bottom of my
+code i no longer need to indent it i'm just going to execute it at the bottom of my file here
+unfortunately by doing this i've done a good thing by now only trying to do the minimal
+amount of work necessary that might raise the exception a value error but i fear i've
+introduced a new mistake well let's see what is now incorrect let me go ahead and again run
+python of number.pi enter let me go ahead and do it correctly with 50 and all seems to be
+well but again let's try those corner cases the zeros the negative numbers or in this case the
+cat let me go ahead and type in cat again enter now i have a name error so now it's yet
+another type of error in my code that i've introduced here and what is this name error mean
+well just as a value error refers to that the value of some variable the value that someone
+has typed in is incorrect name error tends to refer to your code like you're doing something
+with the name of a variable that you shouldn't and why might that be well let me turn our
+attention back to the code here and consider what is it complaining about well the name
+error is what i see down here and it's telling me name quote unquote x is not defined and
+notice if i look further here it is mentioning line six so i know the problem is with my code on
+line six and that worked a moment ago and i'm defining x on line two but let me ask the
+group here why does x not in fact exist on line six why is it not defined even though i'm pretty
+sure i was intending to define it on line two maybe the scope of the variable is between the
+try block so good terminology scope refers to the portion of code in which a variable exists
+that too though isn't quite right in python that would be true in cc plus plus and java where
+indentation or curly braces tend to define the scope of a variable but again here in general
+and this worked a moment ago x exists once it's defined on line two because remember i
+printed out x is 50 a little bit ago let's try one more hypothesis here one more hand why is x
+somehow still not defined um yeah so is it because it's local variable meaning that like it
+doesn't define outside of scope it's like what people have mentioned it's it's asked it prompts
+the input and try right but outside of it it's undefined so still good instincts and good
+terminology too there's this notion of local variables which tend to exist inside of functions for
+instance global variables which tend to exist in entire files in this case too though that's not
+quite the case what's happening here boils down to order of operations let me come back to
+the code here and recall that anytime we've discussed the assignment operator the single
+equal sign that copies a value from the right to the left but consider for a moment at what
+point something is going wrong well the input function is probably working just fine because
+we've used that a lot now to get user's input it always returns a string or a stir in python but
+what could be going wrong well if i'm passing that string to the int function as its argument
+it's probably the int function that's airing and indeed if you think back earlier when we had the
+value error it was in fact the in function that did not like quote unquote cat as input so this is
+all to say that this portion of my code highlighted now to the right of the equal sign that's the
+code that's creating a problem that's the code that was creating a value error and in this
+case we're catching the value error but because the value error is happening on the right of
+the equal sign there's no value being copied to the left the error is interrupting that whole
+process so even though we see x equals dot dot dot on line two the portion of that line to the
+left of the equal sign isn't getting evaluated ultimately because the value error is happening
+too soon and so when we finally get down to line six even though it looked like i was defining
+on line two and i would have defined x on line two if all had gone well we didn't get to the
+part where the value is copied from right to left because the value error happened first so
+this code is just incorrect now so how do i go about solving something like this well it turns
+out that there's another feature of the try and accept syntax that python supports which is
+that it also supports the keyword else now we've seen else before if you think back to our
+discussion of conditionals we saw if we saw l if we saw else which was kind of this catch-all
+what you should do in the event that nothing else is relevant that's kind of the same intuition
+here for the try accept feature of python what you can do is this you can try to do the
+following as i've done except if this goes wrong but if nothing goes wrong else go ahead and
+do this so this is one way i can solve this same problem now no matter what now python is
+going to try to execute line two if something goes wrong it's going to execute slides 3 and 4
+to handle that value error however if you try and this code succeeds then there is no
+exception to handle so you're then going to execute this line here so it's a little confusing
+perhaps in that we're now using else both for conditionals if l if l if l if else and we're also
+using else with these try accept blocks but that's okay that's part of the language that's one
+of the features so now if i rerun this code in my terminal window python of number.pi let's do
+something correct like 50 i see that x is 50. so line 1 is executed we're trying to do the
+following line 2 is executed because the conversion happens successfully and the number
+50 gets copied from right to left the exception does not happen so we ignore lines three and
+four we jump immediately to line five and six which prints out the result by contrast though
+let's do this one last time python of number.pi let's type in cat or again any other word and hit
+enter now we don't see what x is rather we see quote unquote x is not an integer which is
+what's being handled in my accept clause all right let me pause here because that's a lot of
+new syntax and see here if there's any questions on try on accept on else name error or
+value error can you please repeat try function repeat the name error what's the problem with
+the name error yes yes yeah so let's let's just rewind a couple of lines here before i fix this
+problem by now getting rid of the else a moment ago we had code that looked like this
+whereby i was getting a name error python of number.pi enter typing in cat that looked like
+this where namex is not defined and the problem was on line six according to this output in
+python well let's think about this now deductively let's try a different approach on line six i'm
+seeing an error that name x is not defined okay python's already telling me x does not exist
+at that point so how could that possibly be well where should x be defined well presumably x
+is defined on line two up here so what could go wrong well if the user has inputted
+something that doesn't look like a number like the word cat passing cat the return value of
+input as the argument to int to convert the word to an in makes no sense you can't convert a
+cat cat to an integer at all so the int function is raising a value error at that point and the error
+is being handled with this code here but notice this line 6 is not indented it's left aligned with
+the rest of my code which means no matter what line 6 is going to execute it's going to
+execute whether i typed in 50 or i typed in cat but if i typed in cat again x never gets a value
+so it's not defined here on line six so when i introduce finally the else statement that makes
+sure that these things are mutually exclusive i only execute the else if i tried and succeeded
+up above well let me propose that we refine this just a little bit further as well and consider
+how we might improve this example a little bit more it's a little it's a little unfriendly of me to
+be rejecting the user's input after they fail to provide an integer and just quitting the program
+really right it'd be more user-friendly if i just prompt or re-prompt the user again and again
+and in the chat if you could what's the feature of python that you can use if you want to do
+something again and again and again until such time as the user cooperates and gives you
+what you're looking for like a number so yeah loop loop loop so a loop is something that
+happens again and again and again and maybe we can use that same mechanism a loop in
+order to prompt the user for x and if they don't give us a number prompt them again and if
+they don't prompt them again and again and again we don't need to just quit out of the
+program so quickly so let me propose this let me propose here that i improve this code by
+deliberately doing this let me induce a infinite loop at the very top of my code with while true
+recall that the while keyword induces a loop a cycle that behaves like this and it asks a
+question a boolean expression that needs to evaluate either to true or false well if i want this
+thing to loop forever at least initially we'll just say while true because true is true so this has
+the effect of doing something no matter what forever unless we break out of it early now i'm
+going to go ahead and do this i'm going to go ahead and move my try accept code indented
+underneath this loop so that i'm trying to get an x if i have a value error instead i print that x
+is not an integer but this time what do i want to do if the user does try and succeed in giving
+me a number while i can do this i can just break out of my code here and down here now i
+can use that same line of code from before an f string that says x is and then in curly braces
+x again so what's going on here i think this code now because i've added the loop is going to
+have the effect of trying at least once maybe a second time maybe a third time maybe 500
+times until the user finally gives me what i want which is an integer and once they do once
+there's no value error happening then i break out of the loop and line 9 executes as i would
+hope so let me go ahead and try executing this version python of number dot pi enter what's
+x let me go ahead and type in the easy thing first 50. x is 50. what just happened in terms of
+the control flow of this program the flow of my logic well i first found myself on line one inside
+of a loop hopefully i'll get out of this loop what did i then do on lines two and three i tried to
+get input from the user and convert it to an end well i was a nice guy this time and i typed in
+50 which looks like and is a number so the in function converted it just fine and stored it from
+right to left in x accept value error there is no value error because if i typed in a number
+there's nothing exceptional happening this is a boring good execution of my program so what
+happens i break out of the loop so again the else clause is associated with the try not with
+the except and once i'm out of the loop of course i'm just printing out what x is well let's try
+the other scenario that might happen python of number.pi enter what's x let's try cat or any
+other word enter ah this is now a new feature i'm being informed what i did wrong x is not an
+integer so i'm getting some useful user feedback but notice again i'm prompted what's x well
+let me try typing in dog x is not an integer what's x let me try bird enter x is not an integer
+what's x and suffice it to say this will happen now forever if i'm in an infinite loop until i try and
+succeed at which point i break out so let's try again 50 enter now i'm out of the loop and i'm
+printing out what x actually is all right let me pause here and see if there are any questions
+the logic is almost the same but what is different now is i'm in a loop and i'm using the
+keyword break in python to deliberately break out of the loop when i'm ready to once the
+user has cooperated we really need to break can't we just print or what keeps us from just
+printing uh good question so let me try that couldn't i just print well let's see what happens if i
+do that let me move this print line at the end into my loop here thereby shortening the
+program and in general that's been a good thing python of number.pi enter let me go ahead
+and type in 50. okay x is 50. what's x uh okay maybe it's 49. x is 49. uh okay maybe 48.
+unfortunately i think you're you're laughing you see it i never break out of the loop which
+maybe that's a feature maybe you want this to be your program but i didn't i'd eventually like
+this game to stop so i need to break out in that way but i can do it a little differently and let
+me propose that we modify this a little bit but first any other questions on this syntax here let
+me rewind to the prior version hey can i use break uh only exception except in else for
+example in another uh print and when you use printing the else you can use print together
+with break or something like this you so you can use break inside of loops to break out of
+loops and you can use it inside of a conditional like an if an lift or an else you can do it inside
+of a try accept else statement too anytime you're in a loop that you want to break out of you
+can use this keyword break i'm using it in the context of exceptions but it's not restricted to
+that and let me show you too it doesn't even have to be in the else if i wanted to i could
+actually do this i could get rid of my else and i could go back to line three add another line
+that's indented line four and break out here now why is this logically okay well consider what
+i'm now trying to do i'm trying to execute line three and converting the user's input to an int
+and i'm trying to store the result from right to left in x if something goes wrong the code we've
+already seen is immediately going to jump to line 5 and then 6 to handle the exception but if
+nothing goes wrong my code presumably should just keep on executing line by line so i
+could technically logically put the break here and watch what happens when i run this
+version python of number dot pi 50 enter it worked i broke out of the loop now which way is
+better honestly i think it could go either way at this point this program's so relatively short that
+even though i'm trying to do two things now one of which the break is not going to fail like
+you either break or you don't there's no piece of data from the user that's going to influence
+that we don't strictly need to have those two lines of code there but it's only two lines so i
+think it's okay and if you recall our discussion in the past not just of correctness does the
+code work as it should but design i think you could argue it either way if you prefer the
+readability of this and the fact that you don't have an else that's fine if though you prefer to
+minimize just how many lines of code you're trying to execute in case something goes wrong
+the else is a reasonable approach too well allow me to propose two now that we refine this
+further i think we're at the point where it's pretty darn correct but suppose now that i find
+myself today and tomorrow trying to get numbers from the user quite a bit it would be nice as
+we've seen to maybe just invent my own function getint to get an integer from the user both
+today and tomorrow and beyond and heck maybe i can even share that function with other
+people if they want to write programs they get integers from users so how might i go about
+doing this well let me go ahead and propose that we do this let me get rid of the print line but
+keep most of my loop here let me define a function called getint that takes no arguments for
+now and i'm going to go ahead and indent all of the code i already wrote underneath getint
+so now i have a function called getint that tries to do the following try to get in it from the user
+if something goes wrong and there's a value error yell at them with x is not an integer else
+break but it's not just breaking that i want to do here now that i'm in a function recall our
+discussion of return values if you're inventing your own function whose purpose in life isn't
+just to print something on the screen like a side effect but is to hand back a value to hand
+you back a value like on that same post-it note from our discussion of functions well you
+need to return x explicitly how do i now use this function well as soon as we start making our
+own functions it tends to be convenient to define our own main function as well that's the
+main part of our program and i'm going to keep this simple i'm now going to say x equals get
+int and then on the next line i'm going to do that print from before quote unquote x is and
+curly braces x and at the very bottom of my program recall i'm going to call main so that no
+matter what i'm invoking my main function after everything's been defined well let's see how
+this works let me go ahead and run python of number.pi enter let's type in 50 and it seems to
+work as before let's go ahead and run it again typing in cat cat this time x is not an integer
+and i'm being prompted dog and i'm being prompted bird and i'm being prompted fine fine
+fine 50. that's an int and so it is printed so what's worth noting here while i'm manifesting a
+couple of good properties here one i've kind of abstracted away this notion of getting an
+integer and even though i just artificially hit enter a whole bunch of times just to hide that
+function for now it needs to be there but we don't need to see it at this point notice that now
+this entire program really boils down to just these three lines of code now why because i've
+abstracted away that whole process of getting an int from the user into this new function of
+my own called get int but can i improve upon this well let me go ahead and undo all of those
+blank lines and pull this up just so we can see more on the screen at once can i tighten up
+my implementation of getint it is correct i claim this is correct it's handling errors and it's
+returning x but i don't strictly speaking need to write the code as long what else could i do
+well let me propose that if all you're doing on this line 13 is breaking and then immediately
+after that per the indentation you're executing return x on line 14. why are you wasting
+everyone's time once you know you're ready to return the value you could just return x and
+so in my else i could break out and return a value so here too return is used to return values
+from functions break is used to break out of loops but it turns out that return is sort of
+stronger than break it will not only break you out of a loop it will also return a value for you so
+it's doing two things for once if you will but can i make this even more compact if if if my goal
+is to just tighten the code up even though it's already correct can anyone think of a further
+refinement whether you've programmed in python before or not can i shorten this
+implementation further just a little bit if only to decrease the probability that i've made a
+mistake by having fewer lines and just make it a little easier to read because it's shorter any
+suggestions for tightening up my implementation of getint you can just return the value on
+the try function when you're trying uh you take the input x and then return x good we can just
+return x a little higher up and let me correct folks as we go it's not a try function it would be a
+try statement technically a function typically has a parenthesis and another one in this case
+it's just a statement so but we can do exactly that i don't technically need the else if i really
+want i could do this right after line 9 i could return x here or recall our discussion of defining
+variables unnecessarily sometimes like why define a variable here if you're immediately
+going to use it here and then never again so we could avoid a new line here and i could
+avoid even defining x explicitly i could just say something like this i could return int input
+quote unquote what's x i can do it all at once now which is better i don't know i mean again
+this is where reasonable people might disagree i'd argue that on the one hand we're
+tightening up the code we're using fewer lines it's easier to read lower probability that i've
+made a mistake on the other hand it's a little more complicated to understand perhaps it's a
+little less obvious where i'm returning from so i think arguments can be made either way at
+the end of the day what's important is that you've done this consciously you've made a
+decision to do it this way or this way and you can justify it in your mind not that your answer
+is it worked so i left it alone like have a good reason come up with a good reason and that
+will come with experience and practice well let me propose to that we make one other
+refinement here suppose that you're finding your programs to be a little noisy and it's a little
+obnoxious that you keep telling the user x is not an integer x is not an integer x is not an
+integer what if you want to make things a little gentler and just prompt the user again with the
+same words what's x what is x what's x again and again well you can do that as well and it
+turns out that if you want to handle an exception in python but you want to pass on doing
+anything with it so you want to catch it but you essentially want to ignore it you don't want to
+print anything you don't want to quit the program you just want to silently ignore it like if
+you're talking in a groom full of people and you're it's your turn to talk and you're just like
+pass they're still calling on you but you're not doing or saying anything more well we can add
+this keyword to our code here let me go back to my program here and instead of printing out
+again and again x is not an integer i could just do this i could pass on handling the error
+further i'm still catching it so the user is not going to see a scary message even mentioning
+value error my code is catching it but i'm passing on saying anything about it i'm going to
+stay in the loop i'm going to stay in the loop and keep prompting and reprompting the user so
+now the effect looks a little something like this python of number.pi let's type in cat what's x
+again let's type in dog what's x again type in bird so it's just a little maybe more user friendly
+and that you're just reminding the user what you want maybe it's worse maybe it would be
+helpful to tell the user why you're prompting them again and again it's not obvious so it could
+go both ways but again it's just another mechanism now for handling these errors we use the
+accept keyword to catch a specific error but we don't have to handle it more than that we can
+just pass on doing something further let me pause here and see if there's any questions now
+on try accept else or pass okay yeah no i was just kind of curious i guess about the idea of
+when you were indenting with uh the get in function for example um because i'm noticing you
+know obviously going through it with the whole logic and breakdown of the entire uh the
+entire function you know while true do this but i'm just kind of curious on elaborating with the
+indentations for the code more yeah so the indentation is deliberate logically some
+languages don't require as rigorous indentation you can use curly braces or other symbology
+to make clear what is associated with what in general anytime you indent something in
+python on this line so rather anytime you write a code a line of code in python that's here and
+the lines below it are somehow indented that means that those lines are somehow
+associated with that first line and presumably those indented lines should only be executed if
+the first line told the uh told the computer to do so so concretely what does this mean on line
+six here we're defining a function called get in that takes no arguments colon everything
+that's indented by at least four spaces hereafter is part of that function why that's just the
+design of the python language frankly i think the designers got tired of seeing really ugly
+code in languages like c and c plus and java that don't necessarily enforce uh indentation to
+this extent so now it's baked into the language and my chronology might be a little off there
+but there's been many languages that are looser than python when it comes to indentation
+the indentation is meaningful on line seven two notice that because the while true is indented
+by four spaces that just means it's part of the get in function but notice below the while true
+statement there's 8 there's 12 there's 8 there's 12 spaces here and i'm just quickly counting
+the dots that means that all of the lines i've just highlighted are inside of that while loop while
+true means to execute lines 8 through 11 potentially again and again and again and now
+lastly on line eight because we have try and indented below it is line nine that just means
+that what you should try is what's on line nine and similarly on line ten below it we have
+indented line 11. you should only pass when there is an exception of a value error so the
+indentation just means what is associated with what and once you get comfortable with that
+you'll see that it helps the indentation alone helps explain the logic of your program and it
+has a wonderful side effect that for yourself the next morning for your colleagues your family
+your friends your teachers your code is much more readable as a result it's not one big mess
+of a blob of text other questions now on try accept else or pass yeah thanks um two question
+uh question one um once you say pass can the caller still learn anything about this error um
+through a system variable or whatever and question two problem set zero referenced some
+string methods including is numeric is it any different to um go via is the merrick here good
+question so on the first question if i'm handling the error in this way the caller is not going to
+know anything about it that's the point of my handling it so that maine or other callers don't
+know that anything technically went wrong on the second question is numeric is another
+function that you can call that can look at a string and determine is this in fact a number i
+could use a mechanism like that i could use a conditional if this looks like a number then
+pass it to the int function and go ahead and convert it to an integer that's totally fine i would
+generally say that the pythonic way of doing things is often for better for worse to try things
+hope they work but if they don't handle the exception so other languages are more in favor of
+checking if if if if elif else in all of these conditionals python tends to be a little more of the
+mindset try it but just make sure you're handling the error so this would be the pythonic way
+of doing it your way though checking with a conditional is it a number first is totally
+reasonable too if you want to go that way well let me propose some final refinements to this
+program that really just kind of tighten things up one additional step to improve the
+implementation of this get in function let me propose that we not hard code so to speak that
+is type manually x all over the place let's make this function get int a little more reusable right
+now notice that i'm just kind of using the honor system that well maine is defining a variable
+called x and getint is asking for a variable called x but it would be nice if the caller main
+doesn't have to know what the callee is naming its variables and vice versa so caller to call a
+function means to use it the caller is the function that's using it the callee is just the function
+being called it would be nice if i'm not just hoping that x is the same in both places so let me
+propose this let me propose that we actually add a parameter to getint like this what's x that
+is to say if main wants to use the get in function well then main should probably tell the get in
+function what prompt to show the user just like the input function recall that comes with
+python it's up to you to pass in a prompt that the user then sees when the human is asked
+for input so how do i make this work here i can go down to my definition of get int and i can
+say all right getint is going to take a parameter now called prompt i could call it anything i
+want but prompt in english is pretty self-explanatory it means what do you want the message
+the user will see and now down here when i actually use input i don't have to
+presumptuously say what's x because what if the program the caller wants to ask for y or z
+or some other variable i can just pass to input whatever prompt the caller has provided so
+now i'm making more reusable code it still works just the same i haven't changed the
+functionality per se but now it's a little more dynamic because now getint doesn't have to
+know or care what variable is being asked for what's being asked for it just needs to know
+what prompt it should show to the user so if i now run this program down here again prompt
+number.pi enter what's x 50 still seems to work let's run it Давайте снова введем «кот», и,
+кажется, все по-прежнему работает. А если я введу «кот, собака, птица» или что-нибудь
+еще, мне будет постоянно появляться тот же запрос, что делает этот код еще более
+удобным. Оказывается, вы даже можете сами генерировать исключения, используя
+ключевое слово `raise` в Python, но об этом позже. Так что в ближайшие дни, недели и
+месяцы, по мере того как вы будете писать больше кода на Python, вы увидите, что
+ошибки неизбежны. Иногда это синтаксические ошибки, которые нужно просто
+исправить, если вы вообще хотите запустить свою программу. Но это могут быть и
+ошибки именования переменных экземпляра, которые вы хотели определить, но
+почему-то не присвоили им значения. Ошибки, когда пользователь, возможно, не
+сотрудничал и предоставил вам что-то, чего вы не ожидали, или целый список других
+возможных ошибок или исключений. Но теперь, надеюсь, вы знаете, как обрабатывать
+эти ошибки и реагировать на них любым удобным для вас способом. На этом наш
+обзор исключений закончился, и до встречи в следующий раз!
+
